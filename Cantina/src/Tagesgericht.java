@@ -13,7 +13,7 @@ public class Tagesgericht
     /** Das Rezept, auf das sich das Tagesgericht bezieht*/
     private Rezept rezept;
     /** Die herzustellende Menge des Tagesgericht, welche nach der Hitlistenposition vorraussichtlich abgesetzt wird.*/
-    private int absatzMenge;
+    private int menge;
     /** Gibt als einfachen Integer an, an welchen Werktag der Planungsperiode das Tagesgericht hergestellt werden soll.*/
     private int datum;
     
@@ -42,9 +42,9 @@ public class Tagesgericht
      *
      * @return Die Absatzmenge des Tagesgerichts
      */
-    public int getAbsatzMenge()
+    public int getMenge()
     {
-        return absatzMenge;
+        return menge;
     }
     
     /**
@@ -64,7 +64,7 @@ public class Tagesgericht
      */
     public void setDatum(int datum)
     {
-        
+        this.datum=datum;
     }
     
     /**
@@ -74,6 +74,6 @@ public class Tagesgericht
      */
     public void setMenge(int menge)
     {
-        
+        this.menge=menge;
     }
 }

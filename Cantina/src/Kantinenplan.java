@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * liegt auch mit dieser Klasse eine Assoziationsbeziehung vor.
  * 
  * @author Rene Wiederhold
- * @version
+ * @version 0.1
  */
 public class Kantinenplan
 {
@@ -20,11 +20,7 @@ public class Kantinenplan
     /** Die Anzahl der Mitarbeiter, welche die Kantine am Standort besuchen*/
     private int anzMitarbeiter;
     /** Die ArrayList enthält die zum Speiseplan gehörenden Tagesgerichte */
-    public ArrayList<Tagesgericht> tagesgerichtArrayList;
-    
-    // Die für die Kantinenplanerstellung notwendigen Lieferanten- und Rezeptverwaltungen
-    private Lieferantenverwaltung lieferantenverw;
-    private Rezeptverwaltung rezeptverw;
+    public ArrayList<Tagesgericht> tgArrayList;
 
     /**
      * Konstruktor für Objekte der Klasse Kantinenplan
@@ -36,6 +32,7 @@ public class Kantinenplan
     {
     	this.standort=name;
     	this.anzMitarbeiter=anzMA;
+    	tgArrayList=new ArrayList<Tagesgericht>();
     	
     	//Debug-Print
     	System.out.println("Die Kantine "+standort+" mit "+anzMitarbeiter+" Mitarbeitern wurde erzeugt.");
@@ -52,90 +49,170 @@ public class Kantinenplan
      */
     public boolean erzeugePlan(Lieferantenverwaltung lieferantenverw, Rezeptverwaltung rezeptverw)
     {
-        this.lieferantenverw=lieferantenverw;
-        this.rezeptverw=rezeptverw;
-
-        /*Week 1 */
-        
-        // Fischrezept-Zähler
-    	int fishCnt=0;
     	// Anzahl der Öffnungstage pro Woche
-    	int tageProWoche =5;
-    	Rezept[] tmpMeatArr=new Rezept[tageProWoche];	//enthält die 5 Fleischrezepte, die pro Woche mindestens angeboten werden sollen
-        Rezept[] tmpVeggieArr=new Rezept[tageProWoche]; //enthält die 5 vegetarischen Rezepte, die pro Woche mindestens angeboten werden sollen
-        Rezept[] tmpRndArr=new Rezept[tageProWoche];	//enthält 5 zufällige Rezepte, die pro Woche mindestens angeboten werden sollen, wobei min. eines ein Fischgericht sein muss.
-
-        // temporären Wochen-Plan erzeugen
-        for (int i=0; i<tageProWoche;i++){
-        	tmpMeatArr[i]=rezeptverw.gibFleisch();
-           	tmpVeggieArr[i]=rezeptverw.gibVeggie();
-        	tmpRndArr[i]=rezeptverw.gibRandom();
-
-        	//Wenn das Zufallsrezept ein Fischrezept ist, wird der Zähler erhöht.
-        	if(tmpRndArr[i].getTyp()==RezeptTyp.Fisch){
-        		fishCnt++;
-        		
-        		//Debug-Print
-        		//System.out.println("ist Fisch Nr. "+fishCnt);
-        		
-        		//Sollte der Zähler größer als 2 sein (das Zufallsgericht also das 3. Fischgericht in der Woche), wird der Schleifenzähler um 1 verringert.
-        		//Im nächsten Schleifen-Lauf wird dann um eins erhöht, also der selbe Tag nochmals angestoßen. Dies geschieht so oft, bis ein 
-        		//Nicht-Fischgericht vorgeschlagen wird.
-        		if (fishCnt>2){
-        			
-        			//Debug-Print
-        			//System.out.println("mehr als 2 Fischgerichte");
-        			
-        			i--;
-        		}
-        	}
-        	/*Sollte beim letzten Durchlauf (der 5.) der Zufall nicht für mindestens ein Fischgericht gesorgt haben (Zähler also = 0), dann
-        	wird explizit ein Fischgericht aufgerufen. Das sorgt natürlich dafür, dass die Wahrscheinlichkeit, dass es christlich-traditionell 
-        	am Freitag Fisch gibt, recht hoch ist. Dies kann hier aber auch auf einen anderen Tag gelegt werden, denn letztlich ist es egal, 
-        	welcher Tag überschrieben wird. */
-    		if (i==4 && fishCnt==0){
-    			tmpRndArr[i]=rezeptverw.gibFisch();
-    			
-    			//Debug-Print
-    			//System.out.println("Immernoch kein Fischgericht. Ersetze mit "+tmpRndArr[i].getName());
-    		}
+    	int tageProWoche = 5;
+    	//Anzahl der Wochen pro Planungszeitraum
+    	int wochenProPlan = 3;
+        
+    	for (int w=0;w<wochenProPlan;w++){
+	    	/*Week 1 */
+	        // Fischrezept-Zähler
+	    	int fishCnt=0;
+	    	//enthält die 5 Fleischrezepte, die pro Woche mindestens angeboten werden sollen
+	    	Rezept[] tmpMeatArr=new Rezept[tageProWoche];	
+	    	//enthält die 5 vegetarischen Rezepte, die pro Woche mindestens angeboten werden sollen
+	    	Rezept[] tmpVeggieArr=new Rezept[tageProWoche];
+	    	//enthält 5 zufällige Rezepte, die pro Woche mindestens angeboten werden sollen, wobei min. eines ein Fischgericht sein muss
+	    	Rezept[] tmpRndArr=new Rezept[tageProWoche];
+	   
+	        Tagesgericht[] meatTGArr=new Tagesgericht[tageProWoche];
+	        Tagesgericht[] veggieTGArr=new Tagesgericht[tageProWoche];
+	        Tagesgericht[] rndTGArr=new Tagesgericht[tageProWoche];
+	        
+	        // temporären Wochen-Plan erzeugen
+	        for (byte i=0; i<tageProWoche;i++){
+	        	tmpMeatArr[i]=rezeptverw.gibFleisch();
+	           	tmpVeggieArr[i]=rezeptverw.gibVeggie();
+	        	tmpRndArr[i]=rezeptverw.gibRandom();
+	        	//Wenn das Zufallsrezept ein Fischrezept ist, wird der Zähler erhöht.
+	        	if(tmpRndArr[i].getTyp()==RezeptTyp.Fisch){
+	        		/*Sollte der Zähler größer als 2 sein (das Zufallsgericht also das 3. Fischgericht in der Woche),  Dies geschieht so oft, bis ein 
+	        		Nicht-Fischgericht vorgeschlagen wird. Da das Zufallsgericht ersetzt wird, wird natürlich auch der Fischgericht-Zähler wieder reduziert*/
+	        		if (fishCnt>2){
+	        			do{
+	        				tmpRndArr[i]=rezeptverw.gibRandom();
+	        			}
+	        			while (tmpRndArr[i].getTyp()==RezeptTyp.Fisch);
+	        		}
+	        		else {
+	        			fishCnt++;
+	        		}
+	        	}
+	        	/*Sollte beim letzten Durchlauf (der 5.) der Zufall nicht für mindestens ein Fischgericht gesorgt haben (Zähler also = 0), dann
+	        	wird explizit ein Fischgericht aufgerufen. Das sorgt natürlich dafür, dass die Wahrscheinlichkeit, dass es christlich-traditionell 
+	        	am Freitag Fisch gibt, recht hoch ist. Dies kann hier aber auch auf einen anderen Tag gelegt werden, denn letztlich ist es egal, 
+	        	welcher Tag überschrieben wird. */
+	    		if (i==4 && fishCnt==0){
+	    			tmpRndArr[i]=rezeptverw.gibFisch();
+	    			//Debug-Print
+	    			//System.out.println("Immernoch kein Fischgericht. Ersetze mit "+tmpRndArr[i].getName());
+	    		}
+	    		// Verfügbarkeits-Prüfung
+	    		//Tagesgerichte erstellen
+	    		meatTGArr[i]=new Tagesgericht(tmpMeatArr[i]);
+	    		veggieTGArr[i]=new Tagesgericht(tmpVeggieArr[i]);
+	    		rndTGArr[i]=new Tagesgericht(tmpRndArr[i]);
+	    		
+	    		if (tmpMeatArr[i].getHitlistenpos() < tmpVeggieArr[i].getHitlistenpos() && 
+	    				tmpMeatArr[i].getHitlistenpos() < tmpRndArr[i].getHitlistenpos()){
+	    			//Fleischgericht hat höchste Hitlistenposition
+	    			//Mengen setzen
+	    			meatTGArr[i].setMenge(new Double((anzMitarbeiter*1.5)/2).intValue());
+	    			veggieTGArr[i].setMenge(new Double((anzMitarbeiter*1.5)/4).intValue());
+	    			rndTGArr[i].setMenge(new Double((anzMitarbeiter*1.5)/4).intValue());
+	    			//Verfügbarkeit prüfen
+	    			if (lieferantenverw.lebensmittelVerfuegbar(meatTGArr[i]) && lieferantenverw.lebensmittelVerfuegbar(veggieTGArr[i])
+	    					&& lieferantenverw.lebensmittelVerfuegbar(rndTGArr[i])){
+	    				//Alle Zutatmengen für die Tagesgerichte des Tags i sind verfügbar
+	    				//Rezepte auf verwendet setzen
+	    				tmpMeatArr[i].setVerwendet(true);
+	    				tmpVeggieArr[i].setVerwendet(true);
+	    				tmpRndArr[i].setVerwendet(true);
+	    				//Datum setzen
+	    				meatTGArr[i].setDatum((w*tageProWoche)+i+1);
+	    				veggieTGArr[i].setDatum((w*tageProWoche)+i+1);
+	    				rndTGArr[i].setDatum((w*tageProWoche)+i+1);
+	    				//zur ArrayList hinzufügen
+	    				tgArrayList.add(meatTGArr[i]);
+	    				tgArrayList.add(veggieTGArr[i]);
+	    				tgArrayList.add(rndTGArr[i]);
+	    			} else {
+	    				//Mindestens für ein Tagesgericht sind die Mengen nicht verfügbar
+	    				/*Wenn das getestete Zufallsgericht ein Fischgericht war, muss der Fischgerichtzähler natürlich auch wieder vor der Neu-
+	    				planung reduziert werden */
+	    				if (tmpRndArr[i].getTyp()==RezeptTyp.Fisch){
+	    					fishCnt--;
+	    				}
+	    				i--;
+	    			}
+	    		}
+	    		else if (tmpVeggieArr[i].getHitlistenpos() < tmpMeatArr[i].getHitlistenpos() && 
+	    				tmpVeggieArr[i].getHitlistenpos() < tmpRndArr[i].getHitlistenpos()){
+	    			//Vegetarisches Gericht hat höchste Hitlistenposition
+	    			//Mengen setzen
+	    			meatTGArr[i].setMenge(new Double((anzMitarbeiter*1.5)/4).intValue());
+	    			veggieTGArr[i].setMenge(new Double((anzMitarbeiter*1.5)/2).intValue());
+	    			rndTGArr[i].setMenge(new Double((anzMitarbeiter*1.5)/4).intValue());
+	    			//Verfügbarkeit prüfen
+	    			if (lieferantenverw.lebensmittelVerfuegbar(meatTGArr[i]) && lieferantenverw.lebensmittelVerfuegbar(veggieTGArr[i])
+	    					&& lieferantenverw.lebensmittelVerfuegbar(rndTGArr[i])){
+	    				//Alle Zutatmengen für die Tagesgerichte des Tags i sind verfügbar
+	    				//Rezepte auf verwendet setzen
+	    				tmpMeatArr[i].setVerwendet(true);
+	    				tmpVeggieArr[i].setVerwendet(true);
+	    				tmpRndArr[i].setVerwendet(true);
+	    				//Datum setzen
+	    				meatTGArr[i].setDatum((w*tageProWoche)+i+1);
+	    				veggieTGArr[i].setDatum((w*tageProWoche)+i+1);
+	    				rndTGArr[i].setDatum((w*tageProWoche)+i+1);
+	    				//zur ArrayList hinzufügen
+	    				tgArrayList.add(meatTGArr[i]);
+	    				tgArrayList.add(veggieTGArr[i]);
+	    				tgArrayList.add(rndTGArr[i]);
+	    			} else {
+	    				//Mindestens für ein Tagesgericht sind die Mengen nicht verfügbar
+	    				//Wenn das getestete Zufallsgericht ein Fischgericht war, muss der Fischgerichtzähler natürlich auch wieder vor der Neu-
+	    				//planung reduziert werden
+	    				if (tmpRndArr[i].getTyp()==RezeptTyp.Fisch){
+	    					fishCnt--;
+	    				}
+	    				i--;
+	    			}
+	    		}
+	    		else if (tmpRndArr[i].getHitlistenpos() < tmpMeatArr[i].getHitlistenpos() && 
+	    				tmpRndArr[i].getHitlistenpos() < tmpVeggieArr[i].getHitlistenpos()){
+	    			//Zufallsgericht hat höchste Hitlistenposition
+	    			//Mengen setzen
+	    			meatTGArr[i].setMenge(new Double((anzMitarbeiter*1.5)/4).intValue());
+	    			veggieTGArr[i].setMenge(new Double((anzMitarbeiter*1.5)/4).intValue());
+	    			rndTGArr[i].setMenge(new Double((anzMitarbeiter*1.5)/2).intValue());
+	    			//Verfügbarkeit prüfen
+	    			if (lieferantenverw.lebensmittelVerfuegbar(meatTGArr[i]) && lieferantenverw.lebensmittelVerfuegbar(veggieTGArr[i])
+	    					&& lieferantenverw.lebensmittelVerfuegbar(rndTGArr[i])){
+	    				//Alle Zutatmengen für die Tagesgerichte des Tags i sind verfügbar
+	    				//Rezepte auf verwendet setzen
+	    				tmpMeatArr[i].setVerwendet(true);
+	    				tmpVeggieArr[i].setVerwendet(true);
+	    				tmpRndArr[i].setVerwendet(true);
+	    				//Datum setzen
+	    				meatTGArr[i].setDatum((w*tageProWoche)+i+1);
+	    				veggieTGArr[i].setDatum((w*tageProWoche)+i+1);
+	    				rndTGArr[i].setDatum((w*tageProWoche)+i+1);
+	    				//zur ArrayList hinzufügen
+	    				tgArrayList.add(meatTGArr[i]);
+	    				tgArrayList.add(veggieTGArr[i]);
+	    				tgArrayList.add(rndTGArr[i]);
+	    			} else {
+	    				//Mindestens für ein Tagesgericht sind die Mengen nicht verfügbar
+	    				//Wenn das getestete Zufallsgericht ein Fischgericht war, muss der Fischgerichtzähler natürlich auch wieder vor der Neu-
+	    				//planung reduziert werden
+	    				if (tmpRndArr[i].getTyp()==RezeptTyp.Fisch){
+	    					fishCnt--;
+	    				}
+	    				i--;
+	    			}
+	    		}
+	    		else {
+	    			System.out.println("Problem bei den Hitlistenpositionen");
+	    		}	
+	        } //Ende temporärer Wochenplanschleife
         }
-        // Verfügbarkeits-Prüfung
-        Tagesgericht tg= new Tagesgericht(tmpRndArr[0]);
-        tg.setMenge(250);
-        
-        if (lieferantenverw.lebensmittelVerfuegbar(tg)==false){
-        	return false;
-        }
-        
-        
-        
-        
-        
-        
-        
-        /*Debug-Print 
-        for (int i=0;i<5;i++){
-        	System.out.println("Tag "+(i+1)+": "+tmpMeatArr[i].getName());
-        	System.out.println("Tag "+(i+1)+": "+tmpVeggieArr[i].getName());
-        	System.out.println("Tag "+(i+1)+": "+tmpRndArr[i].getName());
-        } */
-        
-    	
-        
-        
-        /*
-        * Für eine Woche, das ganze wird dann 2x wiederholt:
-        * Von der Rezeptverwaltung werden 5 Fleischgericht-Rezepte und 5 vegetarische Rezepte angefordert, dann ein 
-        * Fischgericht, die restlichen 4 mit zufälligen Rezepten aufgefüllt. Die 4 Teile werden in temporären Arrays hinterlegt.
-        * Nun werden alle Rezepte auf ihre Verfügbarkeit bei der Lieferantenverwaltung geprüft. Falls etwas nicht verfügbar ist,
-        * muss neu angefordert und im temporären Array ersetzt werden.  
-        * Dann werden die Tagesgerichtobjekte daraus erstellt. Als Datum wird 1-5 gesetzt, das Fischgericht bekommt immer
-        * die 5 (bzw. 10 oder 15 für die 2. und 3. Woche). 
-        * Für die Tagesgerichte mit gleichem Datum können dann die Absatzmengen berechnet und in die Attribute geschrieben werden.
-        * Die Tagesgerichtobjekte kommen, wenn alles passt in den tagesgerichtArrayList und die Rezepte werden dann auf 
-        * "verwendet=true gesetzt. 
-        */
+        /*Debug-Print */
+        for (int i=0;i<tgArrayList.size();i++){
+        	System.out.println("Datum: "+tgArrayList.get(i).getDatum()+" Hitlistenpos.: "+tgArrayList.get(i).getRezept().getHitlistenpos()
+        			+" Menge: "+tgArrayList.get(i).getMenge()+" Typ: "+tgArrayList.get(i).getRezept().getTyp()+" Gericht: "+tgArrayList.get(i).
+        			getRezept().getName());
+        } 
        return true;
     }
     
@@ -146,7 +223,7 @@ public class Kantinenplan
      */
     public ArrayList<Tagesgericht> getTagesgerichte()
     {
-        return tagesgerichtArrayList;
+        return tgArrayList;
     }
     
     /**

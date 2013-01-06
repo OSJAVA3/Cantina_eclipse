@@ -249,7 +249,7 @@ public class Rezeptverwaltung
     	//Holt das entsprechende Rezept aus der Liste
     	Rezept rzp = rezeptListe.get(rnd);
     	//Solang es kein Fischrezept ist, werden weitere Rezepte aufgerufen
-    	while (rzp.getTyp() != RezeptTyp.Fisch){
+    	while (rzp.getTyp() != RezeptTyp.Fisch || rzp.getVerwendet()==true){
         	rnd=new Double(Math.random() * rezeptListe.size()).intValue();
         	rzp = rezeptListe.get(rnd);
     	} 
@@ -266,7 +266,7 @@ public class Rezeptverwaltung
     	//siehe gibFisch
     	int rnd=new Double(Math.random() * rezeptListe.size()).intValue();
     	Rezept rzp = rezeptListe.get(rnd);
-    	while (rzp.getTyp() != RezeptTyp.Fleisch){
+    	while (rzp.getTyp() != RezeptTyp.Fleisch || rzp.getVerwendet()==true){
         	rnd=new Double(Math.random() * rezeptListe.size()).intValue();
         	rzp = rezeptListe.get(rnd);
     	} 
@@ -283,7 +283,7 @@ public class Rezeptverwaltung
     	//siehe gibFisch
     	int rnd=new Double(Math.random() * rezeptListe.size()).intValue();
     	Rezept rzp = rezeptListe.get(rnd);
-    	while (rzp.getTyp() != null){
+    	while (rzp.getTyp() != null || rzp.getVerwendet()==true){
         	rnd=new Double(Math.random() * rezeptListe.size()).intValue();
         	rzp = rezeptListe.get(rnd);
     	} 
@@ -300,6 +300,10 @@ public class Rezeptverwaltung
     	//siehe gibFisch. Hier ohne Schleife, da ein vollkommen zufälliges Rezept ausreicht, ist keine Typ-Prüfung nötig
     	int rnd = new Double(Math.random() * rezeptListe.size()).intValue();
     	Rezept rzp = rezeptListe.get(rnd);
+    	while (rzp.getVerwendet()==true){
+        	rnd=new Double(Math.random() * rezeptListe.size()).intValue();
+        	rzp = rezeptListe.get(rnd);
+    	}
         return rzp;
     }
 

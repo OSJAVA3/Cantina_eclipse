@@ -88,7 +88,7 @@ public class Lieferantenverwaltung {
 			for (Lebensmittel lm : lmList){
 				if (lm.getName().equals(z.getName())) {
 					// Differenz zwischen verfügbaren Lebensmitteln und benötigter Zutatmenge
-					float diff=(lm.getMenge()-(z.getMenge()*tagesgericht.getAbsatzMenge()));
+					float diff=(lm.getMenge()-(z.getMenge()*tagesgericht.getMenge()));
 					//Verfügbare Restmenge des Lebensmittels ist kleiner 0, Verfügbar: false
 					if (diff<0){
 						//Debug-Print
@@ -110,7 +110,7 @@ public class Lieferantenverwaltung {
 				//Lebensmittelschleife
 				for (Lebensmittel lm : lmList){
 					if (lm.getName().equals(z.getName())){
-						lm.setMenge(lm.getMenge()-(z.getMenge()*tagesgericht.getAbsatzMenge()));
+						lm.setMenge(lm.getMenge()-(z.getMenge()*tagesgericht.getMenge()));
 						//Debug-Print
 						//System.out.println("Menge von "+lm.getName()+" auf "+lm.getMenge()+" angepasst");
 					}
