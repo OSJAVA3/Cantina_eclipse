@@ -9,7 +9,6 @@ import java.util.*; // Importiert die Klasse ArrayList
  * @author Lukas Krotki 
  * @version
  */
-enum RezeptTyp {Fleisch, Fisch, Veggie};
 
 public class Rezept 
 {

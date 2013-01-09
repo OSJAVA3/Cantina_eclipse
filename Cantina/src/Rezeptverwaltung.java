@@ -109,7 +109,7 @@ public class Rezeptverwaltung
 					
 				}
 				
-				rezept.addZutat(Rezeptverwaltung.makeZutat(fields));
+				rezept.addZutat(makeZutat(fields));
 				//Debug-Print
 				//System.out.println("Zutat: " +fields.get(3).toString());
 				
