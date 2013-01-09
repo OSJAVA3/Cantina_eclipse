@@ -227,7 +227,7 @@ public class Rezeptverwaltung
      * @param fields
      * @return zutat Es werden Zutaten erzeugt
      */
-    public static Zutat makeZutat(ArrayList<String> fields) {
+    public Zutat makeZutat(ArrayList<String> fields) {
     	Zutat zutat = new Zutat(
     			fields.get(3).toString(),
     			Float.valueOf(fields.get(1).toString().replace("," , ".")),
