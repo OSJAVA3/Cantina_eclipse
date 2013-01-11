@@ -283,7 +283,7 @@ public class Rezeptverwaltung
     	//siehe gibFisch
     	int rnd=new Double(Math.random() * rezeptListe.size()).intValue();
     	Rezept rzp = rezeptListe.get(rnd);
-    	while (rzp.getTyp() != RezeptTyp.Veggie || rzp.getVerwendet()==true){
+    	while (rzp.getTyp() != RezeptTyp.Vegetarisches || rzp.getVerwendet()==true){
         	rnd=new Double(Math.random() * rezeptListe.size()).intValue();
         	rzp = rezeptListe.get(rnd);
     	} 

@@ -55,13 +55,13 @@ public class Lieferantenverwaltung {
 			}
 		}
 		if (typ == null)
-			return RezeptTyp.Veggie;
+			return RezeptTyp.Vegetarisches;
 		else if (typ.equals("m"))
 			return RezeptTyp.Fleisch;
 		else if (typ.equals("f"))
 			return RezeptTyp.Fisch;
 		else
-			return RezeptTyp.Veggie;
+			return RezeptTyp.Vegetarisches;
 	}
 
 	/**

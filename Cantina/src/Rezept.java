@@ -116,11 +116,11 @@ public class Rezept
      public void setRezeptTyp (Lieferantenverwaltung lieferantenVerw){
     	RezeptTyp zutatTyp;
     			// Alten Wert ueberschreiben und neuen Typ aufgrund der jetzigen Zutaten ermitteln
-    			typ = RezeptTyp.Veggie;
+    			typ = RezeptTyp.Vegetarisches;
     			
     			for( Zutat zutat : zutaten ) {
     				zutatTyp = lieferantenVerw.holeTyp(zutat);
-    				if (zutatTyp != RezeptTyp.Veggie)  {
+    				if (zutatTyp != RezeptTyp.Vegetarisches)  {
     					typ = zutatTyp;
     					
     	  				//Debug Print

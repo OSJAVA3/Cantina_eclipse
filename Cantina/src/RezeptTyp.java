@@ -7,4 +7,4 @@
  * @version
  */
 
-public enum RezeptTyp {Fleisch,Fisch, Veggie}
+public enum RezeptTyp {Fleisch,Fisch, Vegetarisches}
