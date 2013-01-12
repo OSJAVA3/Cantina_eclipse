@@ -65,6 +65,7 @@ public class Kantinenplanung {
 		app.startKantinenplanung();
 		// Die Einkaufsliste für ALLE Kantinenpläne erzeugen
 		app.startEinkaufsplanung();
+		app.schreibeKantinenplan();
 	}
 
 	/**
@@ -138,6 +139,14 @@ public class Kantinenplanung {
 			kantPlanList.add(plan);
 		}
 	}
+	public void schreibeKantinenplan() {
+				
+				for( Kantinenplan plan: kantPlanList ) {
+						plan.schreibeKantinenplan();
+				}
+		
+	}
+
 
 	/**
 	 * Hier wird die Steuerung der gesamten Einkaufslistenerstellung hinterlegt.

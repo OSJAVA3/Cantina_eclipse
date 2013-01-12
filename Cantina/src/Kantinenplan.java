@@ -245,4 +245,36 @@ public class Kantinenplan
     {
         return anzMitarbeiter;
     }
+    public void schreibeKantinenplan() {
+    			Datei planDatei = new Datei( standort+".csv");
+    			System.out.println("Schreibe Datei "+standort+".csv ...");
+    			
+    			
+    			if (planDatei.openOutFile_FS()==0) {
+    				
+    				planDatei.writeLine("Kantinenplan für "+standort);
+    				String ausgabeZeile;
+    				for( Tagesgericht tgGericht: tgArrayList ) {
+    					ausgabeZeile = "Datum: "+tgGericht.getDatum()+
+    							" Hitlistenpos: "+tgGericht.getRezept().getHitlistenpos()+
+    							" Menge: "+tgGericht.getMenge()+" Typ: "+tgGericht.getRezept().getTyp()+
+    							" Gericht: "+tgGericht.getRezept().getName();
+    					
+    					if( planDatei.writeLine_FS(ausgabeZeile) != 0) {
+    						System.out.println("Fehler beim Schreiben der planZeile"+tgGericht.getRezept().getName());
+    						break;
+    					}
+    					
+    				}
+    				if( planDatei.closeOutFile_FS()!=0)
+    					System.out.println("Fehler beim Schließen der Ausgabedatei");
+    					
+    			} else 
+    				System.out.println("Die Ausgabedatei kann nicht geöffnet werden.");
+    			
+    
+    		System.out.println("Ausgabe der Datei fehlerfrei beendet.");
+    	
+    		}
+
 }
