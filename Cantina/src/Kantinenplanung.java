@@ -65,7 +65,7 @@ public class Kantinenplanung {
 		app.startKantinenplanung();
 		// Die Einkaufsliste für ALLE Kantinenpläne erzeugen
 		app.startEinkaufsplanung();
-		app.schreibeKantinenplan();
+		//app.schreibeKantinenplan();
 	}
 
 	/**
@@ -153,6 +153,17 @@ public class Kantinenplanung {
 	 * Die Parameter wurden bereits vorher aus der config.properties extrahiert.
 	 */
 	public void startEinkaufsplanung() {
-
+		einkaufsliste = new Einkaufsliste(lieferantenverw);
+		for (int i=0;i<kantPlanList.size();i++){
+			einkaufsliste.addKantinenplan(kantPlanList.get(i));
+		}
+		/*Debug-Print
+		ArrayList<BedarfPos> bpl=einkaufsliste.getBedarfPosList();
+		for(int i=0;i<bpl.size();i++){
+			float m=bpl.get(i).getMenge();
+			String e=bpl.get(i).getEinheit();
+			String n=bpl.get(i).getName();
+			System.out.println(m+" "+e+" "+n);
+		}*/
 	}
 }

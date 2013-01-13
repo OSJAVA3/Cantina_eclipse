@@ -208,8 +208,14 @@ public class Kantinenplan
 	        } //Ende temporärer Wochenplanschleife
         }
         /*Debug-Print */
+
         for (int i=0;i<tgArrayList.size();i++){
-        	System.out.println("Datum: "+tgArrayList.get(i).getDatum()+" Hitlistenpos.: "+tgArrayList.get(i).getRezept().getHitlistenpos()
+        	String dOffset="";
+        	String hOffset="";
+        	if(tgArrayList.get(i).getDatum()<10){dOffset=" ";}
+        	if(tgArrayList.get(i).getRezept().getHitlistenpos()<100){hOffset=" ";}
+        	if(tgArrayList.get(i).getRezept().getHitlistenpos()<10){hOffset="  ";}
+        	System.out.println("Datum: "+dOffset+tgArrayList.get(i).getDatum()+" Hitlistenpos.: "+hOffset+tgArrayList.get(i).getRezept().getHitlistenpos()
         			+" Menge: "+tgArrayList.get(i).getMenge()+" Typ: "+tgArrayList.get(i).getRezept().getTyp()+" Gericht: "+tgArrayList.get(i).
         			getRezept().getName());
         } 

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * Die Klasse Einkaufsliste kann aus den Kantinenplan-Objekten eine Einkaufsliste mit einzelnen 
  * Einkaufslistenpositionen erzeugen. Dazu erzeugt sie als Zwischenschritt BedarfPos-Objekte 
@@ -18,11 +19,9 @@ import java.util.ArrayList;
 public class Einkaufsliste
 {
     /** Enthält die Objekte der Klasse BestellPos */
-    private ArrayList<BestellPos> bestellArrayList;
+    private ArrayList<BestellPos> bestellPosList;
     /** Enthält die Objekte der Klasse BedarfPos */
-    private ArrayList<BedarfPos> bedarfArrayList;
-    /** Enthält die Kantinenplanobjekte, für die die Einkaufsliste zu berechnen ist */
-    private ArrayList<Kantinenplan> kantinenplanArrayList;
+    private ArrayList<BedarfPos> bedarfPosList;
     /** Enthält die Gesamtkosten der Bestellung inklusive der Transportkosten */
     private float gesamtkosten;
     /** Enthält die zu verwendende Lieferantenverwaltung */
@@ -33,21 +32,91 @@ public class Einkaufsliste
      */
     public Einkaufsliste(Lieferantenverwaltung lieferantenverw)
     {
-        
+        this.lieferantenverw=lieferantenverw;
+        bedarfPosList=new ArrayList<BedarfPos>();
+        bestellPosList=new ArrayList<BestellPos>();
     }
     
     /**
-     * Fügt dem kantinenplanArrayList Instanzen vom Kantinenplan hinzu (im Regelfall 2 Instanzen)
+     * Die Methode fügt die benötigten Zutaten für einen Kantinenplan den Bedarfsposition-Objekten hinzu bzw. erstellt diese.
      *
      * @param  kantinenplan   Ein Kantinenplanobjekt
      * @return     True für ein erfolgreiches hinzufügen, False falls ein Problem aufgetreten ist.
      */
-    public boolean addKantinenplan(Kantinenplan kantinenplan)
+    public void addKantinenplan(Kantinenplan kantinenplan)
     { 
-        return true;
+    	//Tagesgericht-Schleife
+    	for (int i=0;i<kantinenplan.getTagesgerichte().size();i++){
+    		Tagesgericht tg=kantinenplan.getTagesgerichte().get(i);
+    		int m=tg.getMenge();
+    		//Zutatenschleife
+    		for (int j=0;j<tg.getRezept().getZutaten().size();j++){
+    			Zutat z=tg.getRezept().getZutaten().get(j);
+    			String zname=z.getName();
+    			String zeinh=z.getEinheit();
+    			float zmenge=z.getMenge();
+
+    			if (bedarfPosList.isEmpty()){
+    				BedarfPos bPos=new BedarfPos();
+        			bPos.setName(zname);
+        			bPos.setEinheit(zeinh);
+        			bPos.setMenge(m*zmenge);
+        			bedarfPosList.add(bPos);
+        			//Debug-Print
+        		}
+        		else {
+    				//Es sind bereits Objekte in der bedarfPosList
+    				//Es muss geprüft werden ob ein Objekt gleichen Namens vorhanden ist
+    				//Hier wird eine "Iterator-Schleife verwendet
+    				Iterator<BedarfPos> it=bedarfPosList.iterator();
+    				//Variable für die "Vorhanden"-Prüfung
+    				Boolean vorh=false;
+    				//Variable für die bereits in der List vorhandene Bedarfposition
+    				BedarfPos vorhBP=new BedarfPos();
+    				//Solang die List noch ein weiteres Element hat, läuft die Schleife
+    				while (it.hasNext()){
+    					//next() gibt das nächste BedarfPos-Objekt
+    					BedarfPos bedarfPosIt=it.next();
+    					//Stimmt der Name der BedarfPos mit der zu prüfenden Zutat überein?
+    					//Wenn ja, dass Objekt temporär gespeichert und die Schleife gebrochen.
+    					if(bedarfPosIt.getName().equals(zname)){
+    						vorh=true;
+    						vorhBP=bedarfPosIt;
+    						break;
+    					}
+    					//Stimmt der übergebene Name der BedarfPos nicht mit dem iterierten überein, bleibt vorh auf false
+    					else{
+    						vorh=false;
+    					}	
+    				} //while-Ende - Jetzt steht entweder vorh auf true und vorhBP enthält das BedarfPos-Objekt oder vorh steht auf false
+    				// Lebensmittel-Objekt schon vorhanden
+    				if(vorh==true){
+    					vorhBP.setMenge(vorhBP.getMenge()+(m*zmenge));
+    					//Debug-Print
+    					//System.out.println(zname+"-Menge von "+vorhBP.getMenge()+" auf "+(vorhBP.getMenge()+(m*zmenge))+" um "+(m*zmenge)+" angepasst");
+    				}
+    				// Lebensmittel-Objekt noch nicht vorhanden
+    				else if(vorh==false){
+    					vorhBP.setName(zname);
+    					vorhBP.setMenge(m*zmenge);
+    					vorhBP.setEinheit(zeinh);
+    					bedarfPosList.add(vorhBP);
+    					//Debug-Print
+    					//System.out.println((m*zmenge)+" "+zeinh+" "+zname+" der Liste hinzugefügt!");
+    				}	
+    			}
+    		} //Ende Zutatenschleife
+    	} //Ende Tagesgericht-Schleife
     }
 
     /**
+	 * @return the bedarfPosList
+	 */
+	public ArrayList<BedarfPos> getBedarfPosList() {
+		return bedarfPosList;
+	}
+
+	/**
      * Erzeugt aus den im KantinenplanArrayList enthaltenen Kantinenplänen eine Einkaufsliste
      * Es muss vorher mindestens ein Kantinenplan über addKantinenplan referenziert worden sein.
      * 
@@ -87,7 +156,7 @@ public class Einkaufsliste
      */
     public ArrayList<BestellPos> getBestellPos()
     {
-        return bestellArrayList;
+        return bestellPosList;
     }
 }
 
