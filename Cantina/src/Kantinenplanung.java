@@ -139,13 +139,7 @@ public class Kantinenplanung {
 			kantPlanList.add(plan);
 		}
 	}
-	public void schreibeKantinenplan() {
-				
-				for( Kantinenplan plan: kantPlanList ) {
-						plan.schreibeKantinenplan();
-				}
-		
-	}
+
 
 
 	/**
@@ -153,17 +147,26 @@ public class Kantinenplanung {
 	 * Die Parameter wurden bereits vorher aus der config.properties extrahiert.
 	 */
 	public void startEinkaufsplanung() {
-		einkaufsliste = new Einkaufsliste(lieferantenverw);
+		
+		einkaufsliste = new Einkaufsliste();
 		for (int i=0;i<kantPlanList.size();i++){
+			//Über addKantinenplan werden die Tagesgerichte des Kantinenplans in Bedarfspositionen für die Einkaufsplanung umgesetzt.
 			einkaufsliste.addKantinenplan(kantPlanList.get(i));
 		}
-		/*Debug-Print
+		einkaufsliste.erzeugeEinkaufsliste(lieferantenverw);
+		/*Debug-Print*/
 		ArrayList<BedarfPos> bpl=einkaufsliste.getBedarfPosList();
 		for(int i=0;i<bpl.size();i++){
 			float m=bpl.get(i).getMenge();
 			String e=bpl.get(i).getEinheit();
 			String n=bpl.get(i).getName();
 			System.out.println(m+" "+e+" "+n);
-		}*/
+		}
+	}	
+	public void schreibeKantinenplan() {		
+		for( Kantinenplan plan: kantPlanList ) {
+			plan.schreibeKantinenplan();
+		}
+		
 	}
 }

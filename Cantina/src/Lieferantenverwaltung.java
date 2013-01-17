@@ -292,7 +292,13 @@ public class Lieferantenverwaltung {
 	 *         enthält, deren Name mit dem Parameter übereinstimmen
 	 */
 	public ArrayList<Artikel> gibAlleArtikel(String name) {
-		return new ArrayList<Artikel>();
+		ArrayList<Artikel> result=new ArrayList<Artikel>();
+		for (Artikel art:artList){
+			if(art.getName().equals(name)){
+				result.add(art);				
+			}
+		}
+		return result;
 	}
 
 	/**

@@ -29,11 +29,16 @@ public class Artikel
 
     /**
      * Konstruktor für Objekte der Klasse Artikel
+     * @param name Der initiale Name des Artikels
      */
     public Artikel(String name)
     {
         this.name = name;
     }
+    /**
+     * Standard-Konstruktor für Objekte der Klasse Artikel
+     */
+    public Artikel(){}
     /**
      * Setzt den Artikelnamen
      * 

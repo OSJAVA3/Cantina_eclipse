@@ -28,11 +28,11 @@ public class Einkaufsliste
     private Lieferantenverwaltung lieferantenverw;
 
     /**
-     * Dem Konstruktor wird die zu verwendende Lieferantenverwaltung übergeben.
+     * Der Konstruktor
      */
-    public Einkaufsliste(Lieferantenverwaltung lieferantenverw)
+    public Einkaufsliste()
     {
-        this.lieferantenverw=lieferantenverw;
+        
         bedarfPosList=new ArrayList<BedarfPos>();
         bestellPosList=new ArrayList<BestellPos>();
     }
@@ -122,13 +122,31 @@ public class Einkaufsliste
      * 
      * @return     true, für eine erfolgreich erstellte Einkaufsliste, false, falls Fehler aufgetreten sind.
      */
-    public boolean erzeugeEinkaufsliste()
+    public boolean erzeugeEinkaufsliste(Lieferantenverwaltung lieferantenverw)
     {
+    	this.lieferantenverw=lieferantenverw;
+    	for (BedarfPos bedarf:bedarfPosList){
+    		Artikel art=getCheapestArticle(bedarf);
+    		//Debug-Print
+    		System.out.println(art.getName()+" "+art.getPreis()+" "+art.getLieferant().getLieferantenName());
+    	}
         return true;
     }
     
 
-    /**
+    private Artikel getCheapestArticle(BedarfPos bedarf) {
+		ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
+		Artikel cheapest=new Artikel();
+		cheapest.setPreis(Float.MAX_VALUE);
+		for (Artikel art:artList){
+			if (art.getPreis()<cheapest.getPreis()){
+				cheapest=art;
+			}
+		}
+		return cheapest;
+	}
+
+	/**
      * Berechnet die Gesamtkosten der Bestellung inklusive Transportkosten, die sich aus allen im BestellPosArrayList enthaltenen 
      * Bestellpositionen ergibt und schreibt sie in das Attribut gesamtkosten, welches mit getGesamtkosten() ausgelesen werden
      * kann.

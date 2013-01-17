@@ -261,10 +261,14 @@ public class Kantinenplan
     				planDatei.writeLine("Kantinenplan für "+standort);
     				String ausgabeZeile;
     				for( Tagesgericht tgGericht: tgArrayList ) {
-    					ausgabeZeile = "Datum: "+tgGericht.getDatum()+
-    							" Hitlistenpos: "+tgGericht.getRezept().getHitlistenpos()+
-    							" Menge: "+tgGericht.getMenge()+" Typ: "+tgGericht.getRezept().getTyp()+
-    							" Gericht: "+tgGericht.getRezept().getName();
+    					String dOffset="";
+    		        	String hOffset="";
+    		        	if(tgGericht.getDatum()<10){dOffset=" ";}
+    		        	if(tgGericht.getRezept().getHitlistenpos()<100){hOffset=" ";}
+    		        	if(tgGericht.getRezept().getHitlistenpos()<10){hOffset="  ";}
+    					ausgabeZeile = "Datum: "+dOffset+tgGericht.getDatum()+" Hitlistenpos.: "+hOffset+tgGericht.getRezept().getHitlistenpos()
+    		        			+" Menge: "+tgGericht.getMenge()+" Gericht: "+tgGericht.
+    		        			getRezept().getName()+" Typ: "+tgGericht.getRezept().getTyp();
     					
     					if( planDatei.writeLine_FS(ausgabeZeile) != 0) {
     						System.out.println("Fehler beim Schreiben der planZeile"+tgGericht.getRezept().getName());
