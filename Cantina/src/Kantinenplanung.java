@@ -154,14 +154,14 @@ public class Kantinenplanung {
 			einkaufsliste.addKantinenplan(kantPlanList.get(i));
 		}
 		einkaufsliste.erzeugeEinkaufsliste(lieferantenverw);
-		/*Debug-Print*/
+		/*Debug-Print
 		ArrayList<BedarfPos> bpl=einkaufsliste.getBedarfPosList();
 		for(int i=0;i<bpl.size();i++){
 			float m=bpl.get(i).getMenge();
 			String e=bpl.get(i).getEinheit();
 			String n=bpl.get(i).getName();
 			System.out.println(m+" "+e+" "+n);
-		}
+		}*/
 	}	
 	public void schreibeKantinenplan() {		
 		for( Kantinenplan plan: kantPlanList ) {

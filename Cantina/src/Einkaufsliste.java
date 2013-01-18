@@ -1,5 +1,9 @@
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Properties;
 /**
  * Die Klasse Einkaufsliste kann aus den Kantinenplan-Objekten eine Einkaufsliste mit einzelnen 
  * Einkaufslistenpositionen erzeugen. Dazu erzeugt sie als Zwischenschritt BedarfPos-Objekte 
@@ -126,14 +130,24 @@ public class Einkaufsliste
     {
     	this.lieferantenverw=lieferantenverw;
     	for (BedarfPos bedarf:bedarfPosList){
-    		Artikel art=getCheapestArticle(bedarf);
+    		Artikel art=getCheapestGrosshandelArticle(bedarf);
     		//Debug-Print
-    		System.out.println(art.getName()+" "+art.getPreis()+" "+art.getLieferant().getLieferantenName());
+    		if (art.getName()==null){
+    			System.out.println("Der Artikel "+bedarf.getName()+" ist bei keinem Grosshandel verfügbar");
+    		}
+    		else{
+    			System.out.println(art.getName()+" "+art.getPreis()+" "+art.getLieferant().getLieferantenName());
+    		}
     	}
         return true;
     }
     
-
+    /**
+     * Die Methode gibt den Artikel mit dem günstigsten Einzelpreis zurück.
+     * 
+     * @param bedarf Ein BedarfPos-Objekt, für das der Artikel gesucht werden werden soll.
+     * @return Einen Artikel
+     */
     private Artikel getCheapestArticle(BedarfPos bedarf) {
 		ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
 		Artikel cheapest=new Artikel();
@@ -145,7 +159,62 @@ public class Einkaufsliste
 		}
 		return cheapest;
 	}
-
+    /**
+     * Die Methode gibt den Artikel mit dem günstigsten Einzelpreis zurück, welcher von einem Bauernhof-Lieferanten angeboten wird.
+     * 
+     * @param bedarf Ein BedarfPos-Objekt, für das der Artikel gesucht werden werden soll.
+     * @return Einen Artikel
+     */
+    private Artikel getCheapestBauernhofArticle(BedarfPos bedarf) {
+		ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
+		Artikel cheapest=new Artikel();
+		cheapest.setPreis(Float.MAX_VALUE);
+		for (Artikel art:artList){
+			if (art.getPreis()<cheapest.getPreis() && art.getLieferant().getClass()==Bauernhof.class){
+				cheapest=art;
+			}
+		}
+		return cheapest;
+	}
+    /**
+     * Die Methode gibt den Artikel mit dem günstigsten Einzelpreis zurück, welcher von einem Grosshandel angeboten wird.
+     * 
+     * @param bedarf Ein BedarfPos-Objekt, für das der Artikel gesucht werden werden soll.
+     * @return Einen Artikel
+     */
+    private Artikel getCheapestGrosshandelArticle(BedarfPos bedarf) {
+		ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
+		Artikel cheapest=new Artikel();
+		cheapest.setPreis(Float.MAX_VALUE);
+		for (Artikel art:artList){
+			if (art.getPreis()<cheapest.getPreis() && art.getLieferant().getClass()==Grosshandel.class){
+				cheapest=art;
+			}
+		}
+		return cheapest;
+	}
+    /**
+     * Die Methode gibt den km-Satz in Euro-Cent zurück, welcher in der config.properties hinterlegt wurde.
+     * 
+     * @return Den km-Satz, welche in der config.properties der Anwendung angegeben ist, in Euro-Cent.
+     */
+    private int getkmSatz(){
+    	int kmSatz = Integer.MAX_VALUE;
+    	try{
+    		Properties properties = new Properties();
+    		BufferedInputStream stream = new BufferedInputStream(new FileInputStream("config.properties"));
+    		properties.load(stream);
+    		stream.close();
+    		kmSatz = Integer.parseInt(properties.getProperty("kmSatz"));
+    	} 
+    	catch (IOException e) {
+		System.out.println(e.toString());
+		System.out.println("Die Datei config.properties konnte nicht gelesen werden. Prüfen Sie, " +
+				"ob sie im Anwendungsordner vorhanden ist.");
+    	}
+		return kmSatz;
+    }
+    
 	/**
      * Berechnet die Gesamtkosten der Bestellung inklusive Transportkosten, die sich aus allen im BestellPosArrayList enthaltenen 
      * Bestellpositionen ergibt und schreibt sie in das Attribut gesamtkosten, welches mit getGesamtkosten() ausgelesen werden

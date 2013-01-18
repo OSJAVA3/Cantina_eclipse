@@ -25,7 +25,8 @@ public class BestellPos
      */
     public BestellPos(Artikel art)
     {
-        
+        this.artikel=art;
+        this.menge=0;
     }
     
     /**
@@ -55,7 +56,16 @@ public class BestellPos
      */
     public void setMenge(int menge)
     {
-
+    	this.menge=menge;
+    }
+    /**
+     * Setz das Artikel-Objekt, auf das sich die Bestellposition bezieht.
+     *
+     * @param art Das Artikel-Objekt
+     */
+    public void setArtikel(Artikel art)
+    {
+    	this.artikel=art;
     }
 }
 
