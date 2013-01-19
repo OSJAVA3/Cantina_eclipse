@@ -23,6 +23,14 @@ public class BestellPos
      * 
      * @param art Der Artikel der Bestellposition
      */
+    public BestellPos()
+    {
+        this.menge=0;
+    }/**
+     * Konstruktor der Klasse
+     * 
+     * @param art Der Artikel der Bestellposition
+     */
     public BestellPos(Artikel art)
     {
         this.artikel=art;

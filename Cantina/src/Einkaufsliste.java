@@ -129,11 +129,7 @@ public class Einkaufsliste
     public boolean erzeugeEinkaufsliste(Lieferantenverwaltung lieferantenverw)
     {
     	this.lieferantenverw=lieferantenverw;
-    	ArrayList<Artikel> artList= lieferantenverw.gibAlleArtikel(bedarfPosList.get(0).getName());
-    	for (Artikel art:artList){
-    		System.out.println(art.getName()+" "+art.getPreis()+" "+art.getLieferant().getLieferantenName());
-    	}
-    	//makeVariante1();
+    	makeVariante1();
     	
     	return true;
     }
@@ -141,69 +137,49 @@ public class Einkaufsliste
      * Für die Erstellung der Einkaufsliste mit den Bestellpositionen wird zunächst eine Variante gerechnet, die versucht so viel es geht bei Bauernhöfen zu beschaffen.
      */
     private void makeVariante1(){
-    	//Zunächst muss eine tiefe Kopie der BedarfPos-Objekte bzw. der bedarfPosList erstellt werden, auf der das Szenario rechnen kann, ohne die Original-Daten zu zerstören.
     	ArrayList<BedarfPos> bedarfListCopy=new ArrayList<BedarfPos>();
+    	ArrayList<BestellPos> bestellList=new ArrayList<BestellPos>();
+    	//Zunächst muss eine tiefe Kopie der BedarfPos-Objekte bzw. der bedarfPosList erstellt werden, auf der das Szenario rechnen kann, ohne die Original-Daten zu zerstören.
     	for (BedarfPos bedarf:bedarfPosList){
     		bedarfListCopy.add(bedarf.clone());
     	}
+    	//Schleife für alle BedarfPos-Objekte
     	for (BedarfPos bedarf:bedarfListCopy){
-    		Artikel art = getCheapestBauernhofArticle(bedarf);
-    		
-    		
+    		ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
+    		//artList enthält jetzt alle Artikel, die für die Beschaffung der BedarfPos in Frage kommen, der größe nach sortiert.
+    		for (Artikel art:artList){
+    			if (art.getLieferant().getClass()==Bauernhof.class){
+    				BestellPos bestellPos=new BestellPos();
+    				//Für die Bestimmung der nötigen Anzahl Gebinde muss quasi immer aufgerundet werden.
+    				//Hier wird zunächst Ganzzahldivision gerechnet, also der Rest "abgeschnitten".
+    				int anzGebinde=(int) (bedarf.getMenge()/art.getGebindegroesse());
+    				//Wenn Modulo größer 0 ist, muss ein Gebinde mehr beschafft werden.
+    				if (!(bedarf.getMenge()%art.getGebindegroesse()==0)){
+    					anzGebinde++;
+    				}
+    				//Reicht die Anzahl der Gebinde, die der Lieferant liefern kann nicht aus, um den kompletten Bedarf zu decken, wird nur die maximale beschaffbare Anzahl beschafft.
+    				if (anzGebinde>art.getArtikelanzahl()){
+    					anzGebinde=art.getArtikelanzahl();
+    				}
+    				//BestellPosition für Variante 1 schreiben und zur (temporären) Bestellliste hinzufügen.
+    				bestellPos.setMenge(anzGebinde);
+    				bestellPos.setArtikel(art);
+    				bestellList.add(bestellPos);
+    				//Die Bedarfsposition ist hierfür anzupassen
+    				float neuerBedarf=bedarf.getMenge()-anzGebinde*art.getGebindegroesse();
+    				//Wenn alles (und gegenfalls etwas zu viel) beschafft wurde, wird der Bedarf auf 0 gesetzt.
+    				if (neuerBedarf<=0) bedarf.setMenge(0);
+    				//Ansonsten wird der neue Bedarf gesetzt.
+    				else bedarf.setMenge(neuerBedarf);   				
+    			}
+    		} //Ende Artikel-Schleife	
+    	} //Ende BedarfPos-Schleife
+    	for (BestellPos b:bestellList){
+    		Artikel a=b.getArtikel();
+    		System.out.println(b.getMenge()+" Gebinde "+a.getName()+" bei "+a.getLieferant().getLieferantenName()+" kaufen.");
     	}
     }
-    
-    /**
-     * Die Methode gibt den Artikel mit dem günstigsten Einzelpreis zurück.
-     * 
-     * @param bedarf Ein BedarfPos-Objekt, für das der Artikel gesucht werden werden soll.
-     * @return Einen Artikel
-     */
-    private ArrayList<Artikel> getAllArticles(BedarfPos bedarf) {
-		ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
-		Artikel cheapest=new Artikel();
-		cheapest.setPreis(Float.MAX_VALUE);
-		for (Artikel art:artList){
-			if (art.getPreis()<cheapest.getPreis()){
-				cheapest=art;
-			}
-		}
-		return cheapest;
-	}
-    /**
-     * Die Methode gibt den Artikel mit dem günstigsten Einzelpreis zurück, welcher von einem Bauernhof-Lieferanten angeboten wird.
-     * 
-     * @param bedarf Ein BedarfPos-Objekt, für das der Artikel gesucht werden werden soll.
-     * @return Einen Artikel
-     */
-    private Artikel getCheapestBauernhofArticle(BedarfPos bedarf) {
-		ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
-		Artikel cheapest=new Artikel();
-		cheapest.setPreis(Float.MAX_VALUE);
-		for (Artikel art:artList){
-			if (art.getPreis()<cheapest.getPreis() && art.getLieferant().getClass()==Bauernhof.class){
-				cheapest=art;
-			}
-		}
-		return cheapest;
-	}
-    /**
-     * Die Methode gibt den Artikel mit dem günstigsten Einzelpreis zurück, welcher von einem Grosshandel angeboten wird.
-     * 
-     * @param bedarf Ein BedarfPos-Objekt, für das der Artikel gesucht werden werden soll.
-     * @return Einen Artikel
-     */
-    private Artikel getCheapestGrosshandelArticle(BedarfPos bedarf) {
-		ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
-		Artikel cheapest=new Artikel();
-		cheapest.setPreis(Float.MAX_VALUE);
-		for (Artikel art:artList){
-			if (art.getPreis()<cheapest.getPreis() && art.getLieferant().getClass()==Grosshandel.class){
-				cheapest=art;
-			}
-		}
-		return cheapest;
-	}
+  
     /**
      * Die Methode gibt den km-Satz in Euro-Cent zurück, welcher in der config.properties hinterlegt wurde.
      * 

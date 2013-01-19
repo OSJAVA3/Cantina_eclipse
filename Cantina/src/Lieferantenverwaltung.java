@@ -93,6 +93,7 @@ public class Lieferantenverwaltung {
 					if (diff<0){
 						//Debug-Print
 						System.out.println("Die Menge an "+z.getName()+" für "+tagesgericht.getRezept().getName()+" reicht nicht aus");
+						tagesgericht.getRezept().setVerwendet(true);
 						return false;
 					}
 					//Die Restmenge ist größer als 0
@@ -253,9 +254,10 @@ public class Lieferantenverwaltung {
 						// Debug-Print
 						// System.out.println(lieferant.getLieferantenName());
 					}
-				} else {
-					// Artikel erzeugen und Lieferanten zuweisen
-					if (!(fields.get(2).length() == 0)) {
+				} 
+				else {
+					// Artikel erzeugen und Lieferanten zuweisen, sofern Länge des Artikelnamen NICHT 0 ist ODER die verfügbaren Gebinde NICHT 0 sind
+					if (!(fields.get(2).length() == 0) && !(fields.get(5).equals("0"))) {
 						Artikel art = new Artikel(fields.get(2));
 						art.setArikelanzahl(Integer.parseInt(fields.get(5)));
 						art.setEinheit(fields.get(1));
@@ -298,12 +300,12 @@ public class Lieferantenverwaltung {
 				if (result.size()==0){
 					result.add(art);
 				}
-				else if (result.get(result.size()-1).getPreis()<art.getPreis()){
+				else if ( (result.get(result.size()-1).getPreis()/result.get(result.size()-1).getGebindegroesse()) < (art.getPreis()/art.getGebindegroesse()) ){
 					result.add(art);						
 				}
 				else{
 					for (int i=0;i<result.size();i++){
-						if (result.get(i).getPreis()>art.getPreis()){
+						if ( (result.get(i).getPreis()/result.get(i).getGebindegroesse()) > (art.getPreis()/art.getGebindegroesse())){
 							result.add(i, art);
 							break;
 						}

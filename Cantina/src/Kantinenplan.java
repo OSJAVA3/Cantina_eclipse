@@ -203,11 +203,16 @@ public class Kantinenplan
 	    			}
 	    		}
 	    		else {
-	    			System.out.println("Problem bei den Hitlistenpositionen");
+	    			//Durch den Zufallsmodus kann auch 2x dasselbe Rezept vorgeschlagen werden, da ja zum Zeitpunkt des Aufrufes die Vorgänger noch nicht gesetzt sind.
+	    			//Dann wird ein neuer Planungstag initialisiert
+	    			//Debug_Print
+	    			//System.out.println("Problem bei den Hitlistenpositionen");
+	    			i--;
+	    			
 	    		}	
 	        } //Ende temporärer Wochenplanschleife
         }
-        /*Debug-Print */
+        /*Debug-Print
 
         for (int i=0;i<tgArrayList.size();i++){
         	String dOffset="";
@@ -218,7 +223,7 @@ public class Kantinenplan
         	System.out.println("Datum: "+dOffset+tgArrayList.get(i).getDatum()+" Hitlistenpos.: "+hOffset+tgArrayList.get(i).getRezept().getHitlistenpos()
         			+" Menge: "+tgArrayList.get(i).getMenge()+" Typ: "+tgArrayList.get(i).getRezept().getTyp()+" Gericht: "+tgArrayList.get(i).
         			getRezept().getName());
-        } 
+        } */
        return true;
     }
     

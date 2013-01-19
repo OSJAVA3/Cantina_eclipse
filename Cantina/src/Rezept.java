@@ -77,7 +77,7 @@ public class Rezept
      * @param verwendet Rezept wurde bereits verwendet
      */
     public void setVerwendet (boolean verwendet){
-        
+        this.verwendet=verwendet;
     }
     
     /**
