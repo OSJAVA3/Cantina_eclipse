@@ -129,17 +129,28 @@ public class Einkaufsliste
     public boolean erzeugeEinkaufsliste(Lieferantenverwaltung lieferantenverw)
     {
     	this.lieferantenverw=lieferantenverw;
-    	for (BedarfPos bedarf:bedarfPosList){
-    		Artikel art=getCheapestGrosshandelArticle(bedarf);
-    		//Debug-Print
-    		if (art.getName()==null){
-    			System.out.println("Der Artikel "+bedarf.getName()+" ist bei keinem Grosshandel verfügbar");
-    		}
-    		else{
-    			System.out.println(art.getName()+" "+art.getPreis()+" "+art.getLieferant().getLieferantenName());
-    		}
+    	ArrayList<Artikel> artList= lieferantenverw.gibAlleArtikel(bedarfPosList.get(0).getName());
+    	for (Artikel art:artList){
+    		System.out.println(art.getName()+" "+art.getPreis()+" "+art.getLieferant().getLieferantenName());
     	}
-        return true;
+    	//makeVariante1();
+    	
+    	return true;
+    }
+    /**
+     * Für die Erstellung der Einkaufsliste mit den Bestellpositionen wird zunächst eine Variante gerechnet, die versucht so viel es geht bei Bauernhöfen zu beschaffen.
+     */
+    private void makeVariante1(){
+    	//Zunächst muss eine tiefe Kopie der BedarfPos-Objekte bzw. der bedarfPosList erstellt werden, auf der das Szenario rechnen kann, ohne die Original-Daten zu zerstören.
+    	ArrayList<BedarfPos> bedarfListCopy=new ArrayList<BedarfPos>();
+    	for (BedarfPos bedarf:bedarfPosList){
+    		bedarfListCopy.add(bedarf.clone());
+    	}
+    	for (BedarfPos bedarf:bedarfListCopy){
+    		Artikel art = getCheapestBauernhofArticle(bedarf);
+    		
+    		
+    	}
     }
     
     /**
@@ -148,7 +159,7 @@ public class Einkaufsliste
      * @param bedarf Ein BedarfPos-Objekt, für das der Artikel gesucht werden werden soll.
      * @return Einen Artikel
      */
-    private Artikel getCheapestArticle(BedarfPos bedarf) {
+    private ArrayList<Artikel> getAllArticles(BedarfPos bedarf) {
 		ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
 		Artikel cheapest=new Artikel();
 		cheapest.setPreis(Float.MAX_VALUE);

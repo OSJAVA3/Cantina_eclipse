@@ -7,7 +7,7 @@
  * @author Rene Wiederhold 
  * @version
  */
-public class BedarfPos
+public class BedarfPos implements Cloneable
 {
     private String name;
     private float menge;
@@ -15,9 +15,8 @@ public class BedarfPos
     
 
     /**
-     * Dem Konstruktor des Objekts wird der Name der Zutat übergeben.
+     * Dem Konstruktor des Objekts
      * 
-     * @param name Der Name der Zutat
      */
     public BedarfPos()
     {
@@ -70,5 +69,17 @@ public class BedarfPos
 	 */
 	public void setEinheit(String einheit) {
 		this.einheit = einheit;
+	}
+	/** Klont das BedarfPos-Objekt (tiefe Kopie)
+	 * @return Das geklonte BedarfPos-Objekt
+	 */
+	public BedarfPos clone(){
+		BedarfPos bp=new BedarfPos();
+		bp.setName(getName());
+		bp.setMenge(getMenge());
+		bp.setEinheit(getEinheit());
+		return bp;
+		
+		
 	}
 }

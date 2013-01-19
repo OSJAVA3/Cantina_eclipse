@@ -295,9 +295,22 @@ public class Lieferantenverwaltung {
 		ArrayList<Artikel> result=new ArrayList<Artikel>();
 		for (Artikel art:artList){
 			if(art.getName().equals(name)){
-				result.add(art);				
+				if (result.size()==0){
+					result.add(art);
+				}
+				else if (result.get(result.size()-1).getPreis()<art.getPreis()){
+					result.add(art);						
+				}
+				else{
+					for (int i=0;i<result.size();i++){
+						if (result.get(i).getPreis()>art.getPreis()){
+							result.add(i, art);
+							break;
+						}
+					} //Ende result-Schleife
+				}				
 			}
-		}
+		} //Ende Artikel-Schleife
 		return result;
 	}
 
