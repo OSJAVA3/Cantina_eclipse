@@ -92,7 +92,7 @@ public class Lieferantenverwaltung {
 					//Verfügbare Restmenge des Lebensmittels ist kleiner 0, Verfügbar: false
 					if (diff<0){
 						//Debug-Print
-						System.out.println("Die Menge an "+z.getName()+" für "+tagesgericht.getRezept().getName()+" reicht nicht aus");
+						MainWin.StringOutln("Die Menge an "+z.getName()+" für "+tagesgericht.getRezept().getName()+" reicht nicht aus");
 						tagesgericht.getRezept().setVerwendet(true);
 						return false;
 					}
@@ -113,7 +113,7 @@ public class Lieferantenverwaltung {
 					if (lm.getName().equals(z.getName())){
 						lm.setMenge(lm.getMenge()-(z.getMenge()*tagesgericht.getMenge()));
 						//Debug-Print
-						//System.out.println("Menge von "+lm.getName()+" auf "+lm.getMenge()+" angepasst");
+						//MainWin.StringOutln("Menge von "+lm.getName()+" auf "+lm.getMenge()+" angepasst");
 					}
 				} //Ende Lebensmittelschleife
 			} // Ende Zutatenschleife
@@ -139,7 +139,7 @@ public class Lieferantenverwaltung {
 	public boolean readLiefFolder(String lieferantenOrdner) {
 		File folder = new File(lieferantenOrdner);
 		/* Debug-Print
-		System.out.println("Angegebener Lieferantenordner ist ein Ordner: "
+		MainWin.StringOutln("Angegebener Lieferantenordner ist ein Ordner: "
 				+ folder.isDirectory());	*/
 
 		String[] fileList = folder.list();
@@ -149,7 +149,7 @@ public class Lieferantenverwaltung {
 				// Datei öffnen
 				if (readLiefFile(lieferantenOrdner + "//" + fileList[i]) == true) {
 					// Debug-Print
-					System.out.println("Die Datei " + fileList[i]
+					MainWin.StringOutln("Die Datei " + fileList[i]
 							+ " wurde erfolgreich eingelesen");
 				} 
 			}
@@ -157,27 +157,27 @@ public class Lieferantenverwaltung {
 			/*// Debug-Print aus der Artikelliste
 			for (int j = 0; j < artList.size(); j++) {
 				Artikel art = artList.get(j);
-				System.out.println("Artikelname: " + art.getName());
-				System.out.println("Gebindegröße: " + art.getGebindegroesse());
-				System.out.println("Einheit: " + art.getEinheit());
-				System.out.println("Einzelpreis: " + art.getPreis());
-				System.out.println("Artikelanzahl: " + art.getArtikelanzahl());
-				System.out.println("Lieferantname: "
+				MainWin.StringOutln("Artikelname: " + art.getName());
+				MainWin.StringOutln("Gebindegröße: " + art.getGebindegroesse());
+				MainWin.StringOutln("Einheit: " + art.getEinheit());
+				MainWin.StringOutln("Einzelpreis: " + art.getPreis());
+				MainWin.StringOutln("Artikelanzahl: " + art.getArtikelanzahl());
+				MainWin.StringOutln("Lieferantname: "
 						+ art.getLieferant().getLieferantenName());
 			}
 			// Debug-Print aus der Lieferantenliste
 			for (int k = 0; k < liefList.size(); k++) {
 				Lieferant lief = liefList.get(k);
-				System.out.println(lief.getLieferantenName());
-				System.out.println(lief.getClass().toString()
+				MainWin.StringOutln(lief.getLieferantenName());
+				MainWin.StringOutln(lief.getClass().toString()
 						.equals("class Bauernhof"));
 			}
 			//Debug-Print aus der Lebensmittelliste
 			for (int l=0;l<lmList.size();l++){
 				Lebensmittel lm=lmList.get(l);
-				System.out.println("Name: "+lm.getName()+" Menge: "+lm.getMenge()+" Typ: "+lm.getTyp());
+				MainWin.StringOutln("Name: "+lm.getName()+" Menge: "+lm.getMenge()+" Typ: "+lm.getTyp());
 			}
-			System.out.println(lmList.size());*/
+			MainWin.StringOutln(lmList.size());*/
 		}
 		return true;
 	}
@@ -198,7 +198,7 @@ public class Lieferantenverwaltung {
 		// Abfrage, ob das Oeffen funktioniert hat
 		if (!inFile.state()) {
 			// Ausgabe des Fehlers im Terminalfenster
-			System.out.println("Es ist ein Fehler beim Öffnen der Datei "+in+" aufgetreten");
+			MainWin.StringOutln("Es ist ein Fehler beim Öffnen der Datei "+in+" aufgetreten");
 			// Abbrechen der Methode
 			return false;
 		}
@@ -235,7 +235,7 @@ public class Lieferantenverwaltung {
 						liefList.add(lieferant);
 
 						// Debug-Print
-						// System.out.println(lieferant.getLieferantenName());
+						// MainWin.StringOutln(lieferant.getLieferantenName());
 					}
 					// Es liegt eine Bauernhof-Einkaufsliste vor.
 					else if ((fields.get(0)).equals("Bauer")) {
@@ -252,7 +252,7 @@ public class Lieferantenverwaltung {
 						liefList.add(lieferant);
 
 						// Debug-Print
-						// System.out.println(lieferant.getLieferantenName());
+						// MainWin.StringOutln(lieferant.getLieferantenName());
 					}
 				} 
 				else {
@@ -344,7 +344,7 @@ public class Lieferantenverwaltung {
 			firstLm.setEinheit(einh);
 			lmList.add(firstLm);
 			//Debug-Print
-			//System.out.println(lmName+" wurde der Liste als Erstes hinzugefügt");
+			//MainWin.StringOutln(lmName+" wurde der Liste als Erstes hinzugefügt");
 		}
 		else{
 			//Es sind bereits Elemente in der lmList
@@ -365,14 +365,14 @@ public class Lieferantenverwaltung {
 					vorh=true;
 					vorhLm=lmIt;
 					//Debug-Print
-					//System.out.println(lmName+" ist in lmList vorhanden");
+					//MainWin.StringOutln(lmName+" ist in lmList vorhanden");
 					break;
 				}
 				//Stimmt der übergebene Name des Lebensmittels nicht mit dem iterierten überein, bleibt vorh auf false
 				else{
 					vorh=false;
 					//Debug-Print
-					//System.out.println(lmName+" ist noch nicht in lmList vorhanden");
+					//MainWin.StringOutln(lmName+" ist noch nicht in lmList vorhanden");
 				}	
 			} //while-Ende - Jetzt steht entweder vorh auf true und vorhLm enthält das LM-Objekt
 			  //oder vorh steht auf false
@@ -381,7 +381,7 @@ public class Lieferantenverwaltung {
 			if(vorh==true){
 				vorhLm.setMenge(vorhLm.getMenge()+m);
 				//Debug-Print
-				//System.out.println(lmName+"-Menge angepasst");
+				//MainWin.StringOutln(lmName+"-Menge angepasst");
 			}
 			// Lebensmittel-Objekt noch nicht vorhanden
 			else if(vorh==false){
@@ -391,7 +391,7 @@ public class Lieferantenverwaltung {
 				vorhLm.setEinheit(einh);
 				lmList.add(vorhLm);
 				//Debug-Print
-				//System.out.println(lmName+" der Liste hinzugefügt!");
+				//MainWin.StringOutln(lmName+" der Liste hinzugefügt!");
 			}	
 		} //else-Ende
 	}

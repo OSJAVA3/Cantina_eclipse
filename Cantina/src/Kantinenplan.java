@@ -35,7 +35,7 @@ public class Kantinenplan
     	tgArrayList=new ArrayList<Tagesgericht>();
     	
     	//Debug-Print
-    	System.out.println("Die Kantine "+standort+" mit "+anzMitarbeiter+" Mitarbeitern wurde erzeugt.");
+    	MainWin.StringOutln("Die Kantine "+standort+" mit "+anzMitarbeiter+" Mitarbeitern wurde erzeugt.");
     }
 
     /**
@@ -95,7 +95,7 @@ public class Kantinenplan
 	    		if (i==4 && fishCnt==0){
 	    			tmpRndArr[i]=rezeptverw.gibFisch();
 	    			//Debug-Print
-	    			//System.out.println("Immernoch kein Fischgericht. Ersetze mit "+tmpRndArr[i].getName());
+	    			//MainWin.StringOutln("Immernoch kein Fischgericht. Ersetze mit "+tmpRndArr[i].getName());
 	    		}
 	    		// Verfügbarkeits-Prüfung
 	    		//Tagesgerichte erstellen
@@ -206,7 +206,7 @@ public class Kantinenplan
 	    			//Durch den Zufallsmodus kann auch 2x dasselbe Rezept vorgeschlagen werden, da ja zum Zeitpunkt des Aufrufes die Vorgänger noch nicht gesetzt sind.
 	    			//Dann wird ein neuer Planungstag initialisiert
 	    			//Debug_Print
-	    			//System.out.println("Problem bei den Hitlistenpositionen");
+	    			//MainWin.StringOutln("Problem bei den Hitlistenpositionen");
 	    			i--;
 	    			
 	    		}	
@@ -220,7 +220,7 @@ public class Kantinenplan
         	if(tgArrayList.get(i).getDatum()<10){dOffset=" ";}
         	if(tgArrayList.get(i).getRezept().getHitlistenpos()<100){hOffset=" ";}
         	if(tgArrayList.get(i).getRezept().getHitlistenpos()<10){hOffset="  ";}
-        	System.out.println("Datum: "+dOffset+tgArrayList.get(i).getDatum()+" Hitlistenpos.: "+hOffset+tgArrayList.get(i).getRezept().getHitlistenpos()
+        	MainWin.StringOutln("Datum: "+dOffset+tgArrayList.get(i).getDatum()+" Hitlistenpos.: "+hOffset+tgArrayList.get(i).getRezept().getHitlistenpos()
         			+" Menge: "+tgArrayList.get(i).getMenge()+" Typ: "+tgArrayList.get(i).getRezept().getTyp()+" Gericht: "+tgArrayList.get(i).
         			getRezept().getName());
         } */
@@ -258,7 +258,7 @@ public class Kantinenplan
     }
     public void schreibeKantinenplan() {
     			Datei planDatei = new Datei( standort+".csv");
-    			System.out.println("Schreibe Datei "+standort+".csv ...");
+    			MainWin.StringOutln("Schreibe Datei "+standort+".csv ...");
     			
     			
     			if (planDatei.openOutFile_FS()==0) {
@@ -276,19 +276,19 @@ public class Kantinenplan
     		        			getRezept().getName()+" Typ: "+tgGericht.getRezept().getTyp();
     					
     					if( planDatei.writeLine_FS(ausgabeZeile) != 0) {
-    						System.out.println("Fehler beim Schreiben der planZeile"+tgGericht.getRezept().getName());
+    						MainWin.StringOutln("Fehler beim Schreiben der planZeile"+tgGericht.getRezept().getName());
     						break;
     					}
     					
     				}
     				if( planDatei.closeOutFile_FS()!=0)
-    					System.out.println("Fehler beim Schließen der Ausgabedatei");
+    					MainWin.StringOutln("Fehler beim Schließen der Ausgabedatei");
     					
     			} else 
-    				System.out.println("Die Ausgabedatei kann nicht geöffnet werden.");
+    				MainWin.StringOutln("Die Ausgabedatei kann nicht geöffnet werden.");
     			
     
-    		System.out.println("Ausgabe der Datei fehlerfrei beendet.");
+    		MainWin.StringOutln("Ausgabe der Datei fehlerfrei beendet.");
     	
     		}
 

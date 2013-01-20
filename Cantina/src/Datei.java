@@ -91,7 +91,7 @@ public class Datei
         }
         catch(Exception e)
         {
-            System.out.println(e.getMessage());
+            MainWin.StringOutln(e.getMessage());
             errorCode =1;
             return 1;
         }
@@ -128,7 +128,7 @@ public class Datei
         }
         catch(Exception e)
         {
-            System.out.println(e.getMessage());
+            MainWin.StringOutln(e.getMessage());
             errorCode =2;
             return 2;
         }
@@ -158,7 +158,7 @@ public class Datei
         }
         catch(Exception e)
         {
-            System.out.println(e.getMessage());
+            MainWin.StringOutln(e.getMessage());
             errorCode =3;
             return 3;
         }
@@ -190,7 +190,7 @@ public class Datei
         }
         catch(Exception e)
         {
-            System.out.println(e.getMessage());
+            MainWin.StringOutln(e.getMessage());
             errorCode =4;
             return 4;
         }
@@ -238,7 +238,7 @@ public class Datei
         }
         catch(Exception e)
         {
-            System.out.println(e.getMessage());
+            MainWin.StringOutln(e.getMessage());
             errorCode =5;
             return "";
         }
@@ -270,7 +270,7 @@ public class Datei
         }
         catch(Exception e)
         {
-            System.out.println(e.getMessage());
+            MainWin.StringOutln(e.getMessage());
             errorCode =6;
             return 6;
         }
@@ -315,7 +315,7 @@ public class Datei
         }
         catch(Exception e)
         {
-            System.out.println(e.getMessage());
+            MainWin.StringOutln(e.getMessage());
             errorCode =7;
             return 7;
         }

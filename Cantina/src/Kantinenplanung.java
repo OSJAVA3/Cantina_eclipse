@@ -38,6 +38,7 @@ public class Kantinenplanung {
 	//Attribute für die Geschäftslogikklassen
 	private Einkaufsliste einkaufsliste;
 	private ArrayList<Kantinenplan> kantPlanList;
+	
 
 	/**
 	 * Konstruktor für das Objekt, bei Erstellung des Objektes werden die
@@ -66,8 +67,11 @@ public class Kantinenplanung {
 		// Die Einkaufsliste für ALLE Kantinenpläne erzeugen
 		app.startEinkaufsplanung();
 		//app.schreibeKantinenplan();
+		MainWin.StringOut("Ende");
 	}
 
+	MainWin mainWnd = new MainWin();
+	
 	/**
 	 * Die Methode lädt die Parameter aus der Datei "config.properties" im
 	 * Root-Ordner in die Attribute der Klasse.
@@ -87,19 +91,18 @@ public class Kantinenplanung {
 
 			/*
 			 * Debug-Print
-			 * System.out.println("Anzahl der Kantinen: "+anzKantinen);
-			 * System.out.println("Pfad zur Rezept-Datei: "+rezeptPfad);
-			 * System.out.println("Pfad zur Hitlisten-Datei: "+hitListenPfad);
+			 * MainWin.StringOutln("Anzahl der Kantinen: "+anzKantinen);
+			 * MainWin.StringOutln("Pfad zur Rezept-Datei: "+rezeptPfad);
+			 * MainWin.StringOutln("Pfad zur Hitlisten-Datei: "+hitListenPfad);
 			 * System
 			 * .out.println("Pfad zum Lieferanten-Ordner: "+preisListenOrdner);
 			 */
 		} catch (IOException e) {
-			System.out.println(e.toString());
-			System.out
-					.println("Die Datei config.properties konnte nicht gelesen werden. Prüfen Sie, ob sie im Anwendungsordner vorhanden ist.");
+			MainWin.StringOutln(e.toString());
+			MainWin.StringOutln("Die Datei config.properties konnte nicht gelesen werden. Prüfen Sie, ob sie im Anwendungsordner vorhanden ist.");
 		}
 	}
-
+	
 	/**
 	 * Hier wird die Steuerung des Datei-Einlesens, die Erstellung der
 	 * Verwaltungsklassen und der Datenschicht hinterlegt. Die Parameter wurden
@@ -131,8 +134,8 @@ public class Kantinenplanung {
 				name = properties.getProperty("NameKantine"+i);
 				anzMA = Integer.parseInt(properties.getProperty("AnzahlKantine"+i));	
 			} catch (IOException e) {
-				System.out.println(e.toString());
-				System.out.println("Die Datei config.properties konnte nicht gelesen werden. Prüfen Sie, ob sie im Anwendungsordner vorhanden ist.");
+				MainWin.StringOutln(e.toString());
+				MainWin.StringOutln("Die Datei config.properties konnte nicht gelesen werden. Prüfen Sie, ob sie im Anwendungsordner vorhanden ist.");
 			}
 			Kantinenplan plan = new Kantinenplan(name, anzMA);
 			plan.erzeugePlan(lieferantenverw, rezeptverw);
@@ -160,7 +163,7 @@ public class Kantinenplanung {
 			float m=bpl.get(i).getMenge();
 			String e=bpl.get(i).getEinheit();
 			String n=bpl.get(i).getName();
-			System.out.println(m+" "+e+" "+n);
+			MainWin.StringOutln(m+" "+e+" "+n);
 		}*/
 	}	
 	public void schreibeKantinenplan() {		

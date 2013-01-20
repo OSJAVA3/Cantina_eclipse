@@ -54,7 +54,7 @@ public class Rezeptverwaltung
 		// Abfrage, ob das Oeffen funktioniert hat
         if (!inFile.state()){
             // Ausgabe des Fehlers im Terminalfenster
-            System.out.println("Fehler beim öffnen der Eingabedatei "+rezeptPfad);
+            MainWin.StringOutln("Fehler beim öffnen der Eingabedatei "+rezeptPfad);
             // Abbrechen der Methode
             return false;
         }
@@ -69,7 +69,7 @@ public class Rezeptverwaltung
             // Zeile einer Datei einlesen
         	String zeile = inFile.readLine_FS();
         	//Debug-Print
-        	//System.out.println(zeile);
+        	//MainWin.StringOutln(zeile);
         	
    	
         	//Wenn aktuelle Zeile einen NullPointer enthält, wird gebrochen. 
@@ -79,7 +79,7 @@ public class Rezeptverwaltung
 				ArrayList<String> fields = CSVService.getFields(zeile);
 				
 				//Debug-Print
-				//System.out.println("Zeile: "+zeilennummer+" Wert1: "+fields.get(0)+" Wert2: "+fields.get(1)+" Wert3: "+fields.get(2)+" Wert 4: " +fields.get(3));
+				//MainWin.StringOutln("Zeile: "+zeilennummer+" Wert1: "+fields.get(0)+" Wert2: "+fields.get(1)+" Wert3: "+fields.get(2)+" Wert 4: " +fields.get(3));
 			
 			
 			
@@ -104,21 +104,21 @@ public class Rezeptverwaltung
 					rezeptListe.add(rezept);
 					
 					//Debug Print
-					//System.out.println(rezept.getName());
+					//MainWin.StringOutln(rezept.getName());
 					
 					
 				}
 				
 				rezept.addZutat(makeZutat(fields));
 				//Debug-Print
-				//System.out.println("Zutat: " +fields.get(3).toString());
+				//MainWin.StringOutln("Zutat: " +fields.get(3).toString());
 				
 					// Zutatenobjekt erzeugen
 					//Zutat zutat = new Zutat(fields.get(3).toString(), Float.valueOf(fields.get(1).toString().replace(",", ".")), fields.get(2).toString());
 					// Zutat zu einem Rezept hinterlegen
 					//rezept.addZutat( zutat );
 					// Debug Print
-					//System.out.println(" Zutat: "+fields.get(3).toString());
+					//MainWin.StringOutln(" Zutat: "+fields.get(3).toString());
 					
 				
 			  
@@ -127,7 +127,7 @@ public class Rezeptverwaltung
         }
         //Rezepttyp fuer das letzte Rezept
         setzeRezeptTyp (rezept);
-        System.out.println("Die Datei "+rezeptpfad+" wurde erfolgreich eingelesen");
+        MainWin.StringOutln("Die Datei "+rezeptpfad+" wurde erfolgreich eingelesen");
         return true;
        }
      
@@ -155,7 +155,7 @@ public class Rezeptverwaltung
     			// Abfrage, ob das Oeffen funktioniert hat
     	        if (!inFile.state()){
     	            // Ausgabe des Fehlers im Terminalfenster
-    	            System.out.println("Fehler beim öffnen der Eingabedatei "+hitlistenPfad);
+    	            MainWin.StringOutln("Fehler beim öffnen der Eingabedatei "+hitlistenPfad);
     	            // Abbrechen der Methode
     	            return false;
     	        }
@@ -172,7 +172,7 @@ public class Rezeptverwaltung
     	            	String zeile = inFile.readLine_FS();
     	            	
     	            	//Debug-Print
-    	            	//System.out.println(zeile);
+    	            	//MainWin.StringOutln(zeile);
     	            	
     	            	//Wenn aktuelle Zeile einen NullPointer enthält, wird gebrochen. 
     	            	if (zeile != null){
@@ -181,7 +181,7 @@ public class Rezeptverwaltung
     	    				ArrayList<String> fields = CSVService.getFields(zeile);
     	    				
     	    				//Debug-Print
-    	    				//System.out.println("Zeile: "+zeilennummer+" Wert1: "+fields.get(0)+" Wert2: "+fields.get(1));
+    	    				//MainWin.StringOutln("Zeile: "+zeilennummer+" Wert1: "+fields.get(0)+" Wert2: "+fields.get(1));
     	        
 
     				// Suche Rezept, dessen Name in der Hitliste eingelesen wurde
@@ -193,14 +193,14 @@ public class Rezeptverwaltung
     					rezeptName.setHitlistenpos( fields.get(0) );
     					
     					// Debug Print
-    					//System.out.println("Rezept: "+rezeptName.getName()+" Position: "+fields.get(0));
+    					//MainWin.StringOutln("Rezept: "+rezeptName.getName()+" Position: "+fields.get(0));
     				} else
     					//Debug Print
-    					System.out.println("Rezept: "+fields.get(1)+" nicht gefunden.");
+    					MainWin.StringOutln("Rezept: "+fields.get(1)+" nicht gefunden.");
     				    				
             	}
             }
-    	    System.out.println("Die Datei "+hitlistenPfad+" wurde erfolgreich eingelesen");
+    	    MainWin.StringOutln("Die Datei "+hitlistenPfad+" wurde erfolgreich eingelesen");
             return true;
 
     }

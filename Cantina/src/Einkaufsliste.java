@@ -97,7 +97,7 @@ public class Einkaufsliste
     				if(vorh==true){
     					vorhBP.setMenge(vorhBP.getMenge()+(m*zmenge));
     					//Debug-Print
-    					//System.out.println(zname+"-Menge von "+vorhBP.getMenge()+" auf "+(vorhBP.getMenge()+(m*zmenge))+" um "+(m*zmenge)+" angepasst");
+    					//MainWin.StringOutln(zname+"-Menge von "+vorhBP.getMenge()+" auf "+(vorhBP.getMenge()+(m*zmenge))+" um "+(m*zmenge)+" angepasst");
     				}
     				// Lebensmittel-Objekt noch nicht vorhanden
     				else if(vorh==false){
@@ -106,7 +106,7 @@ public class Einkaufsliste
     					vorhBP.setEinheit(zeinh);
     					bedarfPosList.add(vorhBP);
     					//Debug-Print
-    					//System.out.println((m*zmenge)+" "+zeinh+" "+zname+" der Liste hinzugefügt!");
+    					//MainWin.StringOutln((m*zmenge)+" "+zeinh+" "+zname+" der Liste hinzugefügt!");
     				}	
     			}
     		} //Ende Zutatenschleife
@@ -176,7 +176,7 @@ public class Einkaufsliste
     	} //Ende BedarfPos-Schleife
     	for (BestellPos b:bestellList){
     		Artikel a=b.getArtikel();
-    		System.out.println(b.getMenge()+" Gebinde "+a.getName()+" bei "+a.getLieferant().getLieferantenName()+" kaufen.");
+    		MainWin.StringOutln(b.getMenge()+" Gebinde "+a.getName()+" bei "+a.getLieferant().getLieferantenName()+" kaufen.");
     	}
     }
   
@@ -185,7 +185,7 @@ public class Einkaufsliste
      * 
      * @return Den km-Satz, welche in der config.properties der Anwendung angegeben ist, in Euro-Cent.
      */
-    private int getkmSatz(){
+    public int getkmSatz(){
     	int kmSatz = Integer.MAX_VALUE;
     	try{
     		Properties properties = new Properties();
@@ -195,8 +195,8 @@ public class Einkaufsliste
     		kmSatz = Integer.parseInt(properties.getProperty("kmSatz"));
     	} 
     	catch (IOException e) {
-		System.out.println(e.toString());
-		System.out.println("Die Datei config.properties konnte nicht gelesen werden. Prüfen Sie, " +
+		MainWin.StringOutln(e.toString());
+		MainWin.StringOutln("Die Datei config.properties konnte nicht gelesen werden. Prüfen Sie, " +
 				"ob sie im Anwendungsordner vorhanden ist.");
     	}
 		return kmSatz;

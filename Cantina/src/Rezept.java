@@ -124,7 +124,7 @@ public class Rezept
     					typ = zutatTyp;
     					
     	  				//Debug Print
-    					//System.out.println(" # RezeptTyp: "+zutatTyp);
+    					//MainWin.StringOutln(" # RezeptTyp: "+zutatTyp);
     	    						
     					break;
     				}
