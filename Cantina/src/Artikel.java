@@ -26,7 +26,6 @@ public class Artikel
     private float einzelpreis; 
     /** Der Lieferant des Artikels */
     private Lieferant lieferant;
-
     /**
      * Konstruktor für Objekte der Klasse Artikel
      * @param name Der initiale Name des Artikels

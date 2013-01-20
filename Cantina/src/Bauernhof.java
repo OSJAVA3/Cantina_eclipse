@@ -17,9 +17,7 @@ public class Bauernhof extends Lieferant
     public Bauernhof()
     {
         entfernung = 0;
-
     }
-    
     /**
      * Gibt die Entfernung eins Bauernhof zurück. Dies wird für die Transportkostenberechnung innerhalb der 
      * Einkaufsliste benötigt.
@@ -30,7 +28,6 @@ public class Bauernhof extends Lieferant
     {
         return entfernung;
     }
-    
     /**
      * Setzt die Entfernung eines Bauernhofes.
      *
@@ -38,7 +35,6 @@ public class Bauernhof extends Lieferant
      */
     public void setEntfernung(float entf)
     {
-
+    	this.entfernung=entf;
     }
-
 }
