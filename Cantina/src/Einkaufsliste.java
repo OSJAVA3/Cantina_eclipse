@@ -119,7 +119,6 @@ public class Einkaufsliste
 	public ArrayList<BedarfPos> getBedarfPosList() {
 		return bedarfPosList;
 	}
-
 	/**
      * Erzeugt aus den im KantinenplanArrayList enthaltenen Kantinenplänen eine Einkaufsliste
      * Es muss vorher mindestens ein Kantinenplan über addKantinenplan referenziert worden sein.
@@ -129,7 +128,7 @@ public class Einkaufsliste
     public boolean erzeugeEinkaufsliste(Lieferantenverwaltung lieferantenverw)
     {
     	this.lieferantenverw=lieferantenverw;
-    	makeVariante1();
+    	bestellPosList=makeVariante1();
     	
     	return true;
     }
@@ -143,6 +142,9 @@ public class Einkaufsliste
     	for (BedarfPos bedarf:bedarfPosList){
     		bedarfListCopy.add(bedarf.clone());
     	}
+    	//Debug-Print
+    	System.out.println("Bedarfliste am Beginn");
+    	System.out.println("==============================================");
     	for (BedarfPos bedarf:bedarfListCopy){
     		System.out.println(bedarf.getMenge()+" "+bedarf.getEinheit()+" "+bedarf.getName());
     	}
@@ -221,20 +223,78 @@ public class Einkaufsliste
     	}
     	return bestellList;
     }
-  
+    private ArrayList<BestellPos> makeVariante2(){
+    	ArrayList<BedarfPos> bedarfListCopy=new ArrayList<BedarfPos>();
+    	ArrayList<BestellPos> bestellList=new ArrayList<BestellPos>();
+    	Float kmSatz=getkmSatz();
+    	//Zunächst muss eine tiefe Kopie der BedarfPos-Objekte bzw. der bedarfPosList erstellt werden, auf der das Szenario rechnen kann, ohne die Original-Daten zu zerstören.
+    	for (BedarfPos bedarf:bedarfPosList){
+    		bedarfListCopy.add(bedarf.clone());
+    	}
+    	//Debug-Print
+    	System.out.println("Bedarfliste am Beginn");
+    	System.out.println("==============================================");
+    	for (BedarfPos bedarf:bedarfListCopy){
+    		System.out.println(bedarf.getMenge()+" "+bedarf.getEinheit()+" "+bedarf.getName());
+    	}
+    	for (BedarfPos bedarf:bedarfListCopy){
+    		/*
+    		 * Optionen:
+    		 * 1. Die komplette BedarfPos lässt sich von einem Artikel abdecken.
+    		 * 	- Grosshandel mit spezif. Lieferkosten ist billiger als Bauernhof netto. ->Grosshandel ist immer besser
+    		 * 	- Bauernhof mit spezif. Lieferkosten (volle Lieferkosten auf einen Artikel) ist billiger als Grosshandel mit spezif. Lieferkosten ->Bauernhof ist immer billiger.
+    		 * 	- Der Spielraum dazwischen hängt davon ab, wieviele andere Artikel noch beim Bauernhof gekauft werden, denn desto mehr Artikel, desto niedriger die spezif.Lieferkosten.
+    		 * 2. Die komplette BedarfPos lässt sich nicht komplett vom Bauernhof beschaffen, d.h. eine weitere Bestellung vom Grosshandel wird nötig.
+    		 * 	- 
+    		 * 	- Anteilige Bestellung beim Bauernhof inklusive Lieferkosten (volle Lieferkosten) und anteilige Bestellung beim Grosshandel inklusive Lieferkosten ist billiger als gesamte Bestellung beim Grosshandel ->Bestellung beim Bauernhof und beim Grosshandel auffüllen.
+    		 * 	- Gesamte Bestellung beim Grosshandel ist billiger als anteillige Bestellung beim Bauernhof OHNE Lieferkosten und anteilige Bestellung beim Grosshandel mit Lieferkosten ->Gesamte Bestellung beim Grosshandel ist billiger.
+    		 * 	- Der Spielraum dazwischen ist der Optimierungsbereich. 
+    		 * 	- 
+    		 */
+    		ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
+    		int[] anzGebindeArr=new int[artList.size()];
+			for (Artikel art:artList){	
+				int anzGebinde=(int) (bedarf.getMenge()/art.getGebindegroesse());
+				float kostenfuerbedarf=Float.MAX_VALUE;
+				//Wenn Modulo größer 0 ist, muss ein Gebinde mehr beschafft werden.
+				if (!(bedarf.getMenge()%art.getGebindegroesse()==0)){
+					anzGebinde++;
+				}
+				if (art.getArtikelanzahl()>=anzGebinde){ // BedarfPos lässt sich komplett mit Artikel abdecken.
+					if (art.getLieferant().getClass()==Bauernhof.class){
+						Bauernhof bh=(Bauernhof) art.getLieferant();
+						float lieferkosten = bh.getEntfernung() * kmSatz;
+						kostenfuerbedarf=lieferkosten+(anzGebinde*art.getPreis());
+						System.out.println(anzGebinde+" Gebinde "+art.getName()+" von "+art.getLieferant().getLieferantenName()+" (Bauernhof) kosten "+ kostenfuerbedarf);
+					}
+					if (art.getLieferant().getClass()==Grosshandel.class){
+						Grosshandel gh=(Grosshandel) art.getLieferant();
+						float lieferkosten=gh.getLieferkostensatz();
+						kostenfuerbedarf=lieferkosten+(anzGebinde*art.getPreis());
+						System.out.println(anzGebinde+" Gebinde "+art.getName()+" von "+art.getLieferant().getLieferantenName()+" (Grosshandel) kosten "+ kostenfuerbedarf);
+					}
+				}
+				
+			}
+    		
+    	}
+    	
+    	
+    	return bestellList;
+    }
     /**
      * Die Methode gibt den km-Satz in Euro-Cent zurück, welcher in der config.properties hinterlegt wurde.
      * 
      * @return Den km-Satz, welche in der config.properties der Anwendung angegeben ist, in Euro-Cent.
      */
-    public int getkmSatz(){
-    	int kmSatz = Integer.MAX_VALUE;
+    private float getkmSatz(){
+    	float kmSatz = Float.MAX_VALUE;
     	try{
     		Properties properties = new Properties();
     		BufferedInputStream stream = new BufferedInputStream(new FileInputStream("config.properties"));
     		properties.load(stream);
     		stream.close();
-    		kmSatz = Integer.parseInt(properties.getProperty("kmSatz"));
+    		kmSatz = Float.parseFloat(properties.getProperty("kmSatz"));
     	} 
     	catch (IOException e) {
 		MainWin.StringOutln(e.toString());
