@@ -128,7 +128,7 @@ public class Einkaufsliste
     public boolean erzeugeEinkaufsliste(Lieferantenverwaltung lieferantenverw)
     {
     	this.lieferantenverw=lieferantenverw;
-    	bestellPosList=makeVariante1();
+    	bestellPosList=makeVariante2();
     	
     	return true;
     }
@@ -238,6 +238,7 @@ public class Einkaufsliste
     		System.out.println(bedarf.getMenge()+" "+bedarf.getEinheit()+" "+bedarf.getName());
     	}
     	for (BedarfPos bedarf:bedarfListCopy){
+			
     		/*
     		 * Optionen:
     		 * 1. Die komplette BedarfPos l‰sst sich von einem Artikel abdecken.
@@ -251,33 +252,148 @@ public class Einkaufsliste
     		 * 	- Der Spielraum dazwischen ist der Optimierungsbereich. 
     		 * 	- 
     		 */
-    		ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
-    		int[] anzGebindeArr=new int[artList.size()];
-			for (Artikel art:artList){	
+    		//Vollabdeckung Variablen
+    		
+    		Artikel cheapestBauerVoll=new Artikel();
+			cheapestBauerVoll.setPreis(Float.MAX_VALUE);
+			float cheapestBauerSummeNettoVoll=Float.MAX_VALUE;
+			float cheapestBauerLieferkostenVoll=Float.MAX_VALUE;
+			
+			Artikel cheapestGHVoll=new Artikel();
+			cheapestGHVoll.setPreis(Float.MAX_VALUE);
+			float cheapestGHSummeNettoVoll=Float.MAX_VALUE;
+			float cheapestGHLieferkostenVoll=Float.MAX_VALUE;
+			
+			//Teilabdeckung Variablen
+			Artikel cheapestBauerTeil=new Artikel();
+			cheapestBauerTeil.setPreis(Float.MAX_VALUE);
+			float cheapestBauerSummeNettoTeil=Float.MAX_VALUE;
+			float cheapestBauerLieferkostenTeil=Float.MAX_VALUE;
+			int maxGebindeBauer=0;
+			
+			Artikel cheapestGHTeil=new Artikel();
+			cheapestGHTeil.setPreis(Float.MAX_VALUE);
+			float cheapestGHSummeNettoTeil=Float.MAX_VALUE;
+			float cheapestGHLieferkostenTeil=Float.MAX_VALUE;
+			int maxGebindeGH=0;
+			
+			ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
+			for (Artikel art:artList){				
+
 				int anzGebinde=(int) (bedarf.getMenge()/art.getGebindegroesse());
-				float kostenfuerbedarf=Float.MAX_VALUE;
 				//Wenn Modulo grˆﬂer 0 ist, muss ein Gebinde mehr beschafft werden.
 				if (!(bedarf.getMenge()%art.getGebindegroesse()==0)){
 					anzGebinde++;
 				}
-				if (art.getArtikelanzahl()>=anzGebinde){ // BedarfPos l‰sst sich komplett mit Artikel abdecken.
+				if (art.getArtikelanzahl()>=anzGebinde){
+					//kompletter Bedarf lieﬂe sich mit dem Artikel abdecken
 					if (art.getLieferant().getClass()==Bauernhof.class){
+						//Artikel ist Bauernhof
 						Bauernhof bh=(Bauernhof) art.getLieferant();
-						float lieferkosten = bh.getEntfernung() * kmSatz;
-						kostenfuerbedarf=lieferkosten+(anzGebinde*art.getPreis());
-						System.out.println(anzGebinde+" Gebinde "+art.getName()+" von "+art.getLieferant().getLieferantenName()+" (Bauernhof) kosten "+ kostenfuerbedarf);
+						//Artikel + Lieferkosten des Bauernhofes ist kleiner als Artikel + Lieferkosten des aktuell billigsten Anbieters
+						if ( (art.getPreis()*anzGebinde + (bh.getEntfernung()*kmSatz)) < (cheapestBauerSummeNettoVoll+cheapestBauerLieferkostenVoll) ){
+							//Aktuell billigsten ersetzen
+							cheapestBauerSummeNettoVoll= art.getPreis()*anzGebinde;
+							cheapestBauerLieferkostenVoll=bh.getEntfernung()*kmSatz;
+							cheapestBauerVoll=art;
+						}
 					}
 					if (art.getLieferant().getClass()==Grosshandel.class){
 						Grosshandel gh=(Grosshandel) art.getLieferant();
-						float lieferkosten=gh.getLieferkostensatz();
-						kostenfuerbedarf=lieferkosten+(anzGebinde*art.getPreis());
-						System.out.println(anzGebinde+" Gebinde "+art.getName()+" von "+art.getLieferant().getLieferantenName()+" (Grosshandel) kosten "+ kostenfuerbedarf);
+						//Artikel + Lieferkosten des Grosshandels ist kleiner als aktuell billigster Artikel OHNE Lieferkosten
+						if ( art.getPreis()*anzGebinde + gh.getLieferkostensatz() < cheapestGHSummeNettoVoll + cheapestGHLieferkostenVoll ){
+							//billigsten ersetzen
+							cheapestGHSummeNettoVoll= art.getPreis()*anzGebinde;
+							cheapestGHLieferkostenVoll=gh.getLieferkostensatz();
+							cheapestGHVoll=art;
+						}
+					}
+				}
+				else {
+					//kompletter Bedarf lieﬂe sich mit diesem Artikel nicht abdecken
+					if (art.getLieferant().getClass()==Bauernhof.class){
+						//Artikel ist Bauernhof
+						Bauernhof bh=(Bauernhof) art.getLieferant();
+						//Artikel + Lieferkosten des Bauernhofes ist kleiner als Artikel + Lieferkosten des aktuell billigsten Anbieters
+						if ( (art.getPreis()*anzGebinde + (bh.getEntfernung()*kmSatz)) < (cheapestBauerSummeNettoTeil+cheapestBauerLieferkostenTeil) ){
+							//Aktuell billigsten ersetzen
+							cheapestBauerSummeNettoTeil= art.getPreis()*anzGebinde;
+							cheapestBauerLieferkostenTeil=bh.getEntfernung()*kmSatz;
+							cheapestBauerTeil=art;
+							maxGebindeBauer=art.getArtikelanzahl();
+						}
+					}
+					if (art.getLieferant().getClass()==Grosshandel.class){
+						Grosshandel gh=(Grosshandel) art.getLieferant();
+						//Artikel + Lieferkosten des Grosshandels ist kleiner als aktuell billigster Artikel OHNE Lieferkosten
+						if ( art.getPreis()*anzGebinde + gh.getLieferkostensatz() < cheapestGHSummeNettoTeil + cheapestGHLieferkostenTeil ){
+							//billigsten ersetzen
+							cheapestGHSummeNettoTeil= art.getPreis()*anzGebinde;
+							cheapestGHLieferkostenTeil=gh.getLieferkostensatz();
+							cheapestGHTeil=art;
+							maxGebindeGH=art.getArtikelanzahl();
+						}
 					}
 				}
 				
+			} //Artikel-Schleife Ende
+			/*Debug-Print */
+			System.out.println();
+			System.out.println(bedarf.getName());
+			System.out.println(bedarf.getMenge()+" "+bedarf.getEinheit());
+			System.out.println("==================");
+			if (!(cheapestBauerVoll.getLieferant()==null)){
+				System.out.println("Billigster Bauernhof voll: "+cheapestBauerVoll.getLieferant().getLieferantenName());
+				System.out.println("Summe: "+cheapestBauerSummeNettoVoll);
+				System.out.println("Lieferkosten: "+cheapestBauerLieferkostenVoll);
 			}
-    		
-    	}
+			if (!(cheapestGHVoll.getLieferant()==null)){
+				System.out.println("Billigster Grosshandel voll: "+cheapestGHVoll.getLieferant().getLieferantenName());
+				System.out.println("Summe: "+cheapestGHSummeNettoVoll);
+				System.out.println("Lieferkosten: "+cheapestGHLieferkostenVoll);
+			}
+			if (!(cheapestBauerTeil.getLieferant()==null)){
+				System.out.println("Billigster Bauernhof teil: "+cheapestBauerTeil.getLieferant().getLieferantenName());
+				System.out.println("Summe: "+cheapestBauerSummeNettoTeil);
+				System.out.println("Lieferkosten: "+cheapestBauerLieferkostenTeil);
+				System.out.println("Maximal lieferbar: "+maxGebindeBauer);
+			}
+			if (!(cheapestGHTeil.getLieferant()==null)){
+				System.out.println("Billigster Grosshandel teil: "+cheapestGHTeil.getLieferant().getLieferantenName());
+				System.out.println("Summe: "+cheapestGHSummeNettoTeil);
+				System.out.println("Lieferkosten: "+cheapestGHLieferkostenTeil);
+				System.out.println("Maximal lieferbar: "+maxGebindeGH);
+			}
+			//Jetzt m¸ssen alle Kombinationen, die sicher eine Entscheidung bringen durchgegangen werden
+			
+			
+			if (cheapestGHSummeNettoVoll+cheapestGHLieferkostenVoll < cheapestBauerSummeNettoVoll){
+				//BauerVoll ist raus
+				//Pr¸fung ob Teilbestellung Bauer + Auff¸llung g¸nstiger ist, als alles beim GH
+				//Kosten Teilbestellung Bauer
+				float teilbestellung = cheapestBauerTeil.getPreis()*maxGebindeBauer+cheapestBauerLieferkostenTeil;
+				float zusaetzlichzubestellen = bedarf.getMenge() - (maxGebindeBauer*cheapestBauerTeil.getGebindegroesse());
+				int anzZusaetzlicheGebinde=(int) zusaetzlichzubestellen;
+				//Wenn Modulo grˆﬂer 0 ist, muss ein Gebinde mehr beschafft werden.
+				if (!(zusaetzlichzubestellen%cheapestGHVoll.getGebindegroesse()==0)){
+					anzZusaetzlicheGebinde++;
+				}
+				if  ( (teilbestellung + anzZusaetzlicheGebinde*cheapestGHVoll.getPreis()*cheapestGHLieferkostenVoll) < (cheapestGHSummeNettoVoll+cheapestGHLieferkostenVoll)){
+					//Definitiv beim Bauer die Teillieferung holen
+					//Bauernhof in BauernhofListe merken zum sp‰teren Abgleich
+					System.out.println("Teilbestellung");
+				}
+				else {
+					System.out.println("Beim Grosshandel Voll alles kaufen");
+				}
+			}
+			if (cheapestGHSummeNettoVoll+cheapestGHLieferkostenVoll > cheapestBauerSummeNettoVoll+cheapestBauerLieferkostenVoll){
+				//GHVoll ist raus ->keine weiteren Pr¸fungen -> Alles beim BauernhofVoll
+				//Bauernhof in BauernhofListe merken zum sp‰teren Abgleich
+				System.out.println("Beim Bauernhof Voll alles kaufen");
+			}
+					
+    	} //Ende Bedarf-Schleife
     	
     	
     	return bestellList;
