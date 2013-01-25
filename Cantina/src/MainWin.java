@@ -1,6 +1,14 @@
 import javax.swing.*;
-
+/**
+ * Die Klasse MainWin gibt die Ausgabe von Fehlermeldung beim Programmablauf aus.
+ * Durch Bereitstellung einer Konsole wird auch Auskuft darüber erteilt, ob das einlesen der Dateien sowie
+ * die Ausgabe der Dateien fehlerfrei verlaufen ist.
+ * 
+ * @author Lukas Krotki
+ * @version
+ */
 public class MainWin extends JFrame {
+	//Seriennummer für eine Serialisierung (mit Versionierung)
 	private static final long serialVersionUID = 1L;
 
     static JTextArea ausgabe = new JTextArea("Kantina startet..."+"\n");
@@ -19,11 +27,19 @@ public class MainWin extends JFrame {
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    // Schließe Fenster und Programm beim beenden 
 			setVisible(true);
 		}
-		
+		/**
+		 * Textausgabe im MainWindow.
+		 *
+		 * @return Textausgabe
+		 */
 		public static void StringOut(String ausgabeText){
 			ausgabe.append(ausgabeText);
 		}
-
+		/**
+		 * Textausgabe von Strings im MainWindow.
+		 *
+		 * @return Textausgabe von Strings
+		 */
 		public static void StringOutln(String ausgabeText){
 			ausgabe.append(ausgabeText+"\n");
 		}

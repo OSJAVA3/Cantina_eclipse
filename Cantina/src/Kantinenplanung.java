@@ -38,7 +38,7 @@ public class Kantinenplanung {
 	//Attribute für die Geschäftslogikklassen
 	private Einkaufsliste einkaufsliste;
 	private ArrayList<Kantinenplan> kantPlanList;
-	
+
 
 	/**
 	 * Konstruktor für das Objekt, bei Erstellung des Objektes werden die
@@ -71,7 +71,7 @@ public class Kantinenplanung {
 	}
 
 	MainWin mainWnd = new MainWin();
-	
+
 	/**
 	 * Die Methode lädt die Parameter aus der Datei "config.properties" im
 	 * Root-Ordner in die Attribute der Klasse.
@@ -102,7 +102,7 @@ public class Kantinenplanung {
 			MainWin.StringOutln("Die Datei config.properties konnte nicht gelesen werden. Prüfen Sie, ob sie im Anwendungsordner vorhanden ist.");
 		}
 	}
-	
+
 	/**
 	 * Hier wird die Steuerung des Datei-Einlesens, die Erstellung der
 	 * Verwaltungsklassen und der Datenschicht hinterlegt. Die Parameter wurden
@@ -150,7 +150,7 @@ public class Kantinenplanung {
 	 * Die Parameter wurden bereits vorher aus der config.properties extrahiert.
 	 */
 	public void startEinkaufsplanung() {
-		
+
 		einkaufsliste = new Einkaufsliste();
 		for (int i=0;i<kantPlanList.size();i++){
 			//Über addKantinenplan werden die Tagesgerichte des Kantinenplans in Bedarfspositionen für die Einkaufsplanung umgesetzt.
@@ -170,6 +170,6 @@ public class Kantinenplanung {
 		for( Kantinenplan plan: kantPlanList ) {
 			plan.schreibeKantinenplan();
 		}
-		
+
 	}
 }

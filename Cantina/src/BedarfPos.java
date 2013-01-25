@@ -9,19 +9,19 @@
  */
 public class BedarfPos implements Cloneable
 {
-    private String name;
-    private float menge;
-    private String einheit;
-    
+	private String name;
+	private float menge;
+	private String einheit;
 
-    /**
-     * Dem Konstruktor des Objekts
-     * 
-     */
-    public BedarfPos()
-    {
-        
-    }
+
+	/**
+	 * Dem Konstruktor des Objekts
+	 * 
+	 */
+	public BedarfPos()
+	{
+
+	}
 
 
 	/**
@@ -79,7 +79,7 @@ public class BedarfPos implements Cloneable
 		bp.setMenge(getMenge());
 		bp.setEinheit(getEinheit());
 		return bp;
-		
-		
+
+
 	}
 }

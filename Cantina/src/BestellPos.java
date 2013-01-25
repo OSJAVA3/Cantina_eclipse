@@ -13,67 +13,67 @@
  */
 public class BestellPos
 {
-    /** Enthält den Artikel der Position ( Mit Name, Lieferant, Gebindegröße, Einheit und Einzelpreis)*/
-    private Artikel artikel;
-    /** Enthält die zu beschaffende Menge an Gebinden */
-    private int menge;
+	/** Enthält den Artikel der Position ( Mit Name, Lieferant, Gebindegröße, Einheit und Einzelpreis)*/
+	private Artikel artikel;
+	/** Enthält die zu beschaffende Menge an Gebinden */
+	private int menge;
 
-    /**
-     * Konstruktor der Klasse
-     * 
-     * @param art Der Artikel der Bestellposition
-     */
-    public BestellPos()
-    {
-        this.menge=0;
-    }/**
-     * Konstruktor der Klasse
-     * 
-     * @param art Der Artikel der Bestellposition
-     */
-    public BestellPos(Artikel art)
-    {
-        this.artikel=art;
-        this.menge=0;
-    }
-    
-    /**
-     * Gibt die Menge der zu bestellenden Artikel zurück.
-     *
-     * @return    Die zu bestellende Menge des Artikels
-     */
-    public int getMenge()
-    {
-        return menge;
-    }
+	/**
+	 * Konstruktor der Klasse
+	 * 
+	 * @param art Der Artikel der Bestellposition
+	 */
+	public BestellPos()
+	{
+		this.menge=0;
+	}/**
+	 * Konstruktor der Klasse
+	 * 
+	 * @param art Der Artikel der Bestellposition
+	 */
+	public BestellPos(Artikel art)
+	{
+		this.artikel=art;
+		this.menge=0;
+	}
 
-    /**
-     * Gibt den Artikel der Bestellposition zurück.
-     *
-     * @return    Der Artikel der Bestellposition
-     */
-    public Artikel getArtikel()
-    {
-        return artikel;
-    }
-    
-    /**
-     * Setz die Menge des zu bestellenden Artikels der Bestellposition.
-     *
-     * @param menge Die Menge des zu bestellendenh Artikels der Bestellposition
-     */
-    public void setMenge(int menge)
-    {
-    	this.menge=menge;
-    }
-    /**
-     * Setz das Artikel-Objekt, auf das sich die Bestellposition bezieht.
-     *
-     * @param art Das Artikel-Objekt
-     */
-    public void setArtikel(Artikel art)
-    {
-    	this.artikel=art;
-    }
+	/**
+	 * Gibt die Menge der zu bestellenden Artikel zurück.
+	 *
+	 * @return    Die zu bestellende Menge des Artikels
+	 */
+	public int getMenge()
+	{
+		return menge;
+	}
+
+	/**
+	 * Gibt den Artikel der Bestellposition zurück.
+	 *
+	 * @return    Der Artikel der Bestellposition
+	 */
+	public Artikel getArtikel()
+	{
+		return artikel;
+	}
+
+	/**
+	 * Setz die Menge des zu bestellenden Artikels der Bestellposition.
+	 *
+	 * @param menge Die Menge des zu bestellendenh Artikels der Bestellposition
+	 */
+	public void setMenge(int menge)
+	{
+		this.menge=menge;
+	}
+	/**
+	 * Setz das Artikel-Objekt, auf das sich die Bestellposition bezieht.
+	 *
+	 * @param art Das Artikel-Objekt
+	 */
+	public void setArtikel(Artikel art)
+	{
+		this.artikel=art;
+	}
 }
 

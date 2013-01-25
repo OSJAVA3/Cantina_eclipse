@@ -80,7 +80,7 @@ public class Lieferantenverwaltung {
 	public boolean lebensmittelVerfuegbar(Tagesgericht tagesgericht) {
 		ArrayList<Zutat> zutatList= tagesgericht.getRezept().getZutaten();
 		int c=0; //Zähler für die verfügbaren Lebensmittel
-		
+
 		//Zutatenschleife
 		for (int i=0;i<zutatList.size();i++){
 			Zutat z=zutatList.get(i);
@@ -103,7 +103,7 @@ public class Lieferantenverwaltung {
 				}
 			} //Ende Lebensmittelschleife
 		} // Ende Zutatenschleife
-		
+
 		if (c==zutatList.size()){
 			//Es sind alle Lebensmittel ausreichend verfügbar.
 			for (int i=0;i<zutatList.size();i++){
@@ -375,8 +375,8 @@ public class Lieferantenverwaltung {
 					//MainWin.StringOutln(lmName+" ist noch nicht in lmList vorhanden");
 				}	
 			} //while-Ende - Jetzt steht entweder vorh auf true und vorhLm enthält das LM-Objekt
-			  //oder vorh steht auf false
-			
+			//oder vorh steht auf false
+
 			// Lebensmittel-Objekt schon vorhanden
 			if(vorh==true){
 				vorhLm.setMenge(vorhLm.getMenge()+m);

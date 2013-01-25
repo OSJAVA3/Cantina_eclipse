@@ -14,20 +14,20 @@ public class CSVService {
 	 * @return Eine ArrayList, die die einzelnen Felder als String enthält.
 	 */
 	public static ArrayList<String> getFields(String csv){
-		
+
 		ArrayList<String> fields = new ArrayList<String>();
 		boolean fieldStarted = false;
 		StringBuffer tmpBuffer = new StringBuffer();
 		for (int i = 0; i < csv.length(); i++) {
-		    char ch = csv.charAt(i);
-		    if (ch == '\"'){
-		        fieldStarted = !fieldStarted;
-		    } else if ((ch == ',' && !fieldStarted)) {
-		        fields.add((tmpBuffer.toString()).replaceAll("\"",""));
-		        tmpBuffer = new StringBuffer();
-		    } else {
-		        tmpBuffer.append(ch);
-		    }
+			char ch = csv.charAt(i);
+			if (ch == '\"'){
+				fieldStarted = !fieldStarted;
+			} else if ((ch == ',' && !fieldStarted)) {
+				fields.add((tmpBuffer.toString()).replaceAll("\"",""));
+				tmpBuffer = new StringBuffer();
+			} else {
+				tmpBuffer.append(ch);
+			}
 		}
 		fields.add((tmpBuffer.toString().replaceAll("\"","")));
 		return fields;
@@ -43,7 +43,7 @@ public class CSVService {
 		Iterator<String> it = arr.iterator();
 		while (it.hasNext()){
 			String tmp=it.next();
-			
+
 			csv=csv+"\""+tmp+"\",";
 		}
 		return csv;

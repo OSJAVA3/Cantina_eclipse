@@ -11,32 +11,32 @@
 public class Exporter
 {
 
-    /**
-     * Konstruktor für den Exporter
-     */
-    public Exporter()
-    {
-    }
+	/**
+	 * Konstruktor für den Exporter
+	 */
+	public Exporter()
+	{
+	}
 
-    /**
-     * Exportiert einen Kantinenplan
-     * 
-     * @param  kantpl Ein Kantinenplan-Objekt
-     * @return     True, falls Export erfolgreich, false falls nicht. 
-     */
-    public boolean expKantinenplanFile(Kantinenplan kantpl)
-    {
-        return true;
-    }
-    
-    /**
-     * Exportiert eine Einkaufsliste
-     * 
-     * @param  einklist Ein Einkaufslisten-Objekt
-     * @return     True, falls Export erfolgreich, false falls nicht. 
-     */
-    public boolean expEinkaufslisteFile(Einkaufsliste einklist)
-    {
-        return true;
-    }
+	/**
+	 * Exportiert einen Kantinenplan
+	 * 
+	 * @param  kantpl Ein Kantinenplan-Objekt
+	 * @return     True, falls Export erfolgreich, false falls nicht. 
+	 */
+	public boolean expKantinenplanFile(Kantinenplan kantpl)
+	{
+		return true;
+	}
+
+	/**
+	 * Exportiert eine Einkaufsliste
+	 * 
+	 * @param  einklist Ein Einkaufslisten-Objekt
+	 * @return     True, falls Export erfolgreich, false falls nicht. 
+	 */
+	public boolean expEinkaufslisteFile(Einkaufsliste einklist)
+	{
+		return true;
+	}
 }

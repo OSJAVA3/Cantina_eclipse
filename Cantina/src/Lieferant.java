@@ -12,61 +12,61 @@ import java.util.ArrayList;
 public abstract class Lieferant
 {
 	private String lieferantName;
-    private ArrayList<Artikel> artikelArrayList;
-    
-    public Lieferant(){
-    	
-    }
-    
-    /**
-     * Setzt den Namen eines Lieferanten
-     * 
-     * @param  lieferantName Der Name des Lieferanten
-     */
-    public void setLieferantName(String name)
-    {
-        lieferantName=name;
-    }
-    
-    /**
-     * Gibt den Namen des Lieferanten zurück
-     *
-     * @return     Der Name des Lieferanten
-     */
-    public String getLieferantenName() 
-    {
-        return lieferantName;
-    }
+	private ArrayList<Artikel> artikelArrayList;
 
-    /**
-     * Prüft ob Artikel bei Lieferanten verfügbar ist
-     * 
-     * @param  artikelName Name der zu prüfenden Zutat
-     * @return      true wenn Artikel vorhanden  
-     */
-    public boolean enthaeltArtikel(String artikelName)
-    {
-        return true;
-    }
+	public Lieferant(){
 
-    /**
-     * Fügt einen Artikel der ArtikelArrayList des Lieferanten hinzu.
-     *
-     * @param  art Ein Artikel-Objekt
-     */
-    public void addArtikel(Artikel art)
-    {
-        
-    }
+	}
 
-    /**
-     * Die Methode gibt eine ArrayList zurück, der alle Artikel eines Lieferanten enthält.
-     *
-     * @return Eine ArrayList, der alle Artikel des Lieferanten enthält.
-     */
-    public ArrayList<Artikel> getArtikelArrayList()
-    {
-        return artikelArrayList;
-    }
+	/**
+	 * Setzt den Namen eines Lieferanten
+	 * 
+	 * @param  lieferantName Der Name des Lieferanten
+	 */
+	public void setLieferantName(String name)
+	{
+		lieferantName=name;
+	}
+
+	/**
+	 * Gibt den Namen des Lieferanten zurück
+	 *
+	 * @return     Der Name des Lieferanten
+	 */
+	public String getLieferantenName() 
+	{
+		return lieferantName;
+	}
+
+	/**
+	 * Prüft ob Artikel bei Lieferanten verfügbar ist
+	 * 
+	 * @param  artikelName Name der zu prüfenden Zutat
+	 * @return      true wenn Artikel vorhanden  
+	 */
+	public boolean enthaeltArtikel(String artikelName)
+	{
+		return true;
+	}
+
+	/**
+	 * Fügt einen Artikel der ArtikelArrayList des Lieferanten hinzu.
+	 *
+	 * @param  art Ein Artikel-Objekt
+	 */
+	public void addArtikel(Artikel art)
+	{
+
+	}
+
+	/**
+	 * Die Methode gibt eine ArrayList zurück, der alle Artikel eines Lieferanten enthält.
+	 *
+	 * @return Eine ArrayList, der alle Artikel des Lieferanten enthält.
+	 */
+	public ArrayList<Artikel> getArtikelArrayList()
+	{
+		return artikelArrayList;
+	}
 
 }
