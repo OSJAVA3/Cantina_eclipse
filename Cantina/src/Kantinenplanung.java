@@ -30,7 +30,7 @@ public class Kantinenplanung {
 	 */
 	private String preisListenOrdner;
 	/** Die Pauschale, welche mit der Entfernung der Bauernhöfe multipliziert die Transportkosten ergibt */
-	private float kmSatz;
+	//private float kmSatz;
 
 	// Attribute für die Verwaltungsklassen
 	private Rezeptverwaltung rezeptverw;
