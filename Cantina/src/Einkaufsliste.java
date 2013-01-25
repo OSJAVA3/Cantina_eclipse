@@ -120,6 +120,9 @@ public class Einkaufsliste
 	public ArrayList<BedarfPos> getBedarfPosList() {
 		return bedarfPosList;
 	}
+	public void setLieferantenverwaltung(Lieferantenverwaltung l){
+		this.lieferantenverw=l;
+	}
 	/**
 	 * Erzeugt aus den im KantinenplanArrayList enthaltenen Kantinenplänen eine Einkaufsliste
 	 * Es muss vorher mindestens ein Kantinenplan über addKantinenplan referenziert worden sein.
@@ -134,97 +137,6 @@ public class Einkaufsliste
 		System.out.println(gesamtkosten);
 
 		return true;
-	}
-	/**
-	 * Für die Erstellung der Einkaufsliste mit den Bestellpositionen wird zunächst eine Variante gerechnet, die versucht so viel es geht bei Bauernhöfen zu beschaffen.
-	 */
-	private ArrayList<BestellPos> makeVariante1(){
-		ArrayList<BedarfPos> bedarfListCopy=new ArrayList<BedarfPos>();
-		ArrayList<BestellPos> bestellList=new ArrayList<BestellPos>();
-		//Zunächst muss eine tiefe Kopie der BedarfPos-Objekte bzw. der bedarfPosList erstellt werden, auf der das Szenario rechnen kann, ohne die Original-Daten zu zerstören.
-		for (BedarfPos bedarf:bedarfPosList){
-			bedarfListCopy.add(bedarf.clone());
-		}
-		//Debug-Print
-		System.out.println("Bedarfliste am Beginn");
-		System.out.println("==============================================");
-		for (BedarfPos bedarf:bedarfListCopy){
-			System.out.println(bedarf.getMenge()+" "+bedarf.getEinheit()+" "+bedarf.getName());
-		}
-		//Schleife für alle BedarfPos-Objekte
-		for (BedarfPos bedarf:bedarfListCopy){
-			ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
-			//artList enthält jetzt alle Artikel, die für die Beschaffung der BedarfPos in Frage kommen, der größe nach sortiert.
-			for (Artikel art:artList){
-				if (art.getLieferant().getClass()==Bauernhof.class){    				
-					BestellPos bestellPos=new BestellPos();
-					//Für die Bestimmung der nötigen Anzahl Gebinde muss quasi immer aufgerundet werden.
-					//Hier wird zunächst Ganzzahldivision gerechnet, also der Rest "abgeschnitten".
-					int anzGebinde=(int) (bedarf.getMenge()/art.getGebindegroesse());
-					//Wenn Modulo größer 0 ist, muss ein Gebinde mehr beschafft werden.
-					if (!(bedarf.getMenge()%art.getGebindegroesse()==0)){
-						anzGebinde++;
-					}
-					//Reicht die Anzahl der Gebinde, die der Lieferant liefern kann nicht aus, um den kompletten Bedarf zu decken, wird nur die maximale beschaffbare Anzahl beschafft.
-					if (anzGebinde>art.getArtikelanzahl()){
-						anzGebinde=art.getArtikelanzahl();
-					}
-					//BestellPosition für Variante 1 schreiben und zur (temporären) Bestellliste hinzufügen.
-					bestellPos.setMenge(anzGebinde);
-					bestellPos.setArtikel(art);
-					bestellList.add(bestellPos);
-					//Die Bedarfsposition ist hierfür anzupassen
-					float neuerBedarf=bedarf.getMenge()-anzGebinde*art.getGebindegroesse();
-					//Wenn alles (und gegenfalls etwas zu viel) beschafft wurde, wird der Bedarf auf 0 gesetzt.
-					if (neuerBedarf<=0){
-						bedarf.setMenge(0);
-						break;
-					}
-
-					//Ansonsten wird der neue Bedarf gesetzt.
-					else bedarf.setMenge(neuerBedarf);   				
-				}
-			} //Ende Artikel-Schleife
-		} //Ende BedarfPos-Schleife
-
-		for (BedarfPos bedarf:bedarfListCopy){
-			ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
-			//artList enthält jetzt alle Artikel, die für die Beschaffung der BedarfPos in Frage kommen, der größe nach sortiert.
-			for (Artikel art:artList){
-				BestellPos bestellPos=new BestellPos();
-				//Für die Bestimmung der nötigen Anzahl Gebinde muss quasi immer aufgerundet werden.
-				//Hier wird zunächst Ganzzahldivision gerechnet, also der Rest "abgeschnitten".
-				int anzGebinde=(int) (bedarf.getMenge()/art.getGebindegroesse());
-				//Wenn Modulo größer 0 ist, muss ein Gebinde mehr beschafft werden.
-				if (!(bedarf.getMenge()%art.getGebindegroesse()==0)){
-					anzGebinde++;
-				}
-				//Reicht die Anzahl der Gebinde, die der Lieferant liefern kann nicht aus, um den kompletten Bedarf zu decken, wird nur die maximale beschaffbare Anzahl beschafft.
-				if (anzGebinde>art.getArtikelanzahl()){
-					anzGebinde=art.getArtikelanzahl();
-				}
-				//BestellPosition für Variante 1 schreiben und zur (temporären) Bestellliste hinzufügen.
-				bestellPos.setMenge(anzGebinde);
-				bestellPos.setArtikel(art);
-				art.setArikelanzahl(art.getArtikelanzahl()-anzGebinde);
-				bestellList.add(bestellPos);
-				//Die Bedarfsposition ist hierfür anzupassen
-				float neuerBedarf=bedarf.getMenge()-anzGebinde*art.getGebindegroesse();
-				//Wenn alles (und gegenfalls etwas zu viel) beschafft wurde, wird der Bedarf auf 0 gesetzt.
-				if (neuerBedarf<=0){
-					bedarf.setMenge(0);
-					break;
-				}
-				//Ansonsten wird der neue Bedarf gesetzt.
-				else bedarf.setMenge(neuerBedarf);   	
-			}
-		}
-		//Print Bestellliste der Variante 1
-		for (BestellPos b:bestellList){
-			Artikel a=b.getArtikel();
-			MainWin.StringOutln(b.getMenge()+" Gebinde "+a.getName()+" a "+a.getGebindegroesse()+" bei "+a.getLieferant().getLieferantenName()+" kaufen.");
-		}
-		return bestellList;
 	}
 	private ArrayList<BestellPos> makeVariante2(){
 		ArrayList<BedarfPos> bedarfListCopy=new ArrayList<BedarfPos>();
@@ -743,6 +655,91 @@ public class Einkaufsliste
 	public ArrayList<BestellPos> getBestellPos()
 	{
 		return bestellPosList;
+	}
+	public void schreibeEinkaufsliste() {
+		ArrayList<BestellPos> sortList=new ArrayList<BestellPos>();
+		for (Lieferant l:lieferantenverw.getLieferanten()){
+			for(BestellPos bp:bestellPosList)
+				if (bp.getArtikel().getLieferant()==l){
+					sortList.add(bp);
+				}
+		}
+		
+		
+		Datei eklDatei = new Datei( "Einkaufsliste.txt");
+		MainWin.StringOutln("Schreibe Einkaufsliste.txt");
+
+
+		if (eklDatei.openOutFile_FS()==0) {
+
+			eklDatei.writeLine("Einkauflsliste");
+			eklDatei.writeLine("Anz Name                          Lieferant                               Gebindegrösse    Einzelpreis  Summe  ");
+			String ausgabeZeile;			
+			
+			for( BestellPos bp:sortList) {
+				Artikel a=bp.getArtikel();
+				String anzOffset="";
+				StringBuffer nameOffset=new StringBuffer();
+				String preisOffset="";
+				String summeOffset="";
+				StringBuffer lieferOffset= new StringBuffer();
+				String gebindeOffset="";
+				String preisSuffix="";
+				if (bp.getMenge()<100) anzOffset=" ";
+				if (bp.getMenge()<10) anzOffset="  ";
+				for (int i=0;i<(40-a.getLieferant().getLieferantenName().length());i++){
+					lieferOffset.append(" ");
+				}
+				for (int i=0;i<(30-a.getName().length());i++){
+					nameOffset.append(" ");
+				}
+				if (a.getGebindegroesse()<100000) gebindeOffset=" ";
+				if (a.getGebindegroesse()<10000) gebindeOffset="  ";
+				if (a.getGebindegroesse()<1000) gebindeOffset="   ";
+				if (a.getGebindegroesse()<100) gebindeOffset="    ";
+				if (a.getGebindegroesse()<10) gebindeOffset="     ";
+				
+				String einheit =a.getEinheit();
+				if(einheit.equals("")) einheit=" ";
+				
+				if (a.getPreis()<1000) preisOffset=" ";
+				if (a.getPreis()<100) preisOffset="  ";
+				if (a.getPreis()<10) preisOffset="   ";
+				
+				float preis = a.getPreis();
+		        
+		        String[] asplit =  Float.toString(preis).split("\\.");
+		        int nachkomma = asplit[1].length();
+		        if (nachkomma<2) preisSuffix=" ";
+		        
+		        float summe = a.getPreis()*bp.getMenge();
+		        
+		        asplit =  Float.toString(summe).split("\\.");
+		        int vorkomma = asplit[0].length();
+		        if (vorkomma<6) summeOffset=" ";
+		        if (vorkomma<5) summeOffset="  ";
+		        if (vorkomma<4) summeOffset="   ";
+		        if (vorkomma<3) summeOffset="    ";
+		        if (vorkomma<2) summeOffset="     ";
+				
+				ausgabeZeile = anzOffset+bp.getMenge()+" "+a.getName()+nameOffset+a.getLieferant().getLieferantenName()+lieferOffset+gebindeOffset+a.getGebindegroesse()+
+						" "+einheit+"         "+preisOffset+a.getPreis()+preisSuffix+"    "+summeOffset+a.getPreis()*bp.getMenge();
+
+				if( eklDatei.writeLine_FS(ausgabeZeile) != 0) {
+					MainWin.StringOutln("Fehler beim Schreiben der Bestellposition "+a.getName()+" des Lieferanten "+a.getLieferant().getLieferantenName());
+					break;
+				}
+
+			}
+			if( eklDatei.closeOutFile_FS()!=0)
+				MainWin.StringOutln("Fehler beim Schließen der Ausgabedatei");
+
+		} else 
+			MainWin.StringOutln("Die Ausgabedatei kann nicht geöffnet werden.");
+
+
+		MainWin.StringOutln("Ausgabe der Datei fehlerfrei beendet.");
+
 	}
 }
 

@@ -11,7 +11,7 @@ public class MainWin extends JFrame {
 	//Seriennummer für eine Serialisierung (mit Versionierung)
 	private static final long serialVersionUID = 1L;
 
-    static JTextArea ausgabe = new JTextArea("Kantina startet..."+"\n");
+    static JTextArea ausgabe = new JTextArea("Cantina startet..."+"\n");
 
     
 		public MainWin(){

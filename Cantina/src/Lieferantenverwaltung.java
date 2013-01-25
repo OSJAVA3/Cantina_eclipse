@@ -92,7 +92,7 @@ public class Lieferantenverwaltung {
 					//Verfügbare Restmenge des Lebensmittels ist kleiner 0, Verfügbar: false
 					if (diff<0){
 						//Debug-Print
-						MainWin.StringOutln("Die Menge an "+z.getName()+" für "+tagesgericht.getRezept().getName()+" reicht nicht aus");
+						//MainWin.StringOutln("Die Menge an "+z.getName()+" für "+tagesgericht.getRezept().getName()+" reicht nicht aus");
 						tagesgericht.getRezept().setVerwendet(true);
 						return false;
 					}
@@ -394,6 +394,9 @@ public class Lieferantenverwaltung {
 				//MainWin.StringOutln(lmName+" der Liste hinzugefügt!");
 			}	
 		} //else-Ende
+	}
+	public ArrayList<Lieferant> getLieferanten(){
+		return liefList;
 	}
 
 }

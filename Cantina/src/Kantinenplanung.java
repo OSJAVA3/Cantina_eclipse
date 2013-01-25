@@ -29,8 +29,6 @@ public class Kantinenplanung {
 	 * Lieferanten enthält
 	 */
 	private String preisListenOrdner;
-	/** Die Pauschale, welche mit der Entfernung der Bauernhöfe multipliziert die Transportkosten ergibt */
-	private float kmSatz;
 
 	// Attribute für die Verwaltungsklassen
 	private Rezeptverwaltung rezeptverw;
@@ -66,7 +64,6 @@ public class Kantinenplanung {
 		app.startKantinenplanung();
 		// Die Einkaufsliste für ALLE Kantinenpläne erzeugen
 		app.startEinkaufsplanung();
-		//app.schreibeKantinenplan();
 		MainWin.StringOut("Ende");
 	}
 
@@ -139,6 +136,7 @@ public class Kantinenplanung {
 			}
 			Kantinenplan plan = new Kantinenplan(name, anzMA);
 			plan.erzeugePlan(lieferantenverw, rezeptverw);
+			plan.schreibeKantinenplan();
 			kantPlanList.add(plan);
 		}
 	}
@@ -157,6 +155,7 @@ public class Kantinenplanung {
 			einkaufsliste.addKantinenplan(kantPlanList.get(i));
 		}
 		einkaufsliste.erzeugeEinkaufsliste(lieferantenverw);
+		einkaufsliste.schreibeEinkaufsliste();
 		/*Debug-Print
 		ArrayList<BedarfPos> bpl=einkaufsliste.getBedarfPosList();
 		for(int i=0;i<bpl.size();i++){
@@ -166,10 +165,4 @@ public class Kantinenplanung {
 			MainWin.StringOutln(m+" "+e+" "+n);
 		}*/
 	}	
-	public void schreibeKantinenplan() {		
-		for( Kantinenplan plan: kantPlanList ) {
-			plan.schreibeKantinenplan();
-		}
-
-	}
 }
