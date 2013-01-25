@@ -138,7 +138,7 @@ public class Einkaufsliste
 	/**
 	 * Für die Erstellung der Einkaufsliste mit den Bestellpositionen wird zunächst eine Variante gerechnet, die versucht so viel es geht bei Bauernhöfen zu beschaffen.
 	 */
-	public ArrayList<BestellPos> makeVariante1(){
+	private ArrayList<BestellPos> makeVariante1(){
 		ArrayList<BedarfPos> bedarfListCopy=new ArrayList<BedarfPos>();
 		ArrayList<BestellPos> bestellList=new ArrayList<BestellPos>();
 		//Zunächst muss eine tiefe Kopie der BedarfPos-Objekte bzw. der bedarfPosList erstellt werden, auf der das Szenario rechnen kann, ohne die Original-Daten zu zerstören.
