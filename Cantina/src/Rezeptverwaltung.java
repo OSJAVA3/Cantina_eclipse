@@ -59,18 +59,14 @@ public class Rezeptverwaltung
 			return false;
 		}
 
-
 		//Rezept initialisieren
 		Rezept rezept = null;
-
 		//Datei-Schleife
 		while (!inFile.eof()){
-
 			// Zeile einer Datei einlesen
 			String zeile = inFile.readLine_FS();
 			//Debug-Print
 			//MainWin.StringOutln(zeile);
-
 
 			//Wenn aktuelle Zeile einen NullPointer enthält, wird gebrochen. 
 			if (zeile != null){
@@ -80,9 +76,6 @@ public class Rezeptverwaltung
 
 				//Debug-Print
 				//MainWin.StringOutln("Zeile: "+zeilennummer+" Wert1: "+fields.get(0)+" Wert2: "+fields.get(1)+" Wert3: "+fields.get(2)+" Wert 4: " +fields.get(3));
-
-
-
 
 				// prüfe ob die eingelesene Zeile dem aktuellen Rezept entspricht
 				if ( !fields.get(0).equals(rezeptName)) {
@@ -134,7 +127,14 @@ public class Rezeptverwaltung
 
 
 
-
+	/**
+	 * Methode zum setzen des Rezepttyps. 
+	 * Durch die übergebene Lieferantenverwaltung, erhalten die Zutaten sowie Rezepte darüber Kenntnis
+	 * welchen RezeptTyp diese entsprechen 
+	 * 
+	 * @param Rezept   
+	 * @return  True für vollständige Zuweisung, False für unvollständig    
+	 */
 	private void setzeRezeptTyp (Rezept rezept){
 
 		rezept.setRezeptTyp(lieferantenVerw);
@@ -185,12 +185,11 @@ public class Rezeptverwaltung
 				//MainWin.StringOutln("Zeile: "+zeilennummer+" Wert1: "+fields.get(0)+" Wert2: "+fields.get(1));
 
 
-				// Suche Rezept, dessen Name in der Hitliste eingelesen wurde
+				// Uebergebe der Variable rezeptName den String aus dem Feld 1
 				rezeptName = getRezeptWithName( fields.get(1).toString() );
 
-				// Prüfe ob die eingelesene Zeile noch dem aktuellen Rezept entspricht
+				// Solange der Rezeptname auf keinen Nullpointer verweist, setze die Hitlistenposition aus aus Feld 0
 				if ( rezeptName != null) {
-					// speichere aktuellen Rezeptname, da dieser ja für jede Zutat wiederholt wird
 					rezeptName.setHitlistenpos( fields.get(0) );
 
 					// Debug Print
