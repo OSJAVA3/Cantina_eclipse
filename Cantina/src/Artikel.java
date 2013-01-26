@@ -23,7 +23,7 @@ public class Artikel
 	 *  können */ //Sechster Wert der Liste
 	private int anz;
 	/** Der Einzelpreis (Netto, ohne Transportkosten) je Gebinde */ //Fünfter Wert der Liste
-	private float einzelpreis; 
+	private double einzelpreis; 
 	/** Der Lieferant des Artikels */
 	private Lieferant lieferant;
 	/**
@@ -121,7 +121,7 @@ public class Artikel
 	 * 
 	 * @return Preis des Artikels
 	 */
-	public float getPreis(){
+	public double getPreis(){
 		return einzelpreis;
 	}
 	/**

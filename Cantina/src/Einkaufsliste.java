@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
+import java.text.*;
 /**
  * Die Klasse Einkaufsliste kann aus den Kantinenplan-Objekten eine Einkaufsliste mit einzelnen 
  * Einkaufslistenpositionen erzeugen. Dazu erzeugt sie als Zwischenschritt BedarfPos-Objekte 
@@ -134,7 +135,8 @@ public class Einkaufsliste
 		this.lieferantenverw=lieferantenverw;
 		bestellPosList=makeVariante2();
 		berechneGesamtkosten();
-		MainWin.StringOutln("Die Gesamtkosten für die Bestellung inklusive Lieferkosten betragen "+gesamtkosten);
+		DecimalFormat df = new DecimalFormat (",##0.00");
+		MainWin.StringOutln("Die Gesamtkosten für die Bestellung inklusive Lieferkosten betragen "+(df.format(gesamtkosten)));
 
 		return true;
 	}
@@ -171,25 +173,25 @@ public class Einkaufsliste
 			//Vollabdeckung Variablen
 			Artikel cheapestBauerVoll=new Artikel();
 			cheapestBauerVoll.setPreis(Float.MAX_VALUE);
-			float cheapestBauerSummeNettoVoll=Float.MAX_VALUE;
-			float cheapestBauerLieferkostenVoll=Float.MAX_VALUE;
+			double cheapestBauerSummeNettoVoll=Float.MAX_VALUE;
+			double cheapestBauerLieferkostenVoll=Float.MAX_VALUE;
 
 			Artikel cheapestGHVoll=new Artikel();
 			cheapestGHVoll.setPreis(Float.MAX_VALUE);
-			float cheapestGHSummeNettoVoll=Float.MAX_VALUE;
-			float cheapestGHLieferkostenVoll=Float.MAX_VALUE;
+			double cheapestGHSummeNettoVoll=Float.MAX_VALUE;
+			double cheapestGHLieferkostenVoll=Float.MAX_VALUE;
 
 			//Teilabdeckung Variablen
 			Artikel cheapestBauerTeil=new Artikel();
 			cheapestBauerTeil.setPreis(Float.MAX_VALUE);
-			float cheapestBauerSummeNettoTeil=Float.MAX_VALUE;
-			float cheapestBauerLieferkostenTeil=Float.MAX_VALUE;
+			double cheapestBauerSummeNettoTeil=Float.MAX_VALUE;
+			double cheapestBauerLieferkostenTeil=Float.MAX_VALUE;
 			int maxGebindeBauer=0;
 
 			Artikel cheapestGHTeil=new Artikel();
 			cheapestGHTeil.setPreis(Float.MAX_VALUE);
-			float cheapestGHSummeNettoTeil=Float.MAX_VALUE;
-			float cheapestGHLieferkostenTeil=Float.MAX_VALUE;
+			double cheapestGHSummeNettoTeil=Float.MAX_VALUE;
+			double cheapestGHLieferkostenTeil=Float.MAX_VALUE;
 			int maxGebindeGH=0;
 
 			ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
@@ -284,8 +286,8 @@ public class Einkaufsliste
 				//BauerVoll ist raus
 				//Prüfung ob Teilbestellung Bauer + Auffüllung günstiger ist, als alles beim GH
 				//Kosten Teilbestellung Bauer
-				float teilbestellung = cheapestBauerTeil.getPreis()*maxGebindeBauer+cheapestBauerLieferkostenTeil;
-				float zusaetzlichzubestellen = bedarf.getMenge() - (maxGebindeBauer*cheapestBauerTeil.getGebindegroesse());
+				double teilbestellung = cheapestBauerTeil.getPreis()*maxGebindeBauer+cheapestBauerLieferkostenTeil;
+				double zusaetzlichzubestellen = bedarf.getMenge() - (maxGebindeBauer*cheapestBauerTeil.getGebindegroesse());
 				int anzZusaetzlicheGebinde=(int) zusaetzlichzubestellen;
 				//Wenn Modulo größer 0 ist, muss ein Gebinde mehr beschafft werden.
 				if (!(zusaetzlichzubestellen%cheapestGHVoll.getGebindegroesse()==0)){
@@ -338,23 +340,23 @@ public class Einkaufsliste
 				// Vollabdeckung Variablen
 				Artikel cheapestBauerVoll = new Artikel();
 				cheapestBauerVoll.setPreis(Float.MAX_VALUE);
-				float cheapestBauerSummeNettoVoll = Float.MAX_VALUE;
+				double cheapestBauerSummeNettoVoll = Float.MAX_VALUE;
 
 				Artikel cheapestGHVoll = new Artikel();
 				cheapestGHVoll.setPreis(Float.MAX_VALUE);
-				float cheapestGHSummeNettoVoll = Float.MAX_VALUE;
-				float cheapestGHLieferkostenVoll = Float.MAX_VALUE;
+				double cheapestGHSummeNettoVoll = Float.MAX_VALUE;
+				double cheapestGHLieferkostenVoll = Float.MAX_VALUE;
 
 				// Teilabdeckung Variablen
 				Artikel cheapestBauerTeil = new Artikel();
 				cheapestBauerTeil.setPreis(Float.MAX_VALUE);
-				float cheapestBauerSummeNettoTeil = Float.MAX_VALUE;
+				double cheapestBauerSummeNettoTeil = Float.MAX_VALUE;
 				int maxGebindeBauer = 0;
 
 				Artikel cheapestGHTeil = new Artikel();
 				cheapestGHTeil.setPreis(Float.MAX_VALUE);
-				float cheapestGHSummeNettoTeil = Float.MAX_VALUE;
-				float cheapestGHLieferkostenTeil = Float.MAX_VALUE;
+				double cheapestGHSummeNettoTeil = Float.MAX_VALUE;
+				double cheapestGHLieferkostenTeil = Float.MAX_VALUE;
 				int maxGebindeGH = 0;
 
 				ArrayList<Artikel> artList = lieferantenverw.gibAlleArtikel(bedarf.getName());
@@ -415,12 +417,12 @@ public class Einkaufsliste
 					// BauerVoll ist raus
 					// Prüfung ob Teilbestellungen vielleicht besser sind.
 					// Kosten Teilbestellung Bauer
-					float zusaetzlichzubestellen = bedarf.getMenge() - (maxGebindeBauer * cheapestBauerTeil.getGebindegroesse());
+					double zusaetzlichzubestellen = bedarf.getMenge() - (maxGebindeBauer * cheapestBauerTeil.getGebindegroesse());
 					int anzZusaetzlicheGebindeBauer = (int) zusaetzlichzubestellen;
 					if (!(zusaetzlichzubestellen% cheapestGHVoll.getGebindegroesse() == 0)) {
 						anzZusaetzlicheGebindeBauer++;
 					}
-					float teilbestellungBauer = cheapestBauerTeil.getPreis()*maxGebindeBauer + (anzZusaetzlicheGebindeBauer*cheapestGHVoll.getPreis()+cheapestGHLieferkostenVoll);
+					double teilbestellungBauer = cheapestBauerTeil.getPreis()*maxGebindeBauer + (anzZusaetzlicheGebindeBauer*cheapestGHVoll.getPreis()+cheapestGHLieferkostenVoll);
 
 					// Kosten Teilbestellung GH
 					zusaetzlichzubestellen = bedarf.getMenge() - (maxGebindeGH*cheapestGHTeil.getGebindegroesse());
@@ -429,7 +431,7 @@ public class Einkaufsliste
 						anzZusaetzlicheGebindeGH++;
 					}
 
-					float teilbestellungGH = cheapestGHTeil.getPreis()*maxGebindeGH+cheapestGHLieferkostenTeil + (anzZusaetzlicheGebindeGH*cheapestGHVoll.getPreis()+cheapestGHLieferkostenVoll);
+					double teilbestellungGH = cheapestGHTeil.getPreis()*maxGebindeGH+cheapestGHLieferkostenTeil + (anzZusaetzlicheGebindeGH*cheapestGHVoll.getPreis()+cheapestGHLieferkostenVoll);
 
 					if ((teilbestellungBauer < cheapestGHSummeNettoVoll+cheapestGHLieferkostenVoll)	&& teilbestellungBauer < teilbestellungGH) {
 						// Beim Bauer die Teillieferung holen
@@ -499,7 +501,7 @@ public class Einkaufsliste
 					if (!(zusaetzlichzubestellen% cheapestBauerVoll.getGebindegroesse() == 0)) {
 						anzZusaetzlicheGebindeBauer++;
 					}
-					float teilbestellungBauer = cheapestBauerTeil.getPreis()*maxGebindeBauer + (anzZusaetzlicheGebindeBauer*cheapestBauerVoll.getPreis());
+					double teilbestellungBauer = cheapestBauerTeil.getPreis()*maxGebindeBauer + (anzZusaetzlicheGebindeBauer*cheapestBauerVoll.getPreis());
 
 					// Kosten Teilbestellung GH
 					zusaetzlichzubestellen = bedarf.getMenge() - (maxGebindeGH*cheapestGHTeil.getGebindegroesse());
@@ -508,7 +510,7 @@ public class Einkaufsliste
 						anzZusaetzlicheGebindeGH++;
 					}
 
-					float teilbestellungGH = cheapestGHTeil.getPreis()*maxGebindeGH+cheapestGHLieferkostenTeil + (anzZusaetzlicheGebindeGH*cheapestBauerVoll.getPreis());
+					double teilbestellungGH = cheapestGHTeil.getPreis()*maxGebindeGH+cheapestGHLieferkostenTeil + (anzZusaetzlicheGebindeGH*cheapestBauerVoll.getPreis());
 
 					if ((teilbestellungBauer < cheapestBauerSummeNettoVoll)	&& teilbestellungBauer < teilbestellungGH) {
 						// Beim Bauer die Teillieferung holen
@@ -623,12 +625,12 @@ public class Einkaufsliste
 					//BauernhofList enthält den Bauernhof noch nicht
 					Bauernhof bauer=(Bauernhof) (b.getArtikel().getLieferant());
 					bauernhofList.add(bauer);
-					gesamtkosten=gesamtkosten+bauer.getEntfernung()*kmSatz;
+					//gesamtkosten=gesamtkosten+bauer.getEntfernung()*kmSatz;
 				}
 			}
 			if (b.getArtikel().getLieferant().getClass()==Grosshandel.class){
 				Grosshandel gh=(Grosshandel) (b.getArtikel().getLieferant());
-				gesamtkosten=gesamtkosten+gh.getLieferkostensatz();
+				//gesamtkosten=gesamtkosten+gh.getLieferkostensatz();
 			}
 			gesamtkosten=gesamtkosten+b.getMenge()*b.getArtikel().getPreis();
 
@@ -701,32 +703,35 @@ public class Einkaufsliste
 				String einheit =a.getEinheit();
 				if(einheit.equals("")) einheit=" ";
 				
-				if (a.getPreis()<1000) preisOffset=" ";
-				if (a.getPreis()<100) preisOffset="  ";
-				if (a.getPreis()<10) preisOffset="   ";
 				
-				float preis = a.getPreis();
-		        
-		        String[] asplit =  Float.toString(preis).split("\\.");
-		        int nachkomma = asplit[1].length();
-		        if (nachkomma<2) preisSuffix=" ";
-		        
-		        //float summe = a.getPreis()*bp.getMenge();
-		        int preisincent=Math.round(a.getPreis()*100);
-		        float summe=((float)bp.getMenge()*(float)preisincent)/(float)100;
-		        
-		        asplit =  Float.toString(summe).split("\\.");
-		        int vorkomma = asplit[0].length();
-		        if (vorkomma<6) summeOffset=" ";
-		        if (vorkomma<5) summeOffset="  ";
-		        if (vorkomma<4) summeOffset="   ";
-		        if (vorkomma<3) summeOffset="    ";
-		        if (vorkomma<2) summeOffset="     ";
+				if (a.getPreis()<1000) preisOffset="  ";
+				if (a.getPreis()<100) preisOffset="   ";
+				if (a.getPreis()<10) preisOffset="    ";
+				
+				
+				DecimalFormat df = new DecimalFormat ("0.00");
+				double preis = a.getPreis();
+		          
+		          String[] asplit =  Double.toString(preis).split("\\.");
+		          int nachkomma = asplit[1].length();
+		          if (nachkomma<2) preisSuffix=" ";
+		          
+		          double summe = a.getPreis()*bp.getMenge();
+		          //int preisincent=Math.round(a.getPreis()*100);
+		          //double summe=((double)bp.getMenge()*(double)preisincent)/(double)100;
+		          
+		          asplit =  Double.toString(summe).split("\\.");
+		          int vorkomma = asplit[0].length();
+		          if (vorkomma<6) summeOffset=" ";
+		          if (vorkomma<5) summeOffset="  ";
+		          if (vorkomma<4) summeOffset="   ";
+		          if (vorkomma<3) summeOffset="    ";
+		          if (vorkomma<2) summeOffset="     ";
 		        
 
 				
 				ausgabeZeile = anzOffset+bp.getMenge()+" "+a.getName()+nameOffset+a.getLieferant().getLieferantenName()+lieferOffset+gebindeOffset+a.getGebindegroesse()+
-						" "+einheit+"         "+preisOffset+a.getPreis()+preisSuffix+"    "+summeOffset+summe;
+						" "+einheit+"         "+preisOffset+df.format(a.getPreis())+preisSuffix+"    "+summeOffset+df.format(summe);
 
 				if( eklDatei.writeLine_FS(ausgabeZeile) != 0) {
 					MainWin.StringOutln("Fehler beim Schreiben der Bestellposition "+a.getName()+" des Lieferanten "+a.getLieferant().getLieferantenName());
