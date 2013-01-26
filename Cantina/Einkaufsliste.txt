@@ -1,175 +1,174 @@
 Einkauflsliste
 Anz Name                          Lieferant                               Gebindegr�sse    Einzelpreis  Summe  
-204 Toastbrot                     Metri AG                                  1000.0 g            2.37       481.44
-457 Ei                            Metri AG                                    10.0              0.97       443.29
-135 Salz                          Metri AG                                  1000.0 g            0.75       101.25
-136 Butter                        Metri AG                                  1000.0 g            3.3        448.8
-359 Zwiebel                       Metri AG                                    10.0              0.87       312.33
- 86 Lorbeerblatt                  Metri AG                                    10.0              2.18       187.48
- 42 Zaziki                        Metri AG                                  1000.0 g            3.98       167.16
-149 Pommes Frites TK              Metri AG                                  1000.0 g            2.11       312.9
-  2 Gyrosgewuerz                  Metri AG                                  1000.0 g            8.36        16.7
- 75 Seelachs                      Metri AG                                  1000.0 g            7.73       579.75
- 11 Dill                          Metri AG                                  1000.0 g            6.6         72.6
- 15 Schnittlauch                  Metri AG                                  1000.0 g            6.97       104.55
-180 Weissweinverschnitt           Metri AG                                     1.0 l            0.73       131.4
-206 Schweinesteak                 Metri AG                                  1000.0 g           12.15      2502.9
-102 Dosenchampignons 3. Wahl      Metri AG                                  1000.0 g            1.95       198.9
- 12 Grundsauce Dunkel             Metri AG                                  1000.0 g           10.95       131.4
- 47 Pfeffer                       Metri AG                                  1000.0 g            7.63       358.61
- 68 Lebensmittelfarbe rot         Metri AG                                     1.0 l            1.75       119.0
+ 63 Ringli                        Metri AG                                  1000.0 g            1.99       125.37
+120 Dosenmais                     Metri AG                                  1000.0 g            3.06       367.2
+ 96 Erbsen                        Metri AG                                  1000.0 g            4.81       461.76
+175 Gouda                         Metri AG                                  1000.0 g            4.95       866.25
+330 Ei                            Metri AG                                    10.0              0.97       320.1
+126 Salz                          Metri AG                                  1000.0 g            0.75        94.5
+ 40 Pfeffer                       Metri AG                                  1000.0 g            7.63       305.2
+249 Paprika                       Metri AG                                    10.0              9.75      2427.75
+167 Penne                         Metri AG                                  1000.0 g            1.76       293.92
+ 19 Pesto Rosso                   Metri AG                                  1000.0 g           17.65       335.35
+ 12 Parmesan                      Metri AG                                  1000.0 g            4.34        52.08
  19 Convenience Maultaschen       Metri AG                                    10.0              5.4        102.6
-127 Pflanzenoel                   Metri AG                                  1000.0 g            1.34       170.18
-217 Schweinefilet                 Metri AG                                  1000.0 g           13.78      2990.26
-116 Schweinebauch                 Metri AG                                  1000.0 g            3.3        382.8
- 67 Gouda                         Metri AG                                  1000.0 g            4.95       330.98
- 19 Petersilie                    Metri AG                                  1000.0 g            6.87       130.53
- 38 Magenbitter                   Metri AG                                     1.0 l           20.24       769.12
-307 Milch                         Metri AG                                     1.0 l            0.81       248.67
- 89 Ringli                        Metri AG                                  1000.0 g            1.99       177.11
- 87 Erbsen                        Metri AG                                  1000.0 g            4.81       418.47
-130 Karotten                      Metri AG                                  1000.0 g            3.53       458.9
-  9 Muskat                        Metri AG                                  1000.0 g            6.57        59.13
-109 Spinat                        Metri AG                                  1000.0 g            5.9        643.1
- 29 Fischreste gepresst           Metri AG                                  1000.0 g            5.92       171.68
- 72 Burgerbroetchen               Metri AG                                    10.0              5.91       425.52
-353 Tomaten                       Metri AG                                    10.0              3.64      1284.92
- 94 Belgisches Kirschbier         Metri AG                                     1.0 l            5.4        507.6
-300 Sahne                         Metri AG                                  1000.0 g            2.19       657.0
-117 Raeuchertofu                  Metri AG                                  1000.0 g           12.81      1498.77
-130 Basmatireis                   Metri AG                                  1000.0 g            3.74       486.2
- 83 Kokosmilch                    Metri AG                                     1.0 l            3.46       287.18
- 20 Sojasprossen                  Metri AG                                  1000.0 g            6.06       121.2
- 10 Sojasauce                     Metri AG                                  1000.0 g            5.29        52.9
- 64 Pangasius                     Metri AG                                  1000.0 g            9.25       592.0
-247 Paprika                       Metri AG                                    10.0              9.75      2408.25
-109 Passierte Tomaten             Metri AG                                  1000.0 g            2.36       256.15
- 71 Spaetzle                      Metri AG                                  1000.0 g            3.6        255.6
- 51 Emmentaler                    Metri AG                                  1000.0 g            5.13       261.63
- 90 Dosenmais                     Metri AG                                  1000.0 g            3.06       275.4
- 23 Safran                        Metri AG                                  1000.0 g         6743.05    155090.16
+155 Pflanzenoel                   Metri AG                                  1000.0 g            1.34       207.7
+ 12 Schnittlauch                  Metri AG                                  1000.0 g            6.97        83.64
+276 Zwiebel                       Metri AG                                    10.0              0.87       240.12
+401 Tomaten                       Metri AG                                    10.0              3.64      1459.64
+ 75 Dosenthunfisch                Metri AG                                  1000.0 g            9.01       675.75
+238 Milch                         Metri AG                                     1.0 l            0.81       192.78
+ 73 Dosenchampignons 3. Wahl      Metri AG                                  1000.0 g            1.95       142.35
+ 24 Cannelloni                    Metri AG                                  1000.0 g            1.85        44.4
+ 82 Spinat                        Metri AG                                  1000.0 g            5.9        483.8
+115 Butter                        Metri AG                                  1000.0 g            3.3        379.5
+ 11 Muskat                        Metri AG                                  1000.0 g            6.57        72.27
+ 38 Safran                        Metri AG                                  1000.0 g         6743.05    256235.9
+ 38 Suppengruen gemischt          Metri AG                                  1000.0 g            2.23        84.74
+ 14 Petersilie                    Metri AG                                  1000.0 g            6.87        96.18
+ 86 Lorbeerblatt                  Metri AG                                    10.0              2.18       187.48
+289 Weissweinverschnitt           Metri AG                                     1.0 l            0.73       210.97
+143 Schweinesteak                 Metri AG                                  1000.0 g           12.15      1737.45
+ 10 MensaFix fuer braune Pampe    Metri AG                                  1000.0 g            0.95         9.5
+267 Zucchini                      Metri AG                                  1000.0 g            2.58       688.86
+ 98 Kochschinken                  Metri AG                                  1000.0 g            4.37       428.26
+ 10 Salatsauce                    Metri AG                                  1000.0 g            1.89        18.9
+381 Toastbrot                     Metri AG                                  1000.0 g            2.37       902.97
+291 Sahne                         Metri AG                                  1000.0 g            2.19       637.29
+ 12 Dill                          Metri AG                                  1000.0 g            6.6         79.2
+  6 Salbei                        Metri AG                                  1000.0 g            7.08        42.48
+ 90 Basmatireis                   Metri AG                                  1000.0 g            3.74       336.6
+148 Pommes Frites TK              Metri AG                                  1000.0 g            2.11       312.28
+ 15 Mayonnaise                    Metri AG                                  1000.0 g            2.85        42.75
+ 21 Ketchup                       Metri AG                                  1000.0 g            3.3         69.3
+ 38 Spaghetti                     Metri AG                                  1000.0 g            1.94        73.72
+162 Passierte Tomaten             Metri AG                                  1000.0 g            2.36       382.32
+ 19 Rotwein                       Metri AG                                     1.0 l            1.12        21.28
+  9 Oregano                       Metri AG                                  1000.0 g            8.31        74.79
+  6 Basilikum                     Metri AG                                  1000.0 g            6.06        36.36
+ 10 Joghurt                       Metri AG                                  1000.0 g            2.06        20.6
+ 94 Eiweissrohmasse               Metri AG                                  1000.0 g            1.95       183.3
+ 75 Lebensmittelfarbe rot         Metri AG                                     1.0 l            1.75       131.25
   3 Garnelenaroma                 Metri AG                                  1000.0 g            4.67        14.01
- 75 Rinderroulade                 Metri AG                                    10.0              9.96       747.0
- 57 Rotkohl                       Metri AG                                  1000.0 g            3.99       227.43
+ 38 Cocktailsauce                 Metri AG                                     1.0 l            4.6        174.8
+ 57 Zaziki                        Metri AG                                  1000.0 g            3.98       226.86
+  2 Gyrosgewuerz                  Metri AG                                  1000.0 g            8.36        16.72
+ 38 Kugelfisch-Muskelfleisch      Metri AG                                  1000.0 g          118.61      4507.18
+135 Kokosmilch                    Metri AG                                     1.0 l            3.46       467.1
+  8 Grundsauce Dunkel             Metri AG                                  1000.0 g           10.95        87.6
+ 60 Kidneybohnen                  Metri AG                                  1000.0 g            6.17       370.2
+ 47 Spaetzle                      Metri AG                                  1000.0 g            3.6        169.2
+ 57 Scheiblettenkaese             Metri AG                                  1000.0 g            3.76       214.32
+  6 Senf                          Metri AG                                  1000.0 g            5.58        33.48
+141 Emmentaler                    Metri AG                                  1000.0 g            5.13       723.33
+  4 Mascarpone                    Metri AG                                  1000.0 g            5.12        20.48
+ 38 Raeuchertofu                  Metri AG                                  1000.0 g           12.81       486.78
+169 Hokkaido-Kuerbis              Metri AG                                  1000.0 g            1.92       324.48
+ 75 Pangasius                     Metri AG                                  1000.0 g            9.25       693.75
+ 38 Feta                          Metri AG                                  1000.0 g            5.32       202.16
  19 Nasi-Goreng Convenience       Metri AG                                    10.0              9.78       185.82
  42 Banane                        Metri AG                                    10.0              6.06       254.52
- 30 Ketchup                       Metri AG                                  1000.0 g            3.3         99.0
-  8 Senf                          Metri AG                                  1000.0 g            5.58        44.64
-122 Penne                         Metri AG                                  1000.0 g            1.76       214.72
- 14 Olivenoel                     Metri AG                                  1000.0 g            1.01        14.14
-  6 Salbei                        Metri AG                                  1000.0 g            7.08        42.48
- 57 Kochschinken                  Metri AG                                  1000.0 g            4.37       249.09
- 19 MensaFix fuer braune Pampe    Metri AG                                  1000.0 g            0.95        18.05
-176 Zucchini                      Metri AG                                  1000.0 g            2.58       454.08
- 10 Blaetterteig                  Metri AG                                  1000.0 g            6.8         68.0
- 49 Pizzateig vorgebacken         Metri AG                                    10.0              8.68       425.32
- 49 Analogkaese                   Metri AG                                  1000.0 g            2.64       129.36
-  2 Italienische Gewuerzmischung  Metri AG                                  1000.0 g            5.26        10.52
- 38 Spaghetti                     Metri AG                                  1000.0 g            1.94        73.72
- 19 Rotwein                       Metri AG                                     1.0 l            1.12        21.28
-  8 Oregano                       Metri AG                                  1000.0 g            8.31        66.48
-  8 Basilikum                     Metri AG                                  1000.0 g            6.06        48.48
- 11 Parmesan                      Metri AG                                  1000.0 g            4.34        47.74
-  3 Tomatenmark                   Metri AG                                  1000.0 g            4.37        13.11
- 27 Suppengruen gemischt          Metri AG                                  1000.0 g            2.23        60.21
- 19 Apfelmus                      Metri AG                                  1000.0 g            2.74        52.06
- 49 Broccoli                      Metri AG                                  1000.0 g            3.76       184.24
- 29 Hummer                        Metri AG                                  1000.0 g           27.37       793.73
- 14 Cannelloni                    Metri AG                                  1000.0 g            1.85        25.9
- 45 Gemuesebratling               Metri AG                                    10.0              9.06       407.7
- 12 Preiselbeeren                 Metri AG                                  1000.0 g            5.54        66.48
-  6 Pesto Rosso                   Metri AG                                  1000.0 g           17.65       105.9
+178 Schweinefilet                 Metri AG                                  1000.0 g           13.78      2452.84
+ 64 Halbbitterschokolade          Metri AG                                  1000.0 g            9.01       576.64
+ 42 Apfelmus                      Metri AG                                  1000.0 g            2.74       115.08
+ 96 Gnocchi                       Metri AG                                  1000.0 g            4.03       386.88
+  4 Tomatenmark                   Metri AG                                  1000.0 g            4.37        17.48
  12 Schupfnudeln                  Metri AG                                  1000.0 g            5.74        68.88
+ 12 Broccoli                      Metri AG                                  1000.0 g            3.76        45.12
   6 Sonnenblumenkerne             Metri AG                                  1000.0 g            6.17        37.02
-124 Hokkaido-Kuerbis              Metri AG                                  1000.0 g            1.92       238.08
- 41 Feta                          Metri AG                                  1000.0 g            5.32       218.12
- 12 Scheiblettenkaese             Metri AG                                  1000.0 g            3.76        45.12
- 57 Halbbitterschokolade          Metri AG                                  1000.0 g            9.01       513.57
- 23 Erdbeeren                     Metri AG                                  1000.0 g            5.69       130.87
- 23 Kidneybohnen                  Metri AG                                  1000.0 g            6.17       141.91
-  6 Pesto Verde                   Metri AG                                  1000.0 g           24.08       144.48
- 23 Buttergemuese TK              Metri AG                                  1000.0 g            5.02       115.46
- 28 Eiweissrohmasse               Metri AG                                  1000.0 g            1.95        54.6
- 12 Cocktailsauce                 Metri AG                                     1.0 l            4.6         55.2
-  6 Sesam                         Metri AG                                  1000.0 g            7.01        42.06
- 57 Forelle                       Metri AG                                  1000.0 g           14.62       833.34
- 18 Mayonnaise                    Metri AG                                  1000.0 g            2.85        51.3
+ 45 Pizzateig vorgebacken         Metri AG                                    10.0              8.68       390.6
+ 45 Analogkaese                   Metri AG                                  1000.0 g            2.64       118.8
+  2 Italienische Gewuerzmischung  Metri AG                                  1000.0 g            5.26        10.52
+  9 Sojasprossen                  Metri AG                                  1000.0 g            6.06        54.54
+ 20 Olivenoel                     Metri AG                                  1000.0 g            1.01        20.2
  17 Speiseoel                     Metri AG                                  1000.0 g            0.87        14.79
-  3 Mascarpone                    Metri AG                                  1000.0 g            5.12        15.36
- 29 Soja-Gyros                    Carrefar S.A.                             1000.0 g            6.82       197.78
-  8 Kartoffeln                    Carrefar S.A.                           100000.0 g          205.0       1640.0
-  9 Semmelbroesel                 Carrefar S.A.                             1000.0 g            2.76        24.84
- 27 Mononatriumglutamat           Carrefar S.A.                             1000.0 g            1.06        28.35
+ 23 Preiselbeeren                 Metri AG                                  1000.0 g            5.54       127.42
+  6 Pesto Trueffel-Pilz           Metri AG                                  1000.0 g           27.67       166.02
+ 45 Burgerbroetchen               Metri AG                                    10.0              5.91       265.95
+ 23 Erdbeeren                     Metri AG                                  1000.0 g            5.69       130.87
+ 17 Fischreste gepresst           Metri AG                                  1000.0 g            5.92       100.64
+  6 Bulgur                        Metri AG                                  1000.0 g            2.72        16.32
+ 17 Hummer                        Metri AG                                  1000.0 g           27.37       465.29
+ 57 Forelle                       Metri AG                                  1000.0 g           14.62       833.34
+  6 Sesam                         Metri AG                                  1000.0 g            7.01        42.06
+ 12 Gemuesebratling               Metri AG                                    10.0              9.06       108.72
+  6 Blaetterteig                  Metri AG                                  1000.0 g            6.8         40.8
+ 12 Pesto Verde                   Metri AG                                  1000.0 g           24.08       288.96
+ 56 Schweinebauch                 Metri AG                                  1000.0 g            3.3        184.8
+ 23 Magenbitter                   Metri AG                                     1.0 l           20.24       465.52
+ 56 Belgisches Kirschbier         Metri AG                                     1.0 l            5.4        302.4
+ 45 Seelachs                      Metri AG                                  1000.0 g            7.73       347.85
  17 Grundsauce Hell               Carrefar S.A.                             1000.0 g           10.71       182.07
- 15 Backpulver                    Carrefar S.A.                             1000.0 g            4.42        66.3
- 26 Zucker                        Carrefar S.A.                             1000.0 g            0.86        22.36
-  9 Creme Fraiche mit Kraeutern   Carrefar S.A.                             1000.0 g            3.94        35.46
- 52 Gemuesebruehe                 Carrefar S.A.                             1000.0 g            5.04       262.08
-  6 Remoulade                     Carrefar S.A.                             1000.0 g            2.15        12.9
- 34 Lauch                         Carrefar S.A.                             1000.0 g            3.41       115.94
- 19 Convenience Knoedel           Carrefar S.A.                               10.0              3.99        75.81
-  8 Kurkuma                       Carrefar S.A.                             1000.0 g            7.57        60.56
- 20 Currypulver                   Carrefar S.A.                             1000.0 g            6.82       136.4
- 23 Chilipulver                   Carrefar S.A.                             1000.0 g            6.52       149.96
- 42 Wildlachs                     Carrefar S.A.                             1000.0 g           10.71       449.82
+137 Reis                          Carrefar S.A.                             1000.0 g            3.11       426.07
+ 13 Backpulver                    Carrefar S.A.                             1000.0 g            4.42        57.46
+ 20 Zucker                        Carrefar S.A.                             1000.0 g            0.86        17.2
+ 16 Creme Fraiche mit Kraeutern   Carrefar S.A.                             1000.0 g            3.94        63.04
+ 19 Mononatriumglutamat           Carrefar S.A.                             1000.0 g            1.06        20.14
+ 48 Gemuesebruehe                 Carrefar S.A.                             1000.0 g            5.04       241.92
+  7 Kartoffeln                    Carrefar S.A.                           100000.0 g          205.0       1435.0
+ 83 Raclettekaese                 Carrefar S.A.                             1000.0 g            6.87       570.21
+ 10 Salatgurke                    Carrefar S.A.                               10.0              7.08        70.8
+ 57 Mozzarellakugeln              Carrefar S.A.                             1000.0 g            5.08       289.56
+ 38 Gorgonzola                    Carrefar S.A.                             1000.0 g            5.03       191.14
+ 38 Wildlachs                     Carrefar S.A.                             1000.0 g           10.71       406.98
+ 34 Auberginen                    Carrefar S.A.                             1000.0 g            3.25       110.5
+ 29 Soja-Gyros                    Carrefar S.A.                             1000.0 g            6.82       197.78
+ 46 Lauch                         Carrefar S.A.                             1000.0 g            3.41       156.86
+ 19 Currypulver                   Carrefar S.A.                             1000.0 g            6.82       129.58
+ 28 Chilipulver                   Carrefar S.A.                             1000.0 g            6.52       182.56
+  5 Kurkuma                       Carrefar S.A.                             1000.0 g            7.57        37.85
+ 38 Sellerie                      Carrefar S.A.                             1000.0 g            1.83        69.54
+  3 Kreuzkuemmel                  Carrefar S.A.                             1000.0 g            5.98        17.94
+ 16 Knoblauchpulver               Carrefar S.A.                             1000.0 g            6.29       100.64
+109 Dosenananas                   Carrefar S.A.                             1000.0 g            5.25       572.25
   4 Liebstoeckel                  Carrefar S.A.                             1000.0 g            7.56        30.24
- 21 Knoblauchpulver               Carrefar S.A.                             1000.0 g            6.29       132.09
-  2 Essig                         Carrefar S.A.                             1000.0 g            1.18         2.34
- 38 Muscheln                      Carrefar S.A.                             1000.0 g           10.27       390.26
- 19 Spanische Wurst               Carrefar S.A.                             1000.0 g            7.21       136.99
- 27 Rundkornreis                  Carrefar S.A.                             1000.0 g            3.16        85.32
- 29 Johannisbeeren                Carrefar S.A.                             1000.0 g            5.37       155.73
- 38 Pommes Macaires TK            Carrefar S.A.                             1000.0 g            2.18        82.84
-182 Reis                          Carrefar S.A.                             1000.0 g            3.11       566.02
+ 59 Zitrone                       Carrefar S.A.                               10.0              3.4        200.6
+  9 Semmelbroesel                 Carrefar S.A.                             1000.0 g            2.76        24.84
  42 Birnen                        Carrefar S.A.                             1000.0 g            4.89       205.38
- 42 Bratwurst                     Carrefar S.A.                             1000.0 g            3.43       144.06
- 55 Dosenananas                   Carrefar S.A.                             1000.0 g            5.25       288.75
- 11 Vanillinzucker                Carrefar S.A.                             1000.0 g            2.58        28.38
+  8 Vanillinzucker                Carrefar S.A.                             1000.0 g            2.58        20.64
  15 Rosinen                       Carrefar S.A.                             1000.0 g            6.39        95.85
   2 Puderzucker                   Carrefar S.A.                             1000.0 g            0.86         1.72
-  2 Estragon                      Carrefar S.A.                             1000.0 g            6.19        12.38
- 19 Barbecuesauce                 Carrefar S.A.                             1000.0 g            4.75        90.25
- 39 Zitrone                       Carrefar S.A.                               10.0              3.4        132.6
- 25 Camembert                     Carrefar S.A.                               10.0              8.64       216.0
- 17 Mozzarellakugeln              Carrefar S.A.                             1000.0 g            5.08        86.36
- 12 Gorgonzola                    Carrefar S.A.                             1000.0 g            5.03        60.36
- 23 Dosenthunfisch                Carrefar S.A.                             1000.0 g            7.93       182.39
-  2 Kreuzkuemmel                  Carrefar S.A.                             1000.0 g            5.98        11.96
- 45 Vollmilchschokolade           Carrefar S.A.                             1000.0 g            6.4        288.0
- 68 Kirschen                      Carrefar S.A.                             1000.0 g            4.67       317.56
- 12 Sellerie                      Carrefar S.A.                             1000.0 g            1.83        21.96
- 21 Auberginen                    Carrefar S.A.                             1000.0 g            3.25        68.25
- 17 Pilzravioli Convenience       Carrefar S.A.                             1000.0 g            8.82       149.94
- 12 Hollandaise                   Carrefar S.A.                             1000.0 g            2.59        31.08
- 14 Kohl                          Carrefar S.A.                             1000.0 g            1.84        25.76
- 41 Gnocchi                       Carrefar S.A.                             1000.0 g            3.84       157.44
- 50 Raclettekaese                 Carrefar S.A.                             1000.0 g            6.87       343.5
- 17 Blumenkohl                    Carrefar S.A.                             1000.0 g            2.62        44.54
+ 34 Bratwurst                     Carrefar S.A.                             1000.0 g            3.43       116.62
+ 48 Camembert                     Carrefar S.A.                               10.0              8.64       414.72
+ 12 Buttergemuese TK              Carrefar S.A.                             1000.0 g            4.29        51.48
  34 Rumpsteak                     Carrefar S.A.                             1000.0 g            6.07       206.38
   6 Kraeuterbutter                Carrefar S.A.                             1000.0 g            3.71        22.26
- 89 Hackfleisch halb und halb     Metzgerfachhandel Schneider               1000.0 g            3.33       296.37
- 12 Schmalz                       Metzgerfachhandel Schneider               1000.0 g            1.45        17.4
- 72 Speck                         Metzgerfachhandel Schneider               1000.0 g            4.47       321.12
- 19 Rinderhuefte                  Metzgerfachhandel Schneider               1000.0 g            6.7        127.3
- 26 Rindersalami                  Metzgerfachhandel Schneider               1000.0 g            5.73       148.98
-  6 Leberwurst                    Metzgerfachhandel Schneider               1000.0 g            4.21        25.26
- 29 Rindfleisch                   Metzgerfachhandel Schneider               1000.0 g            4.74       137.17
- 92 Truthahnfilet                 Metzgerfachhandel Schneider               1000.0 g            5.86       539.12
- 34 Straussenfilet                Metzgerfachhandel Schneider               1000.0 g           97.3       3308.2
- 28 Elchfleisch                   Metzgerfachhandel Schneider               1000.0 g            9.6        268.8
- 12 Salami                        Metzgerfachhandel Schneider               1000.0 g            3.35        40.2
+  4 Remoulade                     Carrefar S.A.                             1000.0 g            2.15         8.6
+ 45 Vollmilchschokolade           Carrefar S.A.                             1000.0 g            6.4        288.0
+ 23 Kirschen                      Carrefar S.A.                             1000.0 g            4.67       107.41
+ 17 Pilzravioli Convenience       Carrefar S.A.                             1000.0 g            8.82       149.94
+ 12 Hollandaise                   Carrefar S.A.                             1000.0 g            2.59        31.08
+ 12 Barbecuesauce                 Carrefar S.A.                             1000.0 g            4.75        57.0
+ 12 Muscheln                      Carrefar S.A.                             1000.0 g           10.27       123.24
+  6 Spanische Wurst               Carrefar S.A.                             1000.0 g            7.21        43.26
+  8 Rundkornreis                  Carrefar S.A.                             1000.0 g            3.16        25.28
+ 17 Johannisbeeren                Carrefar S.A.                             1000.0 g            5.37        91.29
+ 23 Pommes Macaires TK            Carrefar S.A.                             1000.0 g            2.18        50.14
+ 45 Rinderroulade                 Carrefar S.A.                               10.0              9.55       429.75
+ 34 Rotkohl                       Carrefar S.A.                             1000.0 g            2.97       100.98
+ 17 Rindersalami                  Metzgerfachhandel Schneider               1000.0 g            5.73        97.41
+ 42 Speck                         Metzgerfachhandel Schneider               1000.0 g            4.47       187.74
+ 57 Straussenfilet                Metzgerfachhandel Schneider               1000.0 g           97.3       5546.1
+ 72 Hackfleisch halb und halb     Metzgerfachhandel Schneider               1000.0 g            3.33       239.76
+ 57 Gyrosfleisch Vorgewuerzt      Metzgerfachhandel Schneider               1000.0 g            7.15       407.55
+ 47 Elchfleisch                   Metzgerfachhandel Schneider               1000.0 g            9.6        451.2
+ 19 Salami                        Metzgerfachhandel Schneider               1000.0 g            3.35        63.65
+ 23 Truthahnfilet                 Metzgerfachhandel Schneider               1000.0 g            5.86       134.78
+ 45 Currywurst                    Metzgerfachhandel Schneider               1000.0 g            3.63       163.35
  36 Rinderhack                    Metzgerfachhandel Schneider               1000.0 g            7.96       286.56
- 23 Currywurst                    Metzgerfachhandel Schneider               1000.0 g            3.63        83.49
- 34 Gyrosfleisch Vorgewuerzt      Metzgerfachhandel Schneider               1000.0 g            7.15       243.1
- 12 Cordon Bleu TK                Metzgerfachhandel Schneider                 10.0              7.18        86.16
-116 Mehl                          Biohof Maier – direkt an der A40        1000.0 g            1.07       124.12
- 42 Kopfsalat                     Biohof Maier – direkt an der A40        1000.0 g            1.71        71.82
-  4 Ingwer                        Biohof Maier – direkt an der A40        1000.0 g            5.38        21.52
+  6 Schmalz                       Metzgerfachhandel Schneider               1000.0 g            1.45         8.7
+ 23 Cordon Bleu TK                Metzgerfachhandel Schneider                 10.0              7.18       165.14
+  4 Leberwurst                    Metzgerfachhandel Schneider               1000.0 g            4.21        16.84
+ 12 Rinderhuefte                  Metzgerfachhandel Schneider               1000.0 g            6.7         80.4
+ 17 Rindfleisch                   Metzgerfachhandel Schneider               1000.0 g            4.74        80.58
+103 Mehl                          Biohof Maier – direkt an der A40        1000.0 g            1.07       110.21
+ 51 Kopfsalat                     Biohof Maier – direkt an der A40        1000.0 g            1.71        87.21
+118 Karotten                      Biohof Maier – direkt an der A40        1000.0 g            2.45       289.1
+  3 Ingwer                        Biohof Maier – direkt an der A40        1000.0 g            5.38        16.14
  12 Dinkelschrot                  Biohof Maier – direkt an der A40        1000.0 g            1.98        23.76
-  1 Kuemmel                       Biohof Maier – direkt an der A40        1000.0 g            4.81         4.81
-  1 Piment                        Biohof Maier – direkt an der A40        1000.0 g            4.97         4.96
   5 Thymian                       Biohof Maier – direkt an der A40        1000.0 g            8.0         40.0
-  6 Joghurt                       Biohof Maier – direkt an der A40        1000.0 g            1.77        10.62
+  1 Piment                        Biohof Maier – direkt an der A40        1000.0 g            4.97         4.97
+  1 Estragon                      Biohof Maier – direkt an der A40        1000.0 g            7.23         7.23
  12 Magerquark                    Biohof Maier – direkt an der A40        1000.0 g            2.77        33.24
-270 Haehnchenbrustfilet           Naturschlachterei Hackebeil               1000.0 g            4.99      1344.6
-  2 Fleischbruehe                 Naturschlachterei Hackebeil               1000.0 g            3.21         6.42
+244 Haehnchenbrustfilet           Naturschlachterei Hackebeil               1000.0 g            4.99      1217.56
+  4 Fleischbruehe                 Naturschlachterei Hackebeil               1000.0 g            3.21        12.84

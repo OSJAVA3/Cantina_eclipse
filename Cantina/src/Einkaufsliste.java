@@ -27,7 +27,7 @@ public class Einkaufsliste
 	/** Enthält die Objekte der Klasse BedarfPos */
 	private ArrayList<BedarfPos> bedarfPosList;
 	/** Enthält die Gesamtkosten der Bestellung inklusive der Transportkosten */
-	private float gesamtkosten;
+	private double gesamtkosten;
 	/** Enthält die zu verwendende Lieferantenverwaltung */
 	private Lieferantenverwaltung lieferantenverw;
 
@@ -134,7 +134,7 @@ public class Einkaufsliste
 		this.lieferantenverw=lieferantenverw;
 		bestellPosList=makeVariante2();
 		berechneGesamtkosten();
-		System.out.println(gesamtkosten);
+		MainWin.StringOutln("Die Gesamtkosten für die Bestellung inklusive Lieferkosten betragen "+gesamtkosten);
 
 		return true;
 	}
@@ -614,7 +614,7 @@ public class Einkaufsliste
 	 */
 	public void berechneGesamtkosten()
 	{
-		float gesamtkosten=0;
+		double gesamtkosten=0;
 		float kmSatz=getkmSatz();
 		ArrayList<Bauernhof> bauernhofList=new ArrayList<Bauernhof>();
 		for (BestellPos b:bestellPosList){
@@ -639,10 +639,9 @@ public class Einkaufsliste
 	/**
 	 * Gibt die Gesamtkosten der Einkaufsliste zurück, die vorher mit berechneGesamtkosten() berechnet wurden.
 	 *
-
 	 * @return Die Gesamtkosten der Einkaufsliste.
 	 */
-	public float getGesamtkosten()
+	public double getGesamtkosten()
 	{
 		return gesamtkosten;
 	}
@@ -713,8 +712,8 @@ public class Einkaufsliste
 		        if (nachkomma<2) preisSuffix=" ";
 		        
 		        //float summe = a.getPreis()*bp.getMenge();
-		        int preisincent=(int) (a.getPreis()*100);
-		        float summe=(float) (bp.getMenge()*preisincent)/100;
+		        int preisincent=Math.round(a.getPreis()*100);
+		        float summe=((float)bp.getMenge()*(float)preisincent)/(float)100;
 		        
 		        asplit =  Float.toString(summe).split("\\.");
 		        int vorkomma = asplit[0].length();

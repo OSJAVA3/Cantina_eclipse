@@ -64,7 +64,7 @@ public class Kantinenplanung {
 		app.startKantinenplanung();
 		// Die Einkaufsliste für ALLE Kantinenpläne erzeugen
 		app.startEinkaufsplanung();
-		MainWin.StringOut("Ende");
+		MainWin.StringOut("Guten Appetit");
 	}
 
 	MainWin mainWnd = new MainWin();
