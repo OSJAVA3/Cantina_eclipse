@@ -712,7 +712,9 @@ public class Einkaufsliste
 		        int nachkomma = asplit[1].length();
 		        if (nachkomma<2) preisSuffix=" ";
 		        
-		        float summe = a.getPreis()*bp.getMenge();
+		        //float summe = a.getPreis()*bp.getMenge();
+		        int preisincent=(int) (a.getPreis()*100);
+		        float summe=(float) (bp.getMenge()*preisincent)/100;
 		        
 		        asplit =  Float.toString(summe).split("\\.");
 		        int vorkomma = asplit[0].length();
@@ -721,9 +723,11 @@ public class Einkaufsliste
 		        if (vorkomma<4) summeOffset="   ";
 		        if (vorkomma<3) summeOffset="    ";
 		        if (vorkomma<2) summeOffset="     ";
+		        
+
 				
 				ausgabeZeile = anzOffset+bp.getMenge()+" "+a.getName()+nameOffset+a.getLieferant().getLieferantenName()+lieferOffset+gebindeOffset+a.getGebindegroesse()+
-						" "+einheit+"         "+preisOffset+a.getPreis()+preisSuffix+"    "+summeOffset+a.getPreis()*bp.getMenge();
+						" "+einheit+"         "+preisOffset+a.getPreis()+preisSuffix+"    "+summeOffset+summe;
 
 				if( eklDatei.writeLine_FS(ausgabeZeile) != 0) {
 					MainWin.StringOutln("Fehler beim Schreiben der Bestellposition "+a.getName()+" des Lieferanten "+a.getLieferant().getLieferantenName());
