@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 /**
- * Die Rezeptverwaltung erstellt aus der Rezeptdatei die Objektabbildungen der Rezepte und 
+ * Die Rezeptverwaltung erstellt aus der Rezeptdatei die Objektabbildungen der Rezepte sowie deren Zutaten und
  * verwaltet diese. Sie stellt Methoden bereit um Referenzen auf bestimmte Rezept-Objekte 
  * zu übergeben. Außerdem kann sie auch die Hitliste einlesen und die Positionen den einzelnen Rezepten zuweisen.
  * 
@@ -89,7 +89,8 @@ public class Rezeptverwaltung
 
 					//uebergebe der Variable rezeptNamen den String aus dem Feld 0 
 					rezeptName = fields.get(0).toString();
-
+                    
+					//Verweist kein Nullpointer auf das rezept, wird der RezeptTyp gesetzt
 					if ( rezept != null)
 						setzeRezeptTyp(rezept);
 
@@ -125,7 +126,7 @@ public class Rezeptverwaltung
 			}
 
 		}
-		//Rezepttyp fuer das letzte Rezept
+		//Rezepttyp fuer das letzte Rezept, da sonst nicht veregeben wird
 		setzeRezeptTyp (rezept);
 		MainWin.StringOutln("Die Datei "+rezeptpfad+" wurde erfolgreich eingelesen");
 		return true;
@@ -210,10 +211,9 @@ public class Rezeptverwaltung
 	 * 
 	 * @return null
 	 */
-	public Rezept getRezeptWithName( String rezeptName ) {
-		// Für ein Rezeptelement aus der Liste
+	private Rezept getRezeptWithName( String rezeptName ) {
+		// Durchsuche die rezeptListe und prüfe, ob bereits ein Element aus der Liste den übergebenen Rezeptnamen besitzt
 		for(Rezept rezeptElement : rezeptListe ) {
-			// Ist der Name des Rezeptes aus der rezeptListe identisch mit dem rezeptNamen
 			if(rezeptElement.getName().equals(rezeptName))
 				// gebe das rezeptElement aus
 				return rezeptElement;
@@ -222,12 +222,12 @@ public class Rezeptverwaltung
 		return null;
 	}
 
-	/**Statische Methode zur Objekterzeugung von Zutaten
+	/**Methode zur Objekterzeugung von Zutaten
 	 * 
 	 * @param fields
 	 * @return zutat Es werden Zutaten erzeugt
 	 */
-	public Zutat makeZutat(ArrayList<String> fields) {
+	private Zutat makeZutat(ArrayList<String> fields) {
 		Zutat zutat = new Zutat(
 				fields.get(3).toString(),
 				Float.valueOf(fields.get(1).toString().replace("," , ".")),
