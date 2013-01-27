@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.*;
 import java.io.*;
 
@@ -64,6 +65,9 @@ public class Kantinenplanung {
 		app.startKantinenplanung();
 		// Die Einkaufsliste für ALLE Kantinenpläne erzeugen
 		app.startEinkaufsplanung();
+		
+
+		
 		MainWin.StringOut("Guten Appetit");
 	}
 
@@ -156,6 +160,12 @@ public class Kantinenplanung {
 		}
 		einkaufsliste.erzeugeEinkaufsliste(lieferantenverw);
 		einkaufsliste.schreibeEinkaufsliste();
+		
+		DecimalFormat df = new DecimalFormat (",##0.00");
+		Double gesamtkosten=einkaufsliste.getGesamtkosten();
+		MainWin.StringOutln("");
+		MainWin.StringOutln("Die Gesamtkosten für die Bestellung inklusive Lieferkosten betragen "+(df.format(gesamtkosten)));
+		
 		/*Debug-Print
 		ArrayList<BedarfPos> bpl=einkaufsliste.getBedarfPosList();
 		for(int i=0;i<bpl.size();i++){

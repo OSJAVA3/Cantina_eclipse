@@ -258,7 +258,7 @@ public class Kantinenplan
 	}
 	public void schreibeKantinenplan() {
 		Datei planDatei = new Datei( standort+".csv");
-		MainWin.StringOutln("Schreibe Datei "+standort+".csv ...");
+		//MainWin.StringOutln("Schreibe Datei "+standort+".csv ...");
 
 
 		if (planDatei.openOutFile_FS()==0) {
@@ -288,7 +288,7 @@ public class Kantinenplan
 			MainWin.StringOutln("Die Ausgabedatei kann nicht geöffnet werden.");
 
 
-		MainWin.StringOutln("Ausgabe der Datei fehlerfrei beendet.");
+		MainWin.StringOutln("Ausgabe des Kantinenplan in "+System.getProperty("user.dir")+" als "+standort+".csv");
 
 	}
 

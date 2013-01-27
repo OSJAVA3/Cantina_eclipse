@@ -135,8 +135,6 @@ public class Einkaufsliste
 		this.lieferantenverw=lieferantenverw;
 		bestellPosList=makeVariante2();
 		berechneGesamtkosten();
-		DecimalFormat df = new DecimalFormat (",##0.00");
-		MainWin.StringOutln("Die Gesamtkosten für die Bestellung inklusive Lieferkosten betragen "+(df.format(gesamtkosten)));
 
 		return true;
 	}
@@ -625,12 +623,12 @@ public class Einkaufsliste
 					//BauernhofList enthält den Bauernhof noch nicht
 					Bauernhof bauer=(Bauernhof) (b.getArtikel().getLieferant());
 					bauernhofList.add(bauer);
-					//gesamtkosten=gesamtkosten+bauer.getEntfernung()*kmSatz;
+					gesamtkosten=gesamtkosten+bauer.getEntfernung()*kmSatz;
 				}
 			}
 			if (b.getArtikel().getLieferant().getClass()==Grosshandel.class){
 				Grosshandel gh=(Grosshandel) (b.getArtikel().getLieferant());
-				//gesamtkosten=gesamtkosten+gh.getLieferkostensatz();
+				gesamtkosten=gesamtkosten+gh.getLieferkostensatz();
 			}
 			gesamtkosten=gesamtkosten+b.getMenge()*b.getArtikel().getPreis();
 
@@ -668,17 +666,36 @@ public class Einkaufsliste
 		
 		
 		Datei eklDatei = new Datei( "Einkaufsliste.txt");
-		MainWin.StringOutln("Schreibe Einkaufsliste.txt");
+		//MainWin.StringOutln("Schreibe Einkaufsliste.txt");
 
 
 		if (eklDatei.openOutFile_FS()==0) {
 
 			eklDatei.writeLine("Einkauflsliste");
-			eklDatei.writeLine("Anz Name                          Lieferant                               Gebindegrösse    Einzelpreis  Summe  ");
-			String ausgabeZeile;			
+			eklDatei.writeLine("Anz Name                          Lieferant                               Gebindegrösse      Einzelpreis   Summe   Lieferkosten");
+			String ausgabeZeile;	
+			ArrayList<Bauernhof> bauerList=new ArrayList<Bauernhof>();
 			
 			for( BestellPos bp:sortList) {
 				Artikel a=bp.getArtikel();
+				StringBuffer lieferkosten=new StringBuffer();
+				DecimalFormat zweiNachkomma = new DecimalFormat (",##0.00");
+				DecimalFormat eineNachkomma = new DecimalFormat (",##0.00");
+				if (a.getLieferant().getClass()==Grosshandel.class){
+					Grosshandel gh=(Grosshandel) a.getLieferant();
+					new Double(gh.getLieferkostensatz()).toString();
+					lieferkosten.append(" ");
+					lieferkosten.append(zweiNachkomma.format(new Double(gh.getLieferkostensatz())));
+				}
+				else if(a.getLieferant().getClass()==Bauernhof.class){
+					Bauernhof bauer=(Bauernhof) a.getLieferant();
+					if (!bauerList.contains(bauer)){
+						new Double(bauer.getEntfernung()*getkmSatz()).toString();
+						lieferkosten.append(zweiNachkomma.format(new Double(bauer.getEntfernung()*getkmSatz())));
+						bauerList.add(bauer);
+					}
+					
+				}	
 				String anzOffset="";
 				StringBuffer nameOffset=new StringBuffer();
 				String preisOffset="";
@@ -696,9 +713,9 @@ public class Einkaufsliste
 				}
 				if (a.getGebindegroesse()<100000) gebindeOffset=" ";
 				if (a.getGebindegroesse()<10000) gebindeOffset="  ";
-				if (a.getGebindegroesse()<1000) gebindeOffset="   ";
-				if (a.getGebindegroesse()<100) gebindeOffset="    ";
-				if (a.getGebindegroesse()<10) gebindeOffset="     ";
+				if (a.getGebindegroesse()<1000) gebindeOffset="    ";
+				if (a.getGebindegroesse()<100) gebindeOffset="     ";
+				if (a.getGebindegroesse()<10) gebindeOffset="      ";
 				
 				String einheit =a.getEinheit();
 				if(einheit.equals("")) einheit=" ";
@@ -709,12 +726,12 @@ public class Einkaufsliste
 				if (a.getPreis()<10) preisOffset="    ";
 				
 				
-				DecimalFormat df = new DecimalFormat ("0.00");
+
 				double preis = a.getPreis();
 		          
 		          String[] asplit =  Double.toString(preis).split("\\.");
-		          int nachkomma = asplit[1].length();
-		          if (nachkomma<2) preisSuffix=" ";
+		          //int nachkomma = asplit[1].length();
+		          //if (nachkomma<2) preisSuffix=" ";
 		          
 		          double summe = a.getPreis()*bp.getMenge();
 		          //int preisincent=Math.round(a.getPreis()*100);
@@ -724,14 +741,14 @@ public class Einkaufsliste
 		          int vorkomma = asplit[0].length();
 		          if (vorkomma<6) summeOffset=" ";
 		          if (vorkomma<5) summeOffset="  ";
-		          if (vorkomma<4) summeOffset="   ";
-		          if (vorkomma<3) summeOffset="    ";
-		          if (vorkomma<2) summeOffset="     ";
+		          if (vorkomma<4) summeOffset="    ";
+		          if (vorkomma<3) summeOffset="     ";
+		          if (vorkomma<2) summeOffset="      ";
 		        
 
 				
-				ausgabeZeile = anzOffset+bp.getMenge()+" "+a.getName()+nameOffset+a.getLieferant().getLieferantenName()+lieferOffset+gebindeOffset+a.getGebindegroesse()+
-						" "+einheit+"         "+preisOffset+df.format(a.getPreis())+preisSuffix+"    "+summeOffset+df.format(summe);
+				ausgabeZeile = anzOffset+bp.getMenge()+" "+a.getName()+nameOffset+a.getLieferant().getLieferantenName()+lieferOffset+gebindeOffset+eineNachkomma.format(a.getGebindegroesse())+
+						" "+einheit+"      "+preisOffset+zweiNachkomma.format(a.getPreis())+preisSuffix+"    "+summeOffset+zweiNachkomma.format(summe)+"  "+lieferkosten;
 
 				if( eklDatei.writeLine_FS(ausgabeZeile) != 0) {
 					MainWin.StringOutln("Fehler beim Schreiben der Bestellposition "+a.getName()+" des Lieferanten "+a.getLieferant().getLieferantenName());
@@ -746,7 +763,7 @@ public class Einkaufsliste
 			MainWin.StringOutln("Die Ausgabedatei kann nicht geöffnet werden.");
 
 
-		MainWin.StringOutln("Ausgabe der Datei fehlerfrei beendet.");
+		MainWin.StringOutln("Ausgabe der Einkaufsliste in "+System.getProperty("user.dir")+" als einkaufsliste.txt");
 
 	}
 }
