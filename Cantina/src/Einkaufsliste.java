@@ -15,8 +15,7 @@ import java.text.*;
  * diese. Sie aggregiert auch die Kantinenpläne um den Gesamtbedarf an Artikeln zu ermitteln, die als 
  * BedarfPos geführt werden. Die Assoziation zur Lieferantenverwaltung ermöglicht der Einkaufsliste die 
  * günstigsten Artikel zu ermitteln und aus der BedarfsPos die BestellPos zu generieren.
- * Für den Planungslauf steht sie in Assoziation zur Kantinenplanung. Zudem wird sie als Datei
- * exportiert, weshalb auch zum Exporter eine Assoziation gegeben ist. 
+ * Für den Planungslauf steht sie in Assoziation zur Kantinenplanung.
  * 
  * @author Rene Wiederhold 
  * @version
@@ -60,19 +59,19 @@ public class Einkaufsliste
 				String zname=z.getName();
 				String zeinh=z.getEinheit();
 				float zmenge=z.getMenge();
-
+				
 				if (bedarfPosList.isEmpty()){
+					//Wenn noch keine Bedarfposition angelegt wurde, kann einfach hinzugefügt werden
 					BedarfPos bPos=new BedarfPos();
 					bPos.setName(zname);
 					bPos.setEinheit(zeinh);
 					bPos.setMenge(m*zmenge);
 					bedarfPosList.add(bPos);
-					//Debug-Print
 				}
 				else {
 					//Es sind bereits Objekte in der bedarfPosList
 					//Es muss geprüft werden ob ein Objekt gleichen Namens vorhanden ist
-					//Hier wird eine "Iterator-Schleife verwendet
+					//Hier wird eine "Iterator-Schleife verwendet, wie bei addLebensmittel in der Lieferantenverwaltung
 					Iterator<BedarfPos> it=bedarfPosList.iterator();
 					//Variable für die "Vorhanden"-Prüfung
 					Boolean vorh=false;
@@ -116,17 +115,22 @@ public class Einkaufsliste
 	}
 
 	/**
-	 * @return the bedarfPosList
+	 * Die Methode gibt eine Liste mit allen Bedarfpositionen zurück.
+	 * @return Eine ArrayList, welche die BedarfPos-Objekte referenziert.
 	 */
 	public ArrayList<BedarfPos> getBedarfPosList() {
 		return bedarfPosList;
 	}
+	/**
+	 * Die Methode weißt der Einkaufsliste eine zu verwendende Lieferantenverwaltung zu.
+	 * 
+	 */
 	public void setLieferantenverwaltung(Lieferantenverwaltung l){
 		this.lieferantenverw=l;
 	}
 	/**
-	 * Erzeugt aus den im KantinenplanArrayList enthaltenen Kantinenplänen eine Einkaufsliste
-	 * Es muss vorher mindestens ein Kantinenplan über addKantinenplan referenziert worden sein.
+	 * Erzeugt aus den Bedarfspositionen (welche zuvor mit addKantinenplan aus den Kantinenplänen erzeugt wurden) eine Einkaufsliste, genauer, 
+	 * Bestellpositionen, die in einer Liste gesammelt werden (demnach die Einkaufs-Liste)
 	 * 
 	 * @return     true, für eine erfolgreich erstellte Einkaufsliste, false, falls Fehler aufgetreten sind.
 	 */
@@ -138,6 +142,14 @@ public class Einkaufsliste
 
 		return true;
 	}
+	/**
+	 * Die Methode gleicht in zwei Schritten die Bedarfpositionen mit den Artikeln ab. Zunächst werden Bedarfpositionen identifiziert, bei denen eine Bestellung beim 
+	 * Bauernhof selbst in den Fällen günstiger ist, in denen sonst kein weiterer Artikel von diesem Bauernhof bestellt wird. Diese Bauernhöfe werden zwischengespeichert.
+	 * Im zweiten Schritt kann dann für die Bauernhöfe, bei denen ohnehin eine Bestellung erfolgt, die Lieferkostenbetrachtung entfallen, der volle Deckungsbeitrag für
+	 * die Lieferkosten ist ja schon gedeckt. Die Methode liefert mit Sicherheit nicht das optimale Ergebnis, aber kann zumindest eindeutige Preisvorteile erkennen. Um 
+	 * ein absolutes Kostenminimum identifizieren zu können, wäre eine Brute-Force-Methode nötig, die alle möglichen Bestellkombinationen vergleicht.
+	 * @return Eine Liste, die die Bestellpositionen enthält
+	 */
 	private ArrayList<BestellPos> makeVariante2(){
 		ArrayList<BedarfPos> bedarfListCopy=new ArrayList<BedarfPos>();
 		ArrayList<BestellPos> bestellList=new ArrayList<BestellPos>();
@@ -158,7 +170,7 @@ public class Einkaufsliste
 			 * Optionen:
 			 * 1. Die komplette BedarfPos lässt sich von einem Artikel abdecken.
 			 * 	- Grosshandel mit spezif. Lieferkosten ist billiger als Bauernhof netto. ->Grosshandel ist immer besser
-			 * 	- Bauernhof mit spezif. Lieferkosten (volle Lieferkosten auf einen Artikel) ist billiger als Grosshandel mit spezif. Lieferkosten ->Bauernhof ist immer billiger.
+			 * 	- Bauernhof mit spezif. Lieferkosten (volle Lieferkosten auf einen Artikel gerechnet) ist billiger als Grosshandel mit spezif. Lieferkosten ->Bauernhof ist immer billiger.
 			 * 	- Der Spielraum dazwischen hängt davon ab, wieviele andere Artikel noch beim Bauernhof gekauft werden, denn desto mehr Artikel, desto niedriger die spezif.Lieferkosten.
 			 * 2. Die komplette BedarfPos lässt sich nicht komplett vom Bauernhof beschaffen, d.h. eine weitere Bestellung vom Grosshandel wird nötig.
 			 * 	- 
@@ -325,6 +337,7 @@ public class Einkaufsliste
 					bedarf.setMenge(0);
 				}
 				bestellList.add(bp);
+				//Bauernhof in der Liste speichern, damit später abgeglichen werden kann, ob bei diesem ohnehin bestellt werden muss.
 				if (!bauernhofList.contains(cheapestBauerVoll.getLieferant())){
 					bauernhofList.add((Bauernhof) cheapestBauerVoll.getLieferant());
 				}
@@ -623,19 +636,21 @@ public class Einkaufsliste
 					//BauernhofList enthält den Bauernhof noch nicht
 					Bauernhof bauer=(Bauernhof) (b.getArtikel().getLieferant());
 					bauernhofList.add(bauer);
+					//Lieferkosten des Bauernhofs aufaddieren
 					gesamtkosten=gesamtkosten+bauer.getEntfernung()*kmSatz;
 				}
 			}
 			if (b.getArtikel().getLieferant().getClass()==Grosshandel.class){
 				Grosshandel gh=(Grosshandel) (b.getArtikel().getLieferant());
+				//Lieferkostensatz des Grosshandels aufaddieren
 				gesamtkosten=gesamtkosten+gh.getLieferkostensatz();
 			}
+			//Nettokosten des Artikels aufaddieren
 			gesamtkosten=gesamtkosten+b.getMenge()*b.getArtikel().getPreis();
 
 		}
 		this.gesamtkosten=gesamtkosten;
 	}
-
 	/**
 	 * Gibt die Gesamtkosten der Einkaufsliste zurück, die vorher mit berechneGesamtkosten() berechnet wurden.
 	 *
@@ -645,7 +660,6 @@ public class Einkaufsliste
 	{
 		return gesamtkosten;
 	}
-
 	/**
 	 * Liefert einen ArrayList zurück, der alle BestellPos-Objekte der Einkaufsliste enthält
 	 * 
@@ -655,114 +669,98 @@ public class Einkaufsliste
 	{
 		return bestellPosList;
 	}
+	
 	public void schreibeEinkaufsliste() {
 		ArrayList<BestellPos> sortList=new ArrayList<BestellPos>();
+		//Um die Einkaufsliste nach Lieferanten zu sortieren, müssen die Bestellpositionen sortiert werden
 		for (Lieferant l:lieferantenverw.getLieferanten()){
 			for(BestellPos bp:bestellPosList)
 				if (bp.getArtikel().getLieferant()==l){
 					sortList.add(bp);
 				}
 		}
-		
-		
 		Datei eklDatei = new Datei( "Einkaufsliste.txt");
 		//MainWin.StringOutln("Schreibe Einkaufsliste.txt");
-
-
 		if (eklDatei.openOutFile_FS()==0) {
-
 			eklDatei.writeLine("Einkauflsliste");
-			eklDatei.writeLine("Anz Name                          Lieferant                               Gebindegrösse      Einzelpreis   Summe   Lieferkosten");
+			eklDatei.writeLine("Anz Name                          Lieferant                               Gebindegrösse     Einzelpreis   Summe   Lieferkosten");
 			String ausgabeZeile;	
 			ArrayList<Bauernhof> bauerList=new ArrayList<Bauernhof>();
 			
 			for( BestellPos bp:sortList) {
 				Artikel a=bp.getArtikel();
 				StringBuffer lieferkosten=new StringBuffer();
-				DecimalFormat zweiNachkomma = new DecimalFormat (",##0.00");
-				DecimalFormat eineNachkomma = new DecimalFormat (",##0.00");
-				if (a.getLieferant().getClass()==Grosshandel.class){
-					Grosshandel gh=(Grosshandel) a.getLieferant();
-					new Double(gh.getLieferkostensatz()).toString();
-					lieferkosten.append(" ");
-					lieferkosten.append(zweiNachkomma.format(new Double(gh.getLieferkostensatz())));
-				}
-				else if(a.getLieferant().getClass()==Bauernhof.class){
-					Bauernhof bauer=(Bauernhof) a.getLieferant();
-					if (!bauerList.contains(bauer)){
-						new Double(bauer.getEntfernung()*getkmSatz()).toString();
-						lieferkosten.append(zweiNachkomma.format(new Double(bauer.getEntfernung()*getkmSatz())));
-						bauerList.add(bauer);
-					}
-					
-				}	
 				String anzOffset="";
 				StringBuffer nameOffset=new StringBuffer();
 				String preisOffset="";
 				String summeOffset="";
 				StringBuffer lieferOffset= new StringBuffer();
 				String gebindeOffset="";
-				String preisSuffix="";
+				//Zahlenforamte für die Ausgabe
+				DecimalFormat zweiNachkomma = new DecimalFormat (",##0.00");
+				DecimalFormat eineNachkomma = new DecimalFormat (",##0.0");
+				if (a.getLieferant().getClass()==Grosshandel.class){
+					Grosshandel gh=(Grosshandel) a.getLieferant();
+					//Da die Lieferkosten bei den Grosshandel nur einstellig sind, reicht es hier erstmal, nur einen Space den Lieferkosten vorzuhängen
+					lieferkosten.append(" ");
+					lieferkosten.append(zweiNachkomma.format(new Double(gh.getLieferkostensatz())));
+				}
+				else if(a.getLieferant().getClass()==Bauernhof.class){
+					Bauernhof bauer=(Bauernhof) a.getLieferant();
+					if (!bauerList.contains(bauer)){
+						//Nur bei erstmaligen Auftauchen des Bauernhofes werden die Lieferkosten ausgewiesen.
+						new Double(bauer.getEntfernung()*getkmSatz()).toString();
+						lieferkosten.append(zweiNachkomma.format(new Double(bauer.getEntfernung()*getkmSatz())));
+						bauerList.add(bauer);
+					}
+				}
+				//AnzahlGebinde Offset bestimmen: 3 Zeichen reserviert
 				if (bp.getMenge()<100) anzOffset=" ";
 				if (bp.getMenge()<10) anzOffset="  ";
+				//Lieferantenname Offset: 40 Zeichen reserviert
 				for (int i=0;i<(40-a.getLieferant().getLieferantenName().length());i++){
 					lieferOffset.append(" ");
 				}
+				//Artikelname Offset: 30 Zeichen reserviert
 				for (int i=0;i<(30-a.getName().length());i++){
 					nameOffset.append(" ");
 				}
+				//Gebindegröße Offset: Maximal 6 Zeichen vor dem Komma (bzw. 7 mit dem Trennpunkt, deshalb auch die Verschiebung
 				if (a.getGebindegroesse()<100000) gebindeOffset=" ";
 				if (a.getGebindegroesse()<10000) gebindeOffset="  ";
 				if (a.getGebindegroesse()<1000) gebindeOffset="    ";
 				if (a.getGebindegroesse()<100) gebindeOffset="     ";
 				if (a.getGebindegroesse()<10) gebindeOffset="      ";
-				
+				//Fehlt die einstellige Einheit, wird stattdessen einfach ein Space gesetzt
 				String einheit =a.getEinheit();
 				if(einheit.equals("")) einheit=" ";
-				
-				
+				//Artikelpreis Offset: 	
 				if (a.getPreis()<1000) preisOffset="  ";
 				if (a.getPreis()<100) preisOffset="   ";
 				if (a.getPreis()<10) preisOffset="    ";
-				
-				
-
-				double preis = a.getPreis();
-		          
-		          String[] asplit =  Double.toString(preis).split("\\.");
-		          //int nachkomma = asplit[1].length();
-		          //if (nachkomma<2) preisSuffix=" ";
-		          
-		          double summe = a.getPreis()*bp.getMenge();
-		          //int preisincent=Math.round(a.getPreis()*100);
-		          //double summe=((double)bp.getMenge()*(double)preisincent)/(double)100;
-		          
-		          asplit =  Double.toString(summe).split("\\.");
-		          int vorkomma = asplit[0].length();
-		          if (vorkomma<6) summeOffset=" ";
-		          if (vorkomma<5) summeOffset="  ";
-		          if (vorkomma<4) summeOffset="    ";
-		          if (vorkomma<3) summeOffset="     ";
-		          if (vorkomma<2) summeOffset="      ";
-		        
-
-				
+				//double statt float wegen Ungenauigkeiten
+		        double summe = a.getPreis()*bp.getMenge();
+		        //Bestimmung der Vorkommastellen hier etwas besser. Der Offset für die Summe hat ebenfalls die Verschiebung wegen dem Tausender-Punkt  
+		        String[] asplit =  Double.toString(summe).split("\\.");
+		        //Der String wird am Punkt geteilt, nicht am Komma, da hier das Numberformat noch garnicht benutzt wurde
+		        int vorkomma = asplit[0].length();
+		        if (vorkomma<6) summeOffset=" ";
+		        if (vorkomma<5) summeOffset="  ";
+		        if (vorkomma<4) summeOffset="    ";
+		        if (vorkomma<3) summeOffset="     ";
+		        if (vorkomma<2) summeOffset="      ";
+				//Zusammensetzen der Ausgabezeile
 				ausgabeZeile = anzOffset+bp.getMenge()+" "+a.getName()+nameOffset+a.getLieferant().getLieferantenName()+lieferOffset+gebindeOffset+eineNachkomma.format(a.getGebindegroesse())+
-						" "+einheit+"      "+preisOffset+zweiNachkomma.format(a.getPreis())+preisSuffix+"    "+summeOffset+zweiNachkomma.format(summe)+"  "+lieferkosten;
-
+						" "+einheit+"      "+preisOffset+zweiNachkomma.format(a.getPreis())+"    "+summeOffset+zweiNachkomma.format(summe)+"  "+lieferkosten;
 				if( eklDatei.writeLine_FS(ausgabeZeile) != 0) {
 					MainWin.StringOutln("Fehler beim Schreiben der Bestellposition "+a.getName()+" des Lieferanten "+a.getLieferant().getLieferantenName());
 					break;
 				}
-
 			}
 			if( eklDatei.closeOutFile_FS()!=0)
 				MainWin.StringOutln("Fehler beim Schließen der Ausgabedatei");
-
 		} else 
 			MainWin.StringOutln("Die Ausgabedatei kann nicht geöffnet werden.");
-
-
 		MainWin.StringOutln("Ausgabe der Einkaufsliste in "+System.getProperty("user.dir")+" als einkaufsliste.txt");
 
 	}

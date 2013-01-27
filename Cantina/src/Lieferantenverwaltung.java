@@ -19,7 +19,7 @@ import java.io.*;
  * Datenschicht anstößt.
  * 
  * @author Rene Wiederhold
- * @version 0.01
+ * @version 1.0
  */
 public class Lieferantenverwaltung {
 	private ArrayList<Artikel> artList;
@@ -27,7 +27,7 @@ public class Lieferantenverwaltung {
 	private ArrayList<Lebensmittel> lmList;
 
 	/**
-	 * Der Konstruktor der Lieferantenverwaltung
+	 * Der Konstruktor der Lieferantenverwaltung initialisiert die Artikel-, Lieferanten- und Lebensmittelliste.
 	 */
 	public Lieferantenverwaltung() {
 		artList = new ArrayList<Artikel>();
@@ -40,9 +40,8 @@ public class Lieferantenverwaltung {
 	 * Veggie). Dies wird von der Rezeptverwaltung zur Erstellung der Rezepte
 	 * verwendet.
 	 * 
-	 * @param zutat
-	 *            Die zu prüfende Zutat
-	 * @return Einen standardisierten String, der die Typ-Bezeichnung enthält.
+	 * @param zutat Die zu prüfende Zutat
+	 * @return Den entsprechenden Rezepttyp-Enumerator
 	 */
 	public RezeptTyp holeTyp(Zutat zutat){
 		String typ = null;
@@ -66,13 +65,12 @@ public class Lieferantenverwaltung {
 
 	/**
 	 * Die Methode prüft, ob die benötigten Mengen Lebensmittel am Markt
-	 * vorhanden sind, um ein Tagesgericht in der Planungs- periode anbieten zu
+	 * vorhanden sind, um ein Tagesgericht in der Planungsperiode anbieten zu
 	 * können. Beim Aufruf wird die benötigte Menge vom zugehörigen
 	 * Lebensmittel-Objekt abgezogen, sofern ausreichend. Dies wird vom
 	 * Kantinenplan verwendet.
 	 * 
-	 * @param Tagesgericht
-	 *            Das zu überprüfende Tagesgericht
+	 * @param Tagesgericht Das zu überprüfende Tagesgericht
 	 * @return True, falls ausreichend Lebensmittel beschafft werden können,
 	 *         ansonsten False
 	 */
@@ -130,14 +128,12 @@ public class Lieferantenverwaltung {
 	 * den Eingabe-Dateien die Bauernhof-, Grosshandel- und Artikelobjekte sowie
 	 * die Lebensmittel-Objekte.
 	 * 
-	 * 
-	 * @param String
-	 *            Der Pfad zum Ordner, der die Lieferantenpreislisten enthält.
+	 * @param String Der Pfad zum Ordner, der die Lieferantenpreislisten enthält.
 	 * @return True, falls die Lieferantendateien eingelesen werden konnten,
 	 *         False, falls Probleme aufgetreten sind.
 	 */
-	public boolean readLiefFolder(String lieferantenOrdner) {
-		File folder = new File(lieferantenOrdner);
+	public boolean readLiefFolder(String liefFolder) {
+		File folder = new File(liefFolder);
 		/* Debug-Print
 		MainWin.StringOutln("Angegebener Lieferantenordner ist ein Ordner: "
 				+ folder.isDirectory());	*/
@@ -147,12 +143,15 @@ public class Lieferantenverwaltung {
 			// Start der Ordner-Schleife
 			for (int i = 0; i < fileList.length; i++) {
 				// Datei öffnen
-				if (readLiefFile(lieferantenOrdner + "//" + fileList[i]) == true) {
+				if (readLiefFile(liefFolder + "//" + fileList[i]) == true) {
 					// Debug-Print
 					MainWin.StringOutln("Die Datei " + fileList[i]
 							+ " wurde erfolgreich eingelesen");
-				} 
+				} else {
+					return false;
+				}
 			}
+			MainWin.StringOutln("");
 
 			/*// Debug-Print aus der Artikelliste
 			for (int j = 0; j < artList.size(); j++) {
@@ -178,19 +177,22 @@ public class Lieferantenverwaltung {
 				MainWin.StringOutln("Name: "+lm.getName()+" Menge: "+lm.getMenge()+" Typ: "+lm.getTyp());
 			}
 			MainWin.StringOutln(lmList.size());*/
+			return true;
+		} else {
+			MainWin.StringOutln("Überprüfen sie, on der Ordner "+liefFolder+" im Anwendungsordner vorhanden ist.");
+			return false;
 		}
-		return true;
+		
 	}
 
 	/**
-	 * Liest eine Lieferantendatei und schreibt die Lieferanten und Artikel in
+	 * Liest eine Lieferantendatei, erstellt das Lieferantenobjekt und die Artikelobjekte und schreibt den Lieferanten und die Artikel in
 	 * die zugehörigen ArrayLists
 	 * 
-	 * @param in
-	 *            Der Pfad zur einzulesenden Lieferantendatei
+	 * @param in Der Pfad zur einzulesenden Lieferantendatei
 	 * @return Einen booleschen Wert, ob die Datei erfolgreich eingelesen wurde.
 	 */
-	private boolean readLiefFile(String in) {
+	public boolean readLiefFile(String in) {
 
 		Datei inFile = new Datei(in);
 		inFile.openInFile_FS(); // öffnet den readbuffer
@@ -254,6 +256,10 @@ public class Lieferantenverwaltung {
 						// Debug-Print
 						// MainWin.StringOutln(lieferant.getLieferantenName());
 					}
+					else {
+						MainWin.StringOutln("Die Datei "+in+" enthält keine Inforamtion darüber, ob es sich um einen Grosshandel oder einen Bauernhof handelt.");
+						return false;
+					}
 				} 
 				else {
 					// Artikel erzeugen und Lieferanten zuweisen, sofern Länge des Artikelnamen NICHT 0 ist ODER die verfügbaren Gebinde NICHT 0 sind
@@ -263,15 +269,11 @@ public class Lieferantenverwaltung {
 						art.setEinheit(fields.get(1));
 						// Das Komma im String muss in einen Punkt umgewandelt
 						// werden, sonst funktioniert der Typecast nicht.
-						art.setPreis(Float.valueOf(
-								(fields.get(4).replaceAll(",", ".")))
-								.floatValue());
-						art.setGebindegroesse(Float.valueOf(
-								(fields.get(0).replaceAll(",", ".")))
-								.floatValue());
+						art.setPreis(Float.valueOf((fields.get(4).replaceAll(",", "."))).floatValue());
+						art.setGebindegroesse(Float.valueOf((fields.get(0).replaceAll(",", "."))).floatValue());
 						art.setLieferant(liefList.get(liefList.size() - 1));
-
 						artList.add(art);
+						//Anpassen der Lebensmittel
 						addLebensmittel(art.getName(), art.getArtikelanzahl()
 								* art.getGebindegroesse(),art.getEinheit(), fields.get(3));
 
@@ -298,14 +300,17 @@ public class Lieferantenverwaltung {
 		for (Artikel art:artList){
 			if(art.getName().equals(name)){
 				if (result.size()==0){
+					//Erster Artikel ist immer der billigste
 					result.add(art);
 				}
 				else if ( (result.get(result.size()-1).getPreis()/result.get(result.size()-1).getGebindegroesse()) < (art.getPreis()/art.getGebindegroesse()) ){
+					//Artikel ist teuerer als der letzte, also einfach ans Ende fügen.
 					result.add(art);						
 				}
 				else{
 					for (int i=0;i<result.size();i++){
 						if ( (result.get(i).getPreis()/result.get(i).getGebindegroesse()) > (art.getPreis()/art.getGebindegroesse())){
+							//Artikel ist günstiger als der i-te Artikel, deshalb wird er an dessen Position gesetzt. Die folgenden Artikel "rutschen" nach hinten.
 							result.add(i, art);
 							break;
 						}
@@ -326,12 +331,10 @@ public class Lieferantenverwaltung {
 	 * wird der Typ eines Lebensmittels gesetzt, sofern ein neues
 	 * Lebensmittelobjekt erzeugt werden muss.
 	 * 
-	 * @param lm
-	 *            Der Name des Lebensmittel
-	 * @param m
-	 *            Die zu berücksichtigende Menge des Lebensmittel
-	 * @param typ
-	 *            Der Typ des Lebensmittel als standardisierter String. "m" für
+	 * @param lmName Der Name des Lebensmittel
+	 * @param m Die zu berücksichtigende Menge des Lebensmittel
+	 * @param einh Die Einheit, in dem das Lebensmittel gemessen wird.
+	 * @param typ Der Typ des Lebensmittel als standardisierter String. "m" für
 	 *            Meat, "f" für Fisch, "" für vegetarisch.
 	 */
 	private void addLebensmittel(String lmName, float m, String einh, String typ) {
@@ -395,6 +398,11 @@ public class Lieferantenverwaltung {
 			}	
 		} //else-Ende
 	}
+	/**
+	 * Die Methode liefert eine Liste aller Lieferanten, die der Lieferantenverwaltung bekannt sind (also zuvor eingelesen wurden).
+	 * @return Eine ArrayList, die die Lieferantenobjekte referenziert.
+	 */
+	
 	public ArrayList<Lieferant> getLieferanten(){
 		return liefList;
 	}

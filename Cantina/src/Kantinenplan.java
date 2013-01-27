@@ -6,8 +6,7 @@ import java.util.ArrayList;
  * Sie steht in Assoziation zu der Einkaufsliste um, durch die Übergabe eines
  * Kantinenplans, die Bestellpositonen zu generieren. Der Kantinenplan hat durch die Assoziation zur
  * Reezptverwaltung und Lieferantenverwaltung Zugriff auf deren Methoden um eine gültigen Kantinenplan
- * zu erstellen. Um den Export eine Kantinenplans in eine Datei zu ermöglichen steht der Kantinenplan 
- * auch in Assoziation zum Exporter. Damit ein Planungslauf von der Kantinenplanung durchgführt werden kann, 
+ * zu erstellen. Damit ein Planungslauf von der Kantinenplanung durchgführt werden kann, 
  * liegt auch mit dieser Klasse eine Assoziationsbeziehung vor.
  * 
  * @author Rene Wiederhold
@@ -35,6 +34,7 @@ public class Kantinenplan
 		tgArrayList=new ArrayList<Tagesgericht>();
 
 		//Debug-Print
+		MainWin.StringOutln("");
 		MainWin.StringOutln("Der Kantinenplan für "+standort+" mit "+anzMitarbeiter+" Mitarbeitern wurde erzeugt.");
 	}
 
@@ -205,10 +205,9 @@ public class Kantinenplan
 				else {
 					//Durch den Zufallsmodus kann auch 2x dasselbe Rezept vorgeschlagen werden, da ja zum Zeitpunkt des Aufrufes die Vorgänger noch nicht gesetzt sind.
 					//Dann wird ein neuer Planungstag initialisiert
+					i--;
 					//Debug_Print
 					//MainWin.StringOutln("Problem bei den Hitlistenpositionen");
-					i--;
-
 				}	
 			} //Ende temporärer Wochenplanschleife
 		}
@@ -226,7 +225,6 @@ public class Kantinenplan
         } */
 		return true;
 	}
-
 	/**
 	 * Die Methode gibt eine ArrayList zurück, der alle Tagesgerichte des Kantinenplans enthält.
 	 * 
@@ -236,7 +234,6 @@ public class Kantinenplan
 	{
 		return tgArrayList;
 	}
-
 	/**
 	 * Gibt den Namen der Kantine zurück.
 	 * 
@@ -246,7 +243,6 @@ public class Kantinenplan
 	{
 		return standort;
 	}
-
 	/**
 	 * Gibt die Anzahl der Mitarbeiter am Standort zurück.
 	 * 
@@ -259,37 +255,30 @@ public class Kantinenplan
 	public void schreibeKantinenplan() {
 		Datei planDatei = new Datei( standort+".csv");
 		//MainWin.StringOutln("Schreibe Datei "+standort+".csv ...");
-
-
 		if (planDatei.openOutFile_FS()==0) {
-
 			planDatei.writeLine("Kantinenplan für "+standort);
 			String ausgabeZeile;
 			for( Tagesgericht tgGericht: tgArrayList ) {
 				String dOffset="";
 				String hOffset="";
+				//Tag Offset für Datum kleiner als 10:
 				if(tgGericht.getDatum()<10){dOffset=" ";}
+				//Hitlistenposition Offset: 3 Zeichen reserviert
 				if(tgGericht.getRezept().getHitlistenpos()<100){hOffset=" ";}
 				if(tgGericht.getRezept().getHitlistenpos()<10){hOffset="  ";}
+				//Ausgabezeile zusammensetzen
 				ausgabeZeile = "Datum: "+dOffset+tgGericht.getDatum()+" Hitlistenpos.: "+hOffset+tgGericht.getRezept().getHitlistenpos()
 						+" Menge: "+tgGericht.getMenge()+" Gericht: "+tgGericht.
 						getRezept().getName()+" Typ: "+tgGericht.getRezept().getTyp();
-
 				if( planDatei.writeLine_FS(ausgabeZeile) != 0) {
 					MainWin.StringOutln("Fehler beim Schreiben der planZeile"+tgGericht.getRezept().getName());
 					break;
 				}
-
 			}
 			if( planDatei.closeOutFile_FS()!=0)
 				MainWin.StringOutln("Fehler beim Schließen der Ausgabedatei");
-
 		} else 
 			MainWin.StringOutln("Die Ausgabedatei kann nicht geöffnet werden.");
-
-
 		MainWin.StringOutln("Ausgabe des Kantinenplans in "+System.getProperty("user.dir")+" als "+standort+".csv");
-
 	}
-
 }

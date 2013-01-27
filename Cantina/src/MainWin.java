@@ -15,36 +15,38 @@ public class MainWin extends JFrame {
 
     static JTextArea ausgabe = new JTextArea("Cantina startet..."+"\n");
 
-    
-		public MainWin(){
-            super("Cantina JAVA");                          	   // Text oben in der Leiste        
+    /**
+     * Der Konstruktor des MainWindow
+     */
+	public MainWin(){
+		super("Cantina JAVA");                          	   // Text oben in der Leiste        
             
-    	    ausgabe.setEditable(false);
-    		JScrollPane scrollText = new JScrollPane (ausgabe);
-    		scrollText.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    		add(scrollText);
+        ausgabe.setEditable(false);
+    	JScrollPane scrollText = new JScrollPane (ausgabe);
+    	scrollText.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    	add(scrollText);
 
-    		setSize(700,500);                                  // Fenster Größe
-            setLocation(300,300);                              // Wo sich das Fenster beim starten befinden soll                     
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    // Schließe Fenster und Programm beim beenden 
-			setVisible(true);
-		}
-		/**
-		 * Textausgabe im MainWindow.
-		 *
-		 * @return Textausgabe
-		 */
-		public static void StringOut(String ausgabeText){
-			ausgabe.append(ausgabeText);
-		}
-		/**
-		 * Textausgabe von Strings im MainWindow.
-		 *
-		 * @return Textausgabe von Strings
-		 */
-		public static void StringOutln(String ausgabeText){
-			ausgabe.append(ausgabeText+"\n");
-		}
+    	setSize(700,600);                                  // Fenster Größe
+        setLocation(300,300);                              // Wo sich das Fenster beim starten befinden soll                     
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    // Schließe Fenster und Programm beim beenden 
+        setVisible(true);
+	}
+	/**
+	 * Textausgabe im MainWindow ohne Zeilenumbruch.
+	 *
+	 * @return Textausgabe
+	 */
+	public static void StringOut(String ausgabeText){
+		ausgabe.append(ausgabeText);
+	}
+	/**
+	 * Textausgabe im MainWindow mit Zeilenumbruch.
+	 *
+	 * @return Textausgabe von Strings
+	 */
+	public static void StringOutln(String ausgabeText){
+		ausgabe.append(ausgabeText+"\n");
+	}
 		
 		
 }
