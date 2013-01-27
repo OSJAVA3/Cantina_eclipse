@@ -1,11 +1,11 @@
 
 /**
  * Die Klasse beschreibt Zutaten durch Name, Menge und deren Einheit.
- * Instanzen der Klasse Zutat sind existenzabhängig von Rezeptobjekten, weshalb Sie eine
- * Komposition der Rezpte darstellen.
+ * Instanzen der Klasse Zutat sind existenzabhängig von Rezeptobjekten, 
+ * weshalb Sie eine Komposition der Rezpte darstellen.
  * 
  * @author Lukas Krotki
- * @version
+ * @version 1.0
  */
 public class Zutat
 {

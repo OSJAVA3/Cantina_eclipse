@@ -9,7 +9,8 @@ import java.io.*;
  * sind. Diese werden über Java-Properties realisiert.
  * 
  * Für den Planungsdurchgang steht diese Klasse mit der Lieferantenverwaltung,
- * der Rezeptverwaltung, dem Kantinenplan und der Einkaufliste in Assoziation.
+ * der Rezeptverwaltung, dem Kantinenplan und der Einkaufliste und der MainWin
+ * in Assoziation.
  * 
  * @author Rene Wiederhold
  * @version 1.0

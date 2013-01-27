@@ -6,8 +6,8 @@ import java.util.*; // Importiert die Klasse ArrayList
  * Sie steht in Assoziation zum Tagesgericht und wird zudem von der Rezeptverwaltung aggregiert,
  * welche die Rezeptobjekte verwaltet.
  * 
- * @author Lukas Krotki 
- * @version
+ * @author  Lukas Krotki 
+ * @version 1.0
  */
 
 public class Rezept 
@@ -25,6 +25,7 @@ public class Rezept
 
 	/**
 	 * Konstruktor für Objekte der Klasse Rezept
+	 * 
 	 * 
 	 * @param name Der Name des Rezeptes
 	 */

@@ -1,12 +1,14 @@
 /**
- * Die Klasse Tagesgericht enthält neben dem Rezept auch die Anzahl der herzustellenden Gerichte
- * und das Datum, an welchen Werktag der Planungsperiode es angeboten wird.
+ * Die Klasse Tagesgericht enthält neben dem Rezept auch 
+ * die Anzahl der herzustellenden Gerichte und das Datum, 
+ * an welchen Werktag der Planungsperiode es angeboten wird.
  * 
- * Sie wird vom Objekt Kantinenplan aggregiert und steht mit den Klassen Lieferantenverwaltung sowie
- * dem Rezept in Assoziation, die über den Kantinenplan hergestellt wird.
+ * Sie wird vom Objekt Kantinenplan aggregiert und steht mit 
+ * den Klassen Lieferantenverwaltung sowie dem Rezept in Assoziation,
+ * die über den Kantinenplan hergestellt wird.
  * 
  * @author Lukas Krotki
- * @version 
+ * @version 1.0
  */
 public class Tagesgericht
 {

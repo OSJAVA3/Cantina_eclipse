@@ -7,19 +7,19 @@ import java.util.ArrayList;
  * Sie steht in Assoziation zur Verwaltungsklasse Lieferantenverwaltung, der Kantinenplanung sowie dem Kantinenplan.
  * Sie aggregiert die Objekte Rezept und Zutat.
  * 
- * @author Lukas Krotki 
- * @version 
+ * @author  Lukas Krotki 
+ * @version 1.0
  */
 public class Rezeptverwaltung
 {
-	/** Angabe des Rezeptpfades */
 	private String rezeptPfad;
-	/**Rezeptname*/
 	private String rezeptName;
 	private Lieferantenverwaltung lieferantenVerw;
 	private ArrayList<Rezept> rezeptListe;
 
-	/** Bereits bei der Konstruktion muss eine Referenz zur Lieferantenverwaltung übergeben werden, da diese zur Typprüfung benötigt wird.
+	/** 
+	 * Bereits bei der Konstruktion muss eine Referenz zur Lieferantenverwaltung übergeben werden, 
+	 * da diese zur Typprüfung benötigt wird.
 	 * 
 	 * @param lieferantenverw Die zur Typprüfung zu verwendende Lieferantenverwaltung
 	 */ 
@@ -39,10 +39,12 @@ public class Rezeptverwaltung
 	}
 
 	/**
-	 * Die Methode liest die Rezeptdatei ein, erstellt Rezeptobjekte und Zutatenobjekte daraus und weist die Zutaten den Rezepten zu. Dann werden die Rezepte in den RezeptArrayList gelegt.
+	 * Die Methode liest die Rezeptdatei ein erstellt Rezeptobjekte sowie Zutatenobjekte aus der eingelesenen Datei
+	 * weist die Zutaten den Rezepten zu. Die Rezepte werden in die RezeptArrayList abgelegt.
 	 * 
 	 * @param   rezeptpfad Den Pfad zur Rezeptdatei.
-	 * @return  Gibt True zurück, wenn die Rezepte vollständig eingelesen wurden. Gibt False zurück, falls Fehler aufgetreten sind.   
+	 * @return  Gibt True zurück, wenn die Rezepte vollständig eingelesen wurden. 
+	 *          Gibt False zurück, falls Fehler aufgetreten sind.   
 	 */
 	public boolean liesRezepte(String rezeptpfad) 
 	{
@@ -102,8 +104,10 @@ public class Rezeptverwaltung
 
 
 				}
-
+               
+				//hinzufügen einer Zutat 
 				rezept.addZutat(makeZutat(fields));
+				
 				//Debug-Print
 				//MainWin.StringOutln("Zutat: " +fields.get(3).toString());
 
@@ -113,14 +117,12 @@ public class Rezeptverwaltung
 				//rezept.addZutat( zutat );
 				// Debug Print
 				//MainWin.StringOutln(" Zutat: "+fields.get(3).toString());
-
-
-
 			}
 
 		}
 		//Rezepttyp fuer das letzte Rezept, da sonst nicht veregeben wird
 		setzeRezeptTyp (rezept);
+		
 		MainWin.StringOutln("Die Datei "+rezeptpfad+" wurde erfolgreich eingelesen");
 		return true;
 	}
@@ -129,8 +131,8 @@ public class Rezeptverwaltung
 
 	/**
 	 * Methode zum setzen des Rezepttyps. 
-	 * Durch die übergebene Lieferantenverwaltung, erhalten die Zutaten sowie Rezepte darüber Kenntnis
-	 * welchen RezeptTyp diese entsprechen 
+	 * Durch die übergebene Lieferantenverwaltung, erhalten die Zutaten sowie 
+	 * Rezepte darüber Kenntnis welchen RezeptTyp diese entsprechen 
 	 * 
 	 * @param Rezept   
 	 * @return  True für vollständige Zuweisung, False für unvollständig    
@@ -141,7 +143,8 @@ public class Rezeptverwaltung
 	}
 
 	/**
-	 * Die Methode liest die Hitlistendatei ein und weist den im RezeptArrayList enthaltenen Rezeptobjekten ihre Hitlistenposition zu.
+	 * Die Methode liest die Hitlistendatei ein und weist den im RezeptArrayList 
+	 * enthaltenen Rezeptobjekten ihre Hitlistenposition zu.
 	 * 
 	 * @param hitlistenpfad Den Pfad zur Hitlistendatei  
 	 * @return  True für vollständige Zuweisung, False für unvollständig    
@@ -160,8 +163,8 @@ public class Rezeptverwaltung
 			// Abbrechen der Methode
 			return false;
 		}
-		//int zeilennummer = 0;
-
+		
+		//Weise rezeptName null zu
 		Rezept rezeptName = null;
 
 		//Datei-Schleife
@@ -188,7 +191,7 @@ public class Rezeptverwaltung
 				// Uebergebe der Variable rezeptName den String aus dem Feld 1
 				rezeptName = getRezeptWithName( fields.get(1).toString() );
 
-				// Solange der Rezeptname auf keinen Nullpointer verweist, setze die Hitlistenposition aus aus Feld 0
+				// Solange der Rezeptname auf keinen Nullpointer verweist, setze die Hitlistenposition aus dem Feld 0
 				if ( rezeptName != null) {
 					rezeptName.setHitlistenpos( fields.get(0) );
 

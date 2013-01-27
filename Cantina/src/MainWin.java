@@ -1,13 +1,14 @@
 import javax.swing.*;
 /**
  * Die Klasse MainWin gibt die Ausgabe von Fehlermeldung beim Programmablauf aus.
- * Durch Bereitstellung einer Konsole wird auch Auskuft darüber erteilt, ob das einlesen der Dateien sowie
- * die Ausgabe der Dateien fehlerfrei verlaufen ist.
+ * Durch Bereitstellung einer Konsole wird auch Auskuft darüber erteilt, 
+ * ob das einlesen der Dateien sowie die Ausgabe der Dateien fehlerfrei verlaufen ist.
  * 
- * Die Instanz der Klasse wird durch die Kantinenplanung erstellt. Mit dieser steht sie in Assoziation.
+ * Die Instanz der Klasse wird durch die Kantinenplanung erstellt.
+ * Mit dieser steht sie in Assoziation.
  * 
- * @author Lukas Krotki
- * @version
+ * @author  Lukas Krotki
+ * @version 1.0
  */
 public class MainWin extends JFrame {
 	//Seriennummer für eine Serialisierung (mit Versionierung)
