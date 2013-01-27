@@ -35,7 +35,7 @@ public class Kantinenplan
 		tgArrayList=new ArrayList<Tagesgericht>();
 
 		//Debug-Print
-		MainWin.StringOutln("Die Kantine "+standort+" mit "+anzMitarbeiter+" Mitarbeitern wurde erzeugt.");
+		MainWin.StringOutln("Der Kantinenplan für "+standort+" mit "+anzMitarbeiter+" Mitarbeitern wurde erzeugt.");
 	}
 
 	/**
@@ -288,7 +288,7 @@ public class Kantinenplan
 			MainWin.StringOutln("Die Ausgabedatei kann nicht geöffnet werden.");
 
 
-		MainWin.StringOutln("Ausgabe des Kantinenplan in "+System.getProperty("user.dir")+" als "+standort+".csv");
+		MainWin.StringOutln("Ausgabe des Kantinenplans in "+System.getProperty("user.dir")+" als "+standort+".csv");
 
 	}
 

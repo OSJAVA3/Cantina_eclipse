@@ -4,6 +4,8 @@ import javax.swing.*;
  * Durch Bereitstellung einer Konsole wird auch Auskuft darüber erteilt, ob das einlesen der Dateien sowie
  * die Ausgabe der Dateien fehlerfrei verlaufen ist.
  * 
+ * Die Instanz der Klasse wird durch die Kantinenplanung erstellt. Mit dieser steht sie in Assoziation.
+ * 
  * @author Lukas Krotki
  * @version
  */
