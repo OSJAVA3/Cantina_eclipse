@@ -5,7 +5,7 @@
  * Die Klasse Grosshandel ist eine Subklasse der Oberklasse Lieferant.
  * 
  * @author Rene Wiederhold 
- * @version 0.01
+ * @version 1.00
  */
 public class Grosshandel extends Lieferant
 {

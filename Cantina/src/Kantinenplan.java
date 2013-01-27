@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * liegt auch mit dieser Klasse eine Assoziationsbeziehung vor.
  * 
  * @author Rene Wiederhold
- * @version 0.1
+ * @version 1.00
  */
 public class Kantinenplan
 {

@@ -1,5 +1,4 @@
 import java.io.*;
-
 /**
  * Die Klasse Datei soll in einfacherer Weise Strings als Zeilen ausgeben,
  * bzw einlesen koennen.

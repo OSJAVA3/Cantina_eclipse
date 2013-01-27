@@ -8,7 +8,7 @@
  * Instanzen der Klasse Lebensmittel werden von der Lieferantenverwaltung aggregiert.
  * 
  * @author Rene Wiederhold 
- * @version
+ * @version 1.00
  */
 public class Lebensmittel
 {

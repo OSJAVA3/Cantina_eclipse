@@ -5,6 +5,8 @@
  * Der Exporter steht in Assoziation zu den Klassen Kantinenplan und Einkaufliste, die er exportieren soll.
  * Der Export erfolgt im Planungslauf durch die Kantinenplanung.
  * 
+ * Nicht genutzt, kann gelöscht werden
+ * 
  * @author Lukas Krotki
  * @version 
  */

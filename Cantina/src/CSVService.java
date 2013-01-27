@@ -3,7 +3,7 @@ import java.util.Iterator;
 /**
  * Die Klasse CSVService stellt Methoden zur Transformation von "comma-separated values"-Strings bereit
  * @author Rene Wiederhold
- * @version 0.1
+ * @version 1.00
  */
 public class CSVService {
 	/**

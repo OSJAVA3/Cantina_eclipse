@@ -9,7 +9,7 @@
  * Klasse eine Komposition der Einkaufliste.
  * 
  * @author Rene Wiederhold
- * @version
+ * @version 1.00
  */
 public class BestellPos
 {

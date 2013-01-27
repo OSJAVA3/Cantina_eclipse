@@ -9,7 +9,7 @@
  * einem Artikel und der Menge an zu bestellenden Gebinden entspricht.
  * 
  * @author Rene Wiederhold
- * @version 
+ * @version 1.00
  */
 public class Artikel
 {

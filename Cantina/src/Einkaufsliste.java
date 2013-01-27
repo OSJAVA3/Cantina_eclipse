@@ -18,7 +18,7 @@ import java.text.*;
  * Für den Planungslauf steht sie in Assoziation zur Kantinenplanung.
  * 
  * @author Rene Wiederhold 
- * @version
+ * @version 1.00
  */
 public class Einkaufsliste
 {

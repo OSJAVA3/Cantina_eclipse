@@ -1,7 +1,6 @@
 import java.text.DecimalFormat;
 import java.util.*;
 import java.io.*;
-
 /**
  * Die Klasse Kantinenplanung ist die auszuführende Klasse, welche die
  * Ablauflogik des Programms umfasst. Sie enthält neben der Main-Methode auch
@@ -33,7 +32,6 @@ public class Kantinenplanung {
 	//Attribute für die Geschäftslogikklassen
 	private Einkaufsliste einkaufsliste;
 	private ArrayList<Kantinenplan> kantPlanList;
-
 
 	/**
 	 * Konstruktor für das Objekt.
@@ -76,7 +74,7 @@ public class Kantinenplanung {
 	 * Die Methode lädt die Parameter aus der Datei "config.properties" im
 	 * Root-Ordner in die Attribute der Klasse.
 	 */
-	private boolean loadProperties() {
+	public boolean loadProperties() {
 		try {
 			Properties properties = new Properties();
 			BufferedInputStream stream = new BufferedInputStream(
