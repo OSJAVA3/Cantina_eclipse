@@ -39,6 +39,7 @@ public class Zutat
 	public void setName(String zutatName){
 
 	}
+	
 	/**
 	 * Gibt den Namen einer Zutat
 	 * 
@@ -57,6 +58,7 @@ public class Zutat
 	public void setMenge(float menge){
 
 	}
+	
 	/**
 	 * Gibt die Menge einer Zutat
 	 * 
@@ -65,6 +67,7 @@ public class Zutat
 	public float getMenge(){
 		return menge;
 	}
+	
 	/**
 	 * Setzt die Einheit der Zutat 
 	 * 
@@ -74,6 +77,7 @@ public class Zutat
 	public void setEinheit (String einheit){
 
 	}
+	
 	/**
 	 * Gibt die Einheit einer Zutat
 	 * 
