@@ -1,0 +1,47 @@
+Kantinenplan für Mülheim a.d. Ruhr
+Datum   Hitlistenposition   Menge    Gericht                                                   Typ
+ 1        95                112      Kartoffelgulasch                                          Fleisch
+ 1        66                225      Pfannkuchen mit Apfelmus                                  Vegetarisches
+ 1        88                112      Tomatensuppe mit Bratwurstbaellchen                       Fleisch
+ 2        98                112      Spaghetti Carbonara                                       Fleisch
+ 2        65                225      Kartoffeln mit Senfsauce und Ei                           Vegetarisches
+ 2        82                112      Nudelauflauf Muelheimer Art                               Fleisch
+ 3        63                112      Halbes Schwein auf Toast                                  Fleisch
+ 3        27                225      Birnenmilchreis                                           Vegetarisches
+ 3        46                112      Penne mit Pesto Verde                                     Vegetarisches
+ 4        51                112      Toast Italiano                                            Fleisch
+ 4        13                225      Pilzravioli mit Sauce Hollandaise                         Vegetarisches
+ 4        18                112      Pizza Hawaii                                              Fleisch
+ 5       100                112      Kuerbissuppe mit Haehnchen                                Fleisch
+ 5        79                225      Schweizer Kaesefondue                                     Vegetarisches
+ 5       107                112      Lachs im Kartoffelmantel                                  Fisch
+ 6        43                112      Truthahn in Estragonsauce mit Reis                        Fleisch
+ 6        76                112      Bulgur a la Gourmand                                      Vegetarisches
+ 6        37                225      Spaghetti Bolognese                                       Fleisch
+ 7        19                225      Chili con carne                                           Fleisch
+ 7        92                112      Seelachs mit Kartoffelsalat                               Vegetarisches
+ 7        87                112      Surf and Turf mit Pommes                                  Fisch
+ 8        67                112      Knoedel mit Pilzen                                        Fleisch
+ 8        36                225      Frittierte Mozzarellakugeln in Gorgonzolasauce            Vegetarisches
+ 8        38                112      Huehner-Nudel-Auflauf                                     Fleisch
+ 9       102                112      Gurken-Schinken-Salat                                     Fleisch
+ 9        81                112      Gefuellte Paprika                                         Vegetarisches
+ 9         4                225      Nudelsuppe                                                Vegetarisches
+10        93                112      Spaetzle mit Schinken-Kaese-Sahnesauce                    Fleisch
+10        75                225      Kaiserschmarrn                                            Vegetarisches
+10        78                112      Kartoffelsuppe                                            Vegetarisches
+11        22                225      Toast Hawaii                                              Fleisch
+11        45                112      Gnocchipfanne                                             Vegetarisches
+11        41                112      Schweinefilet mit gruenem Pfeffer und Reis                Fleisch
+12        15                225      Italienische Gemuesepfanne mit Haehnchen                  Fleisch
+12        57                112      Gebackener Camembert                                      Vegetarisches
+12       106                112      Fleischtopf a la Gourmand                                 Fleisch
+13        90                112      Koenigsberger Klopse                                      Fleisch
+13        71                225      Sojagyros mit Pommes                                      Vegetarisches
+13        90                112      Koenigsberger Klopse                                      Fleisch
+14        56                112      Pizza Ruhrgebiet                                          Fleisch
+14        64                112      Tofu in Salbeisauce mit Reis                              Vegetarisches
+14        29                225      Omelette mit Kartoffeln                                   Vegetarisches
+15        26                225      Gyros mit Pommes                                          Fleisch
+15       109                112      Gemuesetopf Bombay                                        Vegetarisches
+15       103                112      Fischsuppe                                                Fisch

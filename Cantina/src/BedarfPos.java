@@ -1,6 +1,6 @@
 
 /**
- * Ein Objekt der Klasse BedarfPos enthält den Gesamtbedarf (die Gesamtmenge) einer Zutat für
+ * Ein Objekt der Klasse BedarfPos enthält den Gesamtbedarf (die Gesamtmenge und die Einheit) einer Zutat für
  * den Planungszeitraum.  
  * Die BedarfPos wird von der Einkaufsliste aggregiert. 
  * 
@@ -15,7 +15,7 @@ public class BedarfPos implements Cloneable
 
 
 	/**
-	 * Dem Konstruktor des Objekts
+	 * Der Standard-Konstruktor des Objektes
 	 * 
 	 */
 	public BedarfPos()
@@ -25,7 +25,8 @@ public class BedarfPos implements Cloneable
 
 
 	/**
-	 * @return the name
+	 * Die Methode gibt den Names des Objektes zurück
+	 * @return Der Name der Bedarfposition
 	 */
 	public String getName() {
 		return name;
@@ -33,7 +34,8 @@ public class BedarfPos implements Cloneable
 
 
 	/**
-	 * @return the menge
+	 * Die Methode gibt die Menge der Bedarfposition zurück
+	 * @return Die Menge der Bedarfposition
 	 */
 	public float getMenge() {
 		return menge;
@@ -41,7 +43,8 @@ public class BedarfPos implements Cloneable
 
 
 	/**
-	 * @return the einheit
+	 * Die Methode gibt die Einheit der Bedarfposition zurück
+	 * @return Die Einheit der Bedarfsposition
 	 */
 	public String getEinheit() {
 		return einheit;
@@ -49,7 +52,8 @@ public class BedarfPos implements Cloneable
 
 
 	/**
-	 * @param name the name to set
+	 * Die Methode setzt den Namen der Bedarfposition
+	 * @param name Der Name der Bedarfposition
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -57,7 +61,8 @@ public class BedarfPos implements Cloneable
 
 
 	/**
-	 * @param menge the menge to set
+	 * Die Methode setzt die Menge der Bedarfposition
+	 * @param menge Die Menge der Einheit
 	 */
 	public void setMenge(float menge) {
 		this.menge = menge;
@@ -65,12 +70,13 @@ public class BedarfPos implements Cloneable
 
 
 	/**
-	 * @param einheit the einheit to set
+	 * Die Methode setzt die Einheit der Bedarfposition
+	 * @param einheit Die Einheit
 	 */
 	public void setEinheit(String einheit) {
 		this.einheit = einheit;
 	}
-	/** Klont das BedarfPos-Objekt (tiefe Kopie)
+	/** Klont das BedarfPos-Objekt als tiefe Kopie
 	 * @return Das geklonte BedarfPos-Objekt
 	 */
 	public BedarfPos clone(){

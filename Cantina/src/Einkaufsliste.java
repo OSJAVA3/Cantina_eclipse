@@ -202,7 +202,6 @@ public class Einkaufsliste
 			cheapestGHTeil.setPreis(Float.MAX_VALUE);
 			double cheapestGHSummeNettoTeil=Float.MAX_VALUE;
 			double cheapestGHLieferkostenTeil=Float.MAX_VALUE;
-			int maxGebindeGH=0;
 
 			ArrayList<Artikel> artList=lieferantenverw.gibAlleArtikel(bedarf.getName());
 			for (Artikel art:artList){				
@@ -258,7 +257,6 @@ public class Einkaufsliste
 							cheapestGHSummeNettoTeil= art.getPreis()*anzGebinde;
 							cheapestGHLieferkostenTeil=gh.getLieferkostensatz();
 							cheapestGHTeil=art;
-							maxGebindeGH=art.getArtikelanzahl();
 						}
 					}
 				}

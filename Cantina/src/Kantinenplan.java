@@ -253,23 +253,29 @@ public class Kantinenplan
 		return anzMitarbeiter;
 	}
 	public void schreibeKantinenplan() {
-		Datei planDatei = new Datei( standort+".csv");
+		Datei planDatei = new Datei( standort+".txt");
 		//MainWin.StringOutln("Schreibe Datei "+standort+".csv ...");
 		if (planDatei.openOutFile_FS()==0) {
 			planDatei.writeLine("Kantinenplan für "+standort);
+			planDatei.writeLine("Datum   Hitlistenposition   Menge    Gericht                                                   Typ");
 			String ausgabeZeile;
 			for( Tagesgericht tgGericht: tgArrayList ) {
 				String dOffset="";
 				String hOffset="";
+				StringBuffer nameOffset=new StringBuffer();
 				//Tag Offset für Datum kleiner als 10:
 				if(tgGericht.getDatum()<10){dOffset=" ";}
 				//Hitlistenposition Offset: 3 Zeichen reserviert
 				if(tgGericht.getRezept().getHitlistenpos()<100){hOffset=" ";}
 				if(tgGericht.getRezept().getHitlistenpos()<10){hOffset="  ";}
+				//Gerichtname-Offset: 50 Zeichen reserviert
+				for (int i=0;i<(50-tgGericht.getRezept().getName().length());i++){
+					nameOffset.append(" ");
+				}
 				//Ausgabezeile zusammensetzen
-				ausgabeZeile = "Datum: "+dOffset+tgGericht.getDatum()+" Hitlistenpos.: "+hOffset+tgGericht.getRezept().getHitlistenpos()
-						+" Menge: "+tgGericht.getMenge()+" Gericht: "+tgGericht.
-						getRezept().getName()+" Typ: "+tgGericht.getRezept().getTyp();
+				ausgabeZeile = dOffset+tgGericht.getDatum()+"       "+hOffset+tgGericht.getRezept().getHitlistenpos()
+						+"                "+tgGericht.getMenge()+"      "+tgGericht.
+						getRezept().getName()+nameOffset+"        "+tgGericht.getRezept().getTyp();
 				if( planDatei.writeLine_FS(ausgabeZeile) != 0) {
 					MainWin.StringOutln("Fehler beim Schreiben der planZeile"+tgGericht.getRezept().getName());
 					break;
@@ -277,8 +283,9 @@ public class Kantinenplan
 			}
 			if( planDatei.closeOutFile_FS()!=0)
 				MainWin.StringOutln("Fehler beim Schließen der Ausgabedatei");
-		} else 
+		} else {
 			MainWin.StringOutln("Die Ausgabedatei kann nicht geöffnet werden.");
-		MainWin.StringOutln("Ausgabe des Kantinenplans in "+System.getProperty("user.dir")+" als "+standort+".csv");
+		}
+		MainWin.StringOutln("Ausgabe des Kantinenplans in "+System.getProperty("user.dir")+" als "+standort+".txt");
 	}
 }
