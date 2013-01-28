@@ -677,6 +677,8 @@ public class Einkaufsliste
 					sortList.add(bp);
 				}
 		}
+		DecimalFormat zweiNachkomma = new DecimalFormat (",##0.00");
+		DecimalFormat eineNachkomma = new DecimalFormat (",##0.0");
 		Datei eklDatei = new Datei( "Einkaufsliste.txt");
 		//MainWin.StringOutln("Schreibe Einkaufsliste.txt");
 		if (eklDatei.openOutFile_FS()==0) {
@@ -695,8 +697,7 @@ public class Einkaufsliste
 				StringBuffer lieferOffset= new StringBuffer();
 				String gebindeOffset="";
 				//Zahlenforamte für die Ausgabe
-				DecimalFormat zweiNachkomma = new DecimalFormat (",##0.00");
-				DecimalFormat eineNachkomma = new DecimalFormat (",##0.0");
+
 				if (a.getLieferant().getClass()==Grosshandel.class){
 					Grosshandel gh=(Grosshandel) a.getLieferant();
 					//Da die Lieferkosten bei den Grosshandel nur einstellig sind, reicht es hier erstmal, nur einen Space den Lieferkosten vorzuhängen
@@ -754,6 +755,9 @@ public class Einkaufsliste
 					MainWin.StringOutln("Fehler beim Schreiben der Bestellposition "+a.getName()+" des Lieferanten "+a.getLieferant().getLieferantenName());
 					break;
 				}
+			}
+			if( eklDatei.writeLine_FS("                                                                                         Gesamtkosten: "+zweiNachkomma.format(gesamtkosten)) != 0) {
+				MainWin.StringOutln("Fehler beim Schreiben der Gesamtkosten");
 			}
 			if( eklDatei.closeOutFile_FS()!=0)
 				MainWin.StringOutln("Fehler beim Schließen der Ausgabedatei");

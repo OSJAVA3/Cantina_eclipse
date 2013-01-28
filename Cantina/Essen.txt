@@ -1,47 +1,47 @@
 Kantinenplan für Essen
 Datum   Hitlistenposition   Menge    Gericht                                                   Typ
- 1        28                375      Penne Arrabiata mit Speck                                 Fleisch
- 1        49                187      Spaghetti Aglio e Olio                                    Vegetarisches
- 1        54                187      Rustikales Landhaussteak                                  Fleisch
- 2       105                187      Hausgemachtes Schmalzbrot                                 Fleisch
- 2         1                375      Bohneneintopf Mexiko                                      Vegetarisches
- 2        73                187      Schwaebische Maultaschen                                  Vegetarisches
- 3        35                375      Asiatisches Schweinegeschnetzeltes                        Fleisch
- 3        40                187      Penne mit Pesto Rosso                                     Vegetarisches
- 3        72                187      Fischburger                                               Fisch
- 4        12                375      Tofu-Reispfanne                                           Fleisch
- 4        94                187      Weightwatchers-Powerpfanne                                Vegetarisches
+ 1        42                187      Rindergeschnetzeltes mit Reis                             Fleisch
+ 1         2                375      Penne Arrabiata Vegetarisch                               Vegetarisches
+ 1        18                187      Pizza Hawaii                                              Fleisch
+ 2        54                187      Rustikales Landhaussteak                                  Fleisch
+ 2        45                375      Gnocchipfanne                                             Vegetarisches
+ 2        47                187      Belgische Pommes Rot-Weiss                                Vegetarisches
+ 3        69                187      Schweinesteak Essener Art                                 Fleisch
+ 3        81                187      Gefuellte Paprika                                         Vegetarisches
+ 3        23                375      Bunte Gemuesepfanne                                       Vegetarisches
  4       108                187      Schweinegeschnetzeltes mit Kartoffelpuffer                Fleisch
- 5        80                187      Paella                                                    Fleisch
- 5        31                187      Schokoladenfondue                                         Vegetarisches
- 5         2                375      Penne Arrabiata Vegetarisch                               Vegetarisches
- 6        55                187      Risotto Tonno                                             Fleisch
- 6        59                187      Kaesespaetzle                                             Vegetarisches
- 6         9                375      Pfannkuchen mit Kirschen                                  Vegetarisches
- 7        34                375      Moussaka                                                  Fleisch
- 7        84                187      Schupfnudel-Broccoli-Pfanne                               Vegetarisches
- 7        96                187      Gefuellte Johannisbeeren a la Goldt                       Vegetarisches
- 8        42                375      Rindergeschnetzeltes mit Reis                             Fleisch
- 8        74                187      Penne Aglio e Olio                                        Vegetarisches
- 8        70                187      Huehnerfrikassee                                          Fleisch
- 9         5                375      Rouladen mit Rotkohl und Kartoffeln                       Fleisch
- 9        89                187      Penne mit Trueffel-Pilz-Pesto                             Vegetarisches
- 9        77                187      Gemuesecurry                                              Vegetarisches
-10        21                187      Cordon Bleu mit Kartoffeln                                Fleisch
-10        61                187      Veggiburger                                               Vegetarisches
-10         7                375      Pangasiusfilet mit Kartoffelstampf                        Fisch
-11        53                375      Wurst im Teigmantel                                       Fleisch
-11        62                187      Zucchinisuppe                                             Vegetarisches
-11        58                187      Ringli Aglio e Olio                                       Vegetarisches
-12        69                187      Schweinesteak Essener Art                                 Fleisch
-12         8                375      Raclette                                                  Vegetarisches
-12        83                187      Cheeseburger                                              Fleisch
-13        39                187      Chickenburger                                             Fleisch
-13        17                375      Tofugeschnetzeltes Asiatisch                              Vegetarisches
-13        99                187      Poekelfleisch mit Reis                                    Fleisch
-14         6                375      Safransuppe mit Straussenfilet                            Fleisch
-14        68                187      Bunte Gemuese-Nudelpfanne                                 Vegetarisches
-14        33                187      Penne mit Spinatsauce                                     Vegetarisches
-15        44                375      Elcheintopf                                               Fleisch
-15        60                187      Nasi-Goreng nach Art des Hauses                           Vegetarisches
-15        86                187      Wildlachs mit Kartoffelpueree                             Fisch
+ 4        24                375      Frischer Garnelensalat                                    Vegetarisches
+ 4        87                187      Surf and Turf mit Pommes                                  Fisch
+ 5        21                187      Cordon Bleu mit Kartoffeln                                Fleisch
+ 5        36                187      Frittierte Mozzarellakugeln in Gorgonzolasauce            Vegetarisches
+ 5        15                375      Italienische Gemuesepfanne mit Haehnchen                  Fleisch
+ 6        41                375      Schweinefilet mit gruenem Pfeffer und Reis                Fleisch
+ 6        46                187      Penne mit Pesto Verde                                     Vegetarisches
+ 6        88                187      Tomatensuppe mit Bratwurstbaellchen                       Fleisch
+ 7        93                187      Spaetzle mit Schinken-Kaese-Sahnesauce                    Fleisch
+ 7        61                375      Veggiburger                                               Vegetarisches
+ 7       103                187      Fischsuppe                                                Fisch
+ 8         5                375      Rouladen mit Rotkohl und Kartoffeln                       Fleisch
+ 8         9                187      Pfannkuchen mit Kirschen                                  Vegetarisches
+ 8        66                187      Pfannkuchen mit Apfelmus                                  Vegetarisches
+ 9        20                375      Haehnchenbrust in Salbeisauce m. Reis                     Fleisch
+ 9        73                187      Schwaebische Maultaschen                                  Vegetarisches
+ 9        48                187      Gnocchi mit Tomatensauce                                  Vegetarisches
+10        91                187      Spinat-Cannelloni                                         Fleisch
+10        13                375      Pilzravioli mit Sauce Hollandaise                         Vegetarisches
+10        77                187      Gemuesecurry                                              Vegetarisches
+11        83                187      Cheeseburger                                              Fleisch
+11        74                187      Penne Aglio e Olio                                        Vegetarisches
+11        49                375      Spaghetti Aglio e Olio                                    Vegetarisches
+12        43                187      Truthahn in Estragonsauce mit Reis                        Fleisch
+12         4                375      Nudelsuppe                                                Vegetarisches
+12        99                187      Poekelfleisch mit Reis                                    Fleisch
+13        34                187      Moussaka                                                  Fleisch
+13       101                187      Pfannkuchen mit Pilzen                                    Vegetarisches
+13         1                375      Bohneneintopf Mexiko                                      Vegetarisches
+14       106                187      Fleischtopf a la Gourmand                                 Fleisch
+14         8                375      Raclette                                                  Vegetarisches
+14        40                187      Penne mit Pesto Rosso                                     Vegetarisches
+15        90                187      Koenigsberger Klopse                                      Fleisch
+15       109                187      Gemuesetopf Bombay                                        Vegetarisches
+15        16                375      Kugelfisch-Pfanne                                         Fisch
