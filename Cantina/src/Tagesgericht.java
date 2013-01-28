@@ -40,16 +40,6 @@ public class Tagesgericht
 	}
 
 	/**
-	 * Gibt die Absatztmenge des Tagesgerichtes zurück.
-	 *
-	 * @return Die Absatzmenge des Tagesgerichts
-	 */
-	public int getMenge()
-	{
-		return menge;
-	}
-
-	/**
 	 * Gibt das Datum des Tagesgerichtes zurück.
 	 *
 	 * @return Das Datum des Tagesgerichts
@@ -67,6 +57,16 @@ public class Tagesgericht
 	public void setDatum(int datum)
 	{
 		this.datum=datum;
+	}
+	
+	/**
+	 * Gibt die Absatztmenge des Tagesgerichtes zurück.
+	 *
+	 * @return Die Absatzmenge des Tagesgerichts
+	 */
+	public int getMenge()
+	{
+		return menge;
 	}
 
 	/**

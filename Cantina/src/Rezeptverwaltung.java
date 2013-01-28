@@ -29,14 +29,7 @@ public class Rezeptverwaltung
 		rezeptListe = new ArrayList<Rezept>();
 	}
 
-	/**
-	 * Rezepte in Rezeptliste aufnehmen
-	 * 
-	 * @param: rezept Rezept auf Rezeptliste
-	 */
-	public void addRezept (Rezept rezept){
-		rezeptListe.add (rezept);
-	}
+	
 
 	/**
 	 * Die Methode liest die Rezeptdatei ein erstellt Rezeptobjekte sowie Zutatenobjekte aus der eingelesenen Datei
@@ -127,8 +120,6 @@ public class Rezeptverwaltung
 		return true;
 	}
 
-
-
 	/**
 	 * Methode zum setzen des Rezepttyps. 
 	 * Durch die übergebene Lieferantenverwaltung, erhalten die Zutaten sowie 
@@ -207,6 +198,7 @@ public class Rezeptverwaltung
 		return true;
 
 	}
+	
 	/** Prüfen, ob der Rezeptname bereits in der Rezeptliste enhalten ist
 	 * 
 	 * @param rezeptName Name eines Rezeptes
