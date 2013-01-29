@@ -45,7 +45,7 @@ public class Kantinenplanung {
 	 * Führt das Programm aus und ruft die einzelnen Methoden gemäß der
 	 * Ablauflogik auf.
 	 * 
-	 * @param String[] Übergegebene Parameter werden nicht verwendet.
+	 * @param args Übergegebene Parameter werden nicht verwendet.
 	 */
 	public static void main(String[] args) {
 		// Erzeugen des Application-Objektes

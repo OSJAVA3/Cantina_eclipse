@@ -19,9 +19,9 @@ public class Rezeptverwaltung
 
 	/** 
 	 * Bereits bei der Konstruktion muss eine Referenz zur Lieferantenverwaltung übergeben werden, 
-	 * da diese zur Typprüfung benötigt wird.
+	 * da diese zur Typprüfung benötigt wird. Der Konstruktur initialisiert zudem die Rezepte.
 	 * 
-	 * @param lieferantenverw Die zur Typprüfung zu verwendende Lieferantenverwaltung
+	 * @param liefVerw Die zur Typprüfung zu verwendende Lieferantenverwaltung
 	 */ 
 	public Rezeptverwaltung(Lieferantenverwaltung liefVerw)
 	{
@@ -98,7 +98,7 @@ public class Rezeptverwaltung
 
 				}
                
-				//hinzufügen einer Zutat 
+				//hinzufügen und erzeugen einer Zutat 
 				rezept.addZutat(makeZutat(fields));
 				
 				//Debug-Print
@@ -137,7 +137,7 @@ public class Rezeptverwaltung
 	 * Die Methode liest die Hitlistendatei ein und weist den im RezeptArrayList 
 	 * enthaltenen Rezeptobjekten ihre Hitlistenposition zu.
 	 * 
-	 * @param hitlistenpfad Den Pfad zur Hitlistendatei  
+	 * @param hitlistenPfad Den Pfad zur Hitlistendatei  
 	 * @return  True für vollständige Zuweisung, False für unvollständig    
 	 */
 	public boolean liesHitliste(String hitlistenPfad) 

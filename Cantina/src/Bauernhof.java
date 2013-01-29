@@ -5,7 +5,7 @@
  * Subklasse der Oberklasse Lieferant.
  * 
  * @author Rene Wiederhold
- * @version
+ * @version 1.00
  */
 public class Bauernhof extends Lieferant
 {

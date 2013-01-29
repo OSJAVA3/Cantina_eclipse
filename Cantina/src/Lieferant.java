@@ -17,7 +17,7 @@ public abstract class Lieferant
 	/**
 	 * Setzt den Namen eines Lieferanten
 	 * 
-	 * @param  lieferantName Der Name des Lieferanten
+	 * @param  name Der Name des Lieferanten
 	 */
 	public void setLieferantName(String name)
 	{

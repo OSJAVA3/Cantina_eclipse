@@ -19,9 +19,8 @@ public class BestellPos
 	private int menge;
 
 	/**
-	 * Konstruktor der Klasse
+	 * Konstruktor der Klasse Bestellposition
 	 * 
-	 * @param art Der Artikel der Bestellposition
 	 */
 	public BestellPos()
 	{

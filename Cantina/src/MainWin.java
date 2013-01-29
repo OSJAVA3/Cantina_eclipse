@@ -11,9 +11,9 @@ import javax.swing.*;
  * @version 1.0
  */
 public class MainWin extends JFrame {
-	//Seriennummer für eine Serialisierung (mit Versionierung)
+	// Seriennummer für eine Serialisierung 
 	private static final long serialVersionUID = 1L;
-
+    // Erzeugung einer JTextArea
     static JTextArea ausgabe = new JTextArea("Cantina startet..."+"\n");
 
     /**
@@ -22,8 +22,8 @@ public class MainWin extends JFrame {
 	public MainWin(){
 		super("Cantina JAVA");                          	   // Text oben in der Leiste        
             
-        ausgabe.setEditable(false);
-    	JScrollPane scrollText = new JScrollPane (ausgabe);
+        ausgabe.setEditable(false);							   // Ausgabetext nicht änderbar
+    	JScrollPane scrollText = new JScrollPane (ausgabe);    // Text soll scrollbar sein
     	scrollText.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     	add(scrollText);
 
@@ -35,7 +35,7 @@ public class MainWin extends JFrame {
 	/**
 	 * Textausgabe im MainWindow ohne Zeilenumbruch.
 	 *
-	 * @return Textausgabe
+	 * @param ausgabeText Text der ausgegeben werden soll
 	 */
 	public static void StringOut(String ausgabeText){
 		ausgabe.append(ausgabeText);
@@ -43,7 +43,7 @@ public class MainWin extends JFrame {
 	/**
 	 * Textausgabe im MainWindow mit Zeilenumbruch.
 	 *
-	 * @return Textausgabe von Strings
+	 * @param ausgabeText Text der ausgegeben werden soll
 	 */
 	public static void StringOutln(String ausgabeText){
 		ausgabe.append(ausgabeText+"\n");

@@ -45,7 +45,6 @@ public class Einkaufsliste
 	 * Die Methode fügt die benötigten Zutaten für einen Kantinenplan den Bedarfsposition-Objekten hinzu bzw. erstellt diese.
 	 *
 	 * @param  kantinenplan   Ein Kantinenplanobjekt
-	 * @return     True für ein erfolgreiches hinzufügen, False falls ein Problem aufgetreten ist.
 	 */
 	public void addKantinenplan(Kantinenplan kantinenplan)
 	{ 

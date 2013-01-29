@@ -47,7 +47,7 @@ public class Lebensmittel
 	/**
 	 * Setzt die Menge eines Lebensmittels
 	 * 
-	 * @param marktMenge Die zu schreibende Marktmenge.
+	 * @param menge Die zu schreibende Marktmenge.
 	 *        
 	 */
 	public void setMenge (float menge){

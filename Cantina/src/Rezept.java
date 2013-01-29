@@ -55,9 +55,9 @@ public class Rezept
 	}
 
 	/**
-	 * Setzt die ArrayList für die Rezepte
+	 * Nimmt Zutaten in die Arrayliste für Zutaten auf
 	 * 
-	 * @param zutaten ArrayList für die Zutaten
+	 * @param zutat ArrayList für die Zutaten
 	 */
 	public void addZutat(Zutat zutat){
 		zutaten.add(zutat);
@@ -93,7 +93,7 @@ public class Rezept
 	/**
 	 * Setzt die Hitlistenposition für ein Rezept  
 	 * 
-	 * @param hitlistenposition Postion eines Rezeptes auf der Hitliste
+	 * @param hitlistPosStr Postion eines Rezeptes auf der Hitliste
 	 */
 	public void setHitlistenpos ( String hitlistPosStr) {
 		hitlistPos = Integer.valueOf( hitlistPosStr );
@@ -110,15 +110,20 @@ public class Rezept
 	}
 
 	/**
-	 * Setzt den Typ des Rezeptes
+	 * Setzt den Typ des Rezeptes, dieser wird bestimmt durch die 
+	 * Übergabe der Lieferantenverwaltung. 
+	 * Der Rezepttyp wird abgeleitet von den Lebensmitteln und deren 
+	 * Kennzeichnung in den eingelesenen Lieferantendateien
 	 * 
-	 * @param typ Typ des Rezeptes (Fleisch, Fisch, Vegie)
+	 * @param lieferantenVerw 
+	 * 				Die Lieferantenverwaltung wird hier benötigt 
+	 *              um den Zutatentyp zu ermitteln 
 	 */
 	public void setRezeptTyp (Lieferantenverwaltung lieferantenVerw){
 		RezeptTyp zutatTyp;
-		// Alten Wert ueberschreiben und neuen Typ aufgrund der jetzigen Zutaten ermitteln
 		typ = RezeptTyp.Vegetarisches;
-
+		// Weise einer Zutat den Zutatentyp zu, dabei wird der alte Wert überschrieben und der 
+		// neue Typ aufgrund der ermittelten Zutat zugewiesen
 		for( Zutat zutat : zutaten ) {
 			zutatTyp = lieferantenVerw.holeTyp(zutat);
 			if (zutatTyp != RezeptTyp.Vegetarisches)  {

@@ -69,8 +69,7 @@ public class Datei
 
 	/**
 	 * Oeffnet eine Ausgabedatei namens dName.
-	 * 
-	 * @return (int) - Fehlernummer, oder 0 fuer OK!
+	 * (int) - Fehlernummer, oder 0 fuer OK!
 	 */
 	public void openOutFile() throws IOException
 	{

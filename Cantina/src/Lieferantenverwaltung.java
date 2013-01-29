@@ -70,7 +70,7 @@ public class Lieferantenverwaltung {
 	 * Lebensmittel-Objekt abgezogen, sofern ausreichend. Dies wird vom
 	 * Kantinenplan verwendet.
 	 * 
-	 * @param Tagesgericht Das zu überprüfende Tagesgericht
+	 * @param tagesgericht Das zu überprüfende Tagesgericht
 	 * @return True, falls ausreichend Lebensmittel beschafft werden können,
 	 *         ansonsten False
 	 */
@@ -128,7 +128,7 @@ public class Lieferantenverwaltung {
 	 * den Eingabe-Dateien die Bauernhof-, Grosshandel- und Artikelobjekte sowie
 	 * die Lebensmittel-Objekte.
 	 * 
-	 * @param String Der Pfad zum Ordner, der die Lieferantenpreislisten enthält.
+	 * @param liefFolder Der Pfad zum Ordner, der die Lieferantenpreislisten enthält.
 	 * @return True, falls die Lieferantendateien eingelesen werden konnten,
 	 *         False, falls Probleme aufgetreten sind.
 	 */

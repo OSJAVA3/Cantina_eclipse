@@ -32,9 +32,8 @@ public class Zutat
 
 	/**
 	 * Setzt den Namen der Zutat 
-	 * @param zutatName 
 	 * 
-	 * @param name Der Name der Zutat  
+	 * @param zutatName Der Name der Zutat  
 	 */
 	public void setName(String zutatName){
 
