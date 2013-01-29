@@ -12,8 +12,11 @@ import java.io.*;
  * Selbstverstaendlich duerfen Sie diese Klasse in ihrem Projekt nicht nur
  * benutzen, sondern auch nach Belieben veraendern!
  * 
- * 25.01.2013 Die Ausgabe der Fehlermeldungen erfolgt nun über die Methode MainWin.StringOutln
- * Dies ist für die Ausführung von außerhalb implementiert worden. 
+ * Um Instanzen der Klassse Datei erzeugen zu könnnen bestehen Assoziationen zu den 
+ * Klassen Kantinenplan und Einkaufsliste.
+ * 
+ * 25.01.2013 Die Ausgabe der Fehlermeldungen erfolgt nun über die Methode 
+ * MainWin.StringOutln Dies ist für die Ausführung von außerhalb implementiert worden. 
  * 
  * @author  Patrick Veith et al., Lukas Krotki
  * @version 2.11 on 25.01.2013

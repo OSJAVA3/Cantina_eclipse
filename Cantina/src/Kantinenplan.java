@@ -7,7 +7,8 @@ import java.util.ArrayList;
  * Kantinenplans, die Bestellpositonen zu generieren. Der Kantinenplan hat durch die Assoziation zur
  * Reezptverwaltung und Lieferantenverwaltung Zugriff auf deren Methoden um eine gültigen Kantinenplan
  * zu erstellen. Damit ein Planungslauf von der Kantinenplanung durchgführt werden kann, 
- * liegt auch mit dieser Klasse eine Assoziationsbeziehung vor.
+ * liegt auch mit dieser Klasse eine Assoziationsbeziehung vor. Um Kantinenpläne erzeugen zu können
+ * ist auch eine Assoziation zur Serviceklasse Datei vorhanden.
  * 
  * @author Rene Wiederhold
  * @version 1.00

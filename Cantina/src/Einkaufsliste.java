@@ -16,6 +16,7 @@ import java.text.*;
  * BedarfPos geführt werden. Die Assoziation zur Lieferantenverwaltung ermöglicht der Einkaufsliste die 
  * günstigsten Artikel zu ermitteln und aus der BedarfsPos die BestellPos zu generieren.
  * Für den Planungslauf steht sie in Assoziation zur Kantinenplanung.
+ * Damit Einkaufslisten erzeugt werden können, ist auch eine Assoziation zur Serviceklasse Datei vorhanden.
  * 
  * @author Rene Wiederhold 
  * @version 1.00
