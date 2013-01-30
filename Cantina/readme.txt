@@ -71,9 +71,10 @@ erstellt werden.
 
 3.	Cantina - Ausführung
 
-Sie können die Planungssoftware unter Windows mit der Anwendung start.bat ausführen. Auf Unix/Linux/OSX Systemen 
-erfolgt der Aufruf des Programms mit „java“, der Option –jar und dem Parameter „cantina.jar“, 
-z.B. java –jar cantina.jar.  Für die Ausführung muss man sich in dem Verzeichnis der jar-Datei befinden. 
+Sie können die Planungssoftware unter Windows mit der Anwendung start.bat ausführen oder durch Doppelklick 
+auf die ausführbare jar-Datei. Der Aufruf des Programms kann aber auch mittels einer Kommandokonsole 
+mit „java“, der Option –jar und dem Parameter „cantina.jar“, z.B. java –jar cantina.jar, evtl. beim Start auf 
+anderen Betriebssystemen erfolgen. Für die Ausführung muss man sich in dem Verzeichnis der jar-Datei befinden. 
 
 Das sich öffnende Fenster enthält grundsätzliche Informationen zum Ablauf und weißt am Ende die Gesamtkosten 
 der Bestellung inklusive der Lieferkosten aus.
