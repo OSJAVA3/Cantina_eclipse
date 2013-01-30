@@ -112,3 +112,30 @@ angepasst werden, z.B. neue Standorte oder veränderte Mitarbeiterzahlen.
 
 Durch Zeitmangel nicht mehr aufgenommen werden konnte eine Funktion zum Speichern und späteren laden von 
 Kantinenplänen und ein GUI, in dem der vorgeschlagene Speiseplan noch modifiziert werden kann.
+
+
+Bearbeitung der Klassen
+------------------------
+
+Bearbeiter		|	Klasse
+-----------------------------------------------------
+Rene Wiederhold		|	Artikel
+			|	Bauernhof
+			|	BedarfsPos
+			|	BestellPos
+			|	CSVService
+			|	Einkaufsliste
+			|	Grosshandel
+			|	Kantinenplan
+			|	Kantinenplanung
+			|	Lebensmittel
+			|	Lieferant
+			|	Lieferantenverwaltung
+-----------------------------------------------------
+Lukas Krotki		|	Datei
+			|	MainWin
+			|	Rezept
+			|	RezeptTyp
+			|	Rezeptverwaltung
+			|	Tagesgericht
+			|	Zutat
