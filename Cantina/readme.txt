@@ -30,35 +30,35 @@ Für einen Programmstart sind die folgenden Daten im CSV Dateiformat erforderlich
 
 •	Entpacken Sie die Datei „cantina.zip“  in ein beliebiges Verzeichnis
 •	Nachdem Sie das ZIP Verzeichnis entpackt haben stehen Ihnen die 
-    Verzeichnisse „data“ und „lieferanten“ zur Verfügung.
+    	Verzeichnisse „data“ und „lieferanten“ zur Verfügung.
 •	Bitte legen Sie das Verzeichnis data/ die Hitlistendatei und die Datei mit den Rezepten ab
-    (Sollten die Dateinamen nicht hitliste.csv und rezepte.csv sein, ändern sie bitte die Dateinamen 
-    oder die Pfadangaben in der Konfigurationsdatei welche sich ebenfalls im Anwendungsordner befindet.)
+    	(Sollten die Dateinamen nicht hitliste.csv und rezepte.csv sein, ändern sie bitte die Dateinamen 
+    	oder die Pfadangaben in der Konfigurationsdatei welche sich ebenfalls im Anwendungsordner befindet.)
 •	In das Verzeichnis lieferanten/ legen sie Bitte die verfügbaren Preislisten der Lieferanten ab.
-    (Die Dateinamen spielen hier keine Rolle, allerdings sollten sie keine Dateien in den Ordner ablegen, 
-    die keine Lieferantendateien in dem vereinbarten Format darstellen. Sie können den Pfad auch über die
-    Konfigurationsdatei ändern.)
+    	(Die Dateinamen spielen hier keine Rolle, allerdings sollten sie keine Dateien in den Ordner ablegen, 
+    	die keine Lieferantendateien in dem vereinbarten Format darstellen. Sie können den Pfad auch über die
+    	Konfigurationsdatei ändern.)
 •	Öffnen sie die config.properties-Datei mit einem Editor. In dieser Datei sind wichtige Parameter für 
-    die Programmausführung hinterlegt, die im Folgenden erläutert werden
+    	die Programmausführung hinterlegt, die im Folgenden erläutert werden
 
-Parameter		|	Bedeutung
+Parameter	 |	Bedeutung
 ---------------------------------------------------------------------------------------------------------------
-RezeptbuchPfad		|	Hier können sie den Datei-Pfad zu dem Rezeptbuch ändern.
+RezeptbuchPfad	 |	Hier können sie den Datei-Pfad zu dem Rezeptbuch ändern.
 ---------------------------------------------------------------------------------------------------------------
-HitlistenPfad		|	Hier können sie den Datei-Pfad zur Hitlisten-Datei ändern.
+HitlistenPfad	 |	Hier können sie den Datei-Pfad zur Hitlisten-Datei ändern.
 ---------------------------------------------------------------------------------------------------------------
-PreislistenOrdner	|	Hier können sie den Ordner-Pfad für den Ordner, der die Lieferantenpreislisten 
-			|	enthält ändern.
+PreislistenOrdner|	Hier können sie den Ordner-Pfad für den Ordner, der die Lieferantenpreislisten 
+		 |	enthält ändern.
 ---------------------------------------------------------------------------------------------------------------
-kmSatz			|	Hier können sie den Kilometersatz ändern, der bei der Lieferung von einem 
-			|	Bauernhof von der Spedition erhoben wird.
+kmSatz		 |	Hier können sie den Kilometersatz ändern, der bei der Lieferung von einem 
+		 |	Bauernhof von der Spedition erhoben wird.
 ---------------------------------------------------------------------------------------------------------------
-AnzahlKantinen		|	Hier können sie die Anzahl der Kantinenpläne, die erstellt werden sollen, ändern. 
-			|	Standartmäßig ist hier 2 eingestellt.
+AnzahlKantinen	 |	Hier können sie die Anzahl der Kantinenpläne, die erstellt werden sollen, ändern. 
+		 |	Standartmäßig ist hier 2 eingestellt.
 ---------------------------------------------------------------------------------------------------------------
-NameKantine#		|	Name oder Standort der Kantine, später wird so auch der erstellte Kantinenplan benannt.
+NameKantine#	 |	Name oder Standort der Kantine, später wird so auch der erstellte Kantinenplan benannt.
 ---------------------------------------------------------------------------------------------------------------
-AnzahlKantine#		|	Anzahl der Gäste der Kantine bzw. Mitarbeiter am Standort.
+AnzahlKantine#	 |	Anzahl der Gäste der Kantine bzw. Mitarbeiter am Standort.
 
 Hinweis:
 FÜR JEDE KANTINE MUSS FOLGENDER ABSCHNITT VORHANDEN SEIN
