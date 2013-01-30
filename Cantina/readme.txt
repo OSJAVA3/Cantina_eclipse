@@ -41,20 +41,20 @@ Für einen Programmstart sind die folgenden Daten im CSV Dateiformat erforderlich
 •	Öffnen sie die config.properties-Datei mit einem Editor. In dieser Datei sind wichtige Parameter für 
     die Programmausführung hinterlegt, die im Folgenden erläutert werden
 
-Parameter			|	Bedeutung
+Parameter		|	Bedeutung
 ---------------------------------------------------------------------------------------------------------------
 RezeptbuchPfad		|	Hier können sie den Datei-Pfad zu dem Rezeptbuch ändern.
 ---------------------------------------------------------------------------------------------------------------
 HitlistenPfad		|	Hier können sie den Datei-Pfad zur Hitlisten-Datei ändern.
 ---------------------------------------------------------------------------------------------------------------
 PreislistenOrdner	|	Hier können sie den Ordner-Pfad für den Ordner, der die Lieferantenpreislisten 
-					|	enthält ändern.
+			|	enthält ändern.
 ---------------------------------------------------------------------------------------------------------------
-kmSatz				|	Hier können sie den Kilometersatz ändern, der bei der Lieferung von einem 
-					|	Bauernhof von der Spedition erhoben wird.
+kmSatz			|	Hier können sie den Kilometersatz ändern, der bei der Lieferung von einem 
+			|	Bauernhof von der Spedition erhoben wird.
 ---------------------------------------------------------------------------------------------------------------
 AnzahlKantinen		|	Hier können sie die Anzahl der Kantinenpläne, die erstellt werden sollen, ändern. 
-					|	Standartmäßig ist hier 2 eingestellt.
+			|	Standartmäßig ist hier 2 eingestellt.
 ---------------------------------------------------------------------------------------------------------------
 NameKantine#		|	Name oder Standort der Kantine, später wird so auch der erstellte Kantinenplan benannt.
 ---------------------------------------------------------------------------------------------------------------
