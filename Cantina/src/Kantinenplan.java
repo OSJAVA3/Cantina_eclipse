@@ -208,7 +208,7 @@ public class Kantinenplan
 					//Dann wird ein neuer Planungstag initialisiert
 					i--;
 					//Debug_Print
-					MainWin.StringOutln("Es sind nicht ausreichend Rezepte in der Hitliste oder in der Rezeptdatei vorhanden");
+					//MainWin.StringOutln("Problem bei den Hitlistenpositionen");
 				}	
 			} //Ende temporärer Wochenplanschleife
 		}
